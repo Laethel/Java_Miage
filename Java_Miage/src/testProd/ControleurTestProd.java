@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import utils.Path;
+import utils.Path.Way;
 
 public class ControleurTestProd {
 
@@ -21,11 +23,7 @@ public class ControleurTestProd {
 	
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
-		Parent chaines = FXMLLoader.load(getClass().getResource("/chaines/VueChaines.fxml"));
-		Scene chaines_scene = new Scene(chaines);
-		Stage chaines_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		chaines_stage.setScene(chaines_scene);
-		chaines_stage.show();
+		Path.goTo(event, Way.CHAINES);
 	}
 	
 	@FXML 

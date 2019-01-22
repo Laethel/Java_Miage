@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import utils.Path;
+import utils.Path.Way;
 
 public class ControleurAccueil {
 
@@ -24,28 +26,16 @@ public class ControleurAccueil {
 	
 	@FXML
 	private void clicBoutonParams(ActionEvent event) throws IOException {
-		Parent parametres = FXMLLoader.load(getClass().getResource("/params/VueParams.fxml"));
-		Scene parametres_scene = new Scene(parametres);
-		Stage parametres_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		parametres_stage.setScene(parametres_scene);
-		parametres_stage.show();
+		Path.goTo(event, Way.PARAMS);
 	}
 	
 	@FXML
 	private void clicBoutonStocks(ActionEvent event) throws IOException {
-		Parent stocks = FXMLLoader.load(getClass().getResource("/stocks/VueStocks.fxml"));
-		Scene stocks_scene = new Scene(stocks);
-		Stage stocks_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stocks_stage.setScene(stocks_scene);
-		stocks_stage.show();
+		Path.goTo(event, Way.STOCKS);
 	}
 	
 	@FXML
 	private void clicBoutonChaines(ActionEvent event) throws IOException {
-		Parent chaines = FXMLLoader.load(getClass().getResource("/chaines/VueChaines.fxml"));
-		Scene chaines_scene = new Scene(chaines);
-		Stage chaines_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		chaines_stage.setScene(chaines_scene);
-		chaines_stage.show();
+		Path.goTo(event, Way.CHAINES);
 	}
 }

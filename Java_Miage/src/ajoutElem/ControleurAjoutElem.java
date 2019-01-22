@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import utils.Path;
+import utils.Path.Way;
 
 public class ControleurAjoutElem {
 	
@@ -21,11 +23,7 @@ public class ControleurAjoutElem {
 	
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
-		Parent stocks = FXMLLoader.load(getClass().getResource("/stocks/VueStocks.fxml"));
-		Scene stocks_scene = new Scene(stocks);
-		Stage stocks_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stocks_stage.setScene(stocks_scene);
-		stocks_stage.show();
+		Path.goTo(event, Way.STOCKS);
 	}
 	
 	@FXML 

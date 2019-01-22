@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import main.MainApp;
+import utils.Path;
+import utils.Path.Way;
 
 public class ControleurParams {
 
@@ -42,11 +44,7 @@ public class ControleurParams {
 	
 	@FXML
 	private void clicBoutonOk(ActionEvent event) throws IOException {
-		Parent accueil = FXMLLoader.load(getClass().getResource("/accueil/VueAccueil.fxml"));
-		Scene accueil_scene = new Scene(accueil);
-		Stage accueil_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		accueil_stage.setScene(accueil_scene);
-		accueil_stage.show();
+		Path.goTo(event, Way.ACCUEIL);
 	}
 	
 }
