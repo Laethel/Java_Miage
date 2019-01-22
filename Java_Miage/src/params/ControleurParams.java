@@ -31,11 +31,14 @@ public class ControleurParams {
 	@FXML
 	private Label pathElement;
 	
-	@FXML 
-	private Label pathChaines;
+	@FXML
+	private Label pathChaine;
 
 	private MainApp mainApp;
 	private File fichier;
+	
+	public static String pathElem;
+	public static String pathCh;
 
 	public void setMainApp(MainApp main) {
 		this.mainApp = main;
@@ -50,6 +53,7 @@ public class ControleurParams {
 		String filePathElement = fichier.getAbsolutePath();
 		System.out.println(filePathElement);
 		this.pathElement.setText(filePathElement);
+		ControleurParams.pathElem = filePathElement;
 	}
 	
 	@FXML
@@ -60,13 +64,13 @@ public class ControleurParams {
 		this.fichier = explorateur.showOpenDialog(fenetre);
 		String filePathChaine = fichier.getAbsolutePath();
 		System.out.println(filePathChaine);
-		this.pathChaines.setText(filePathChaine);
+		this.pathChaine.setText(filePathChaine);
+		ControleurParams.pathCh = filePathChaine;
 	}
 	
 	@FXML
 	private void clicBoutonOk(ActionEvent event) throws IOException {
 		Path.goTo(event, Way.ACCUEIL);
 	}
-	
 }
 
