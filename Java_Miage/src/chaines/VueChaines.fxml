@@ -10,14 +10,14 @@
    <children>
       <Label layoutY="-2.0" prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #587C73;" text="     CHAINES DE PRODUCTION" textFill="WHITE" />
       <Button fx:id="retour" layoutX="534.0" layoutY="9.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
-      <TableView layoutX="25.0" layoutY="88.0" prefHeight="298.0" prefWidth="550.0">
+      <TableView fx:id="tabChaines" layoutX="25.0" layoutY="88.0" prefHeight="298.0" prefWidth="550.0">
         <columns>
-          <TableColumn minWidth="0.0" prefWidth="66.0" text="Code" />
-          <TableColumn prefWidth="95.0" text="Nom" />
-            <TableColumn minWidth="0.0" prefWidth="134.0" text="Entrée (Code, Qte)" />
-            <TableColumn minWidth="0.0" prefWidth="126.0" text="Sortie (Code, Qte)" />
-            <TableColumn minWidth="0.0" prefWidth="64.0" text="  Niveau &#10;d'activité" />
-            <TableColumn prefWidth="64.0" text="Résultat" />
+          <TableColumn fx:id="code" minWidth="0.0" prefWidth="66.0" text="Code" />
+          <TableColumn fx:id="nom" prefWidth="95.0" text="Nom" />
+            <TableColumn fx:id="entree" minWidth="0.0" prefWidth="134.0" text="Entrée (Code, Qte)" />
+            <TableColumn fx:id="sortie" minWidth="0.0" prefWidth="126.0" text="Sortie (Code, Qte)" />
+            <TableColumn fx:id="nivAct" minWidth="0.0" prefWidth="64.0" text="  Niveau &#10;d'activité" />
+            <TableColumn fx:id="resultat" prefWidth="64.0" text="Résultat" />
         </columns>
       </TableView>
       <Button fx:id="testProd" layoutX="441.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicBoutonTestProd" text="Tester une production" />

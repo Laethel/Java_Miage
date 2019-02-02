@@ -10,14 +10,14 @@
    <children>
       <Label layoutY="-2.0" prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #587C73;" text="     STOCKS" textFill="WHITE" />
       <Button fx:id="retour" layoutX="534.0" layoutY="9.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
-      <TableView layoutX="25.0" layoutY="88.0" prefHeight="298.0" prefWidth="550.0">
+      <TableView fx:id="tabStocks" layoutX="25.0" layoutY="88.0" prefHeight="298.0" prefWidth="550.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Code" />
-          <TableColumn prefWidth="75.0" text="Nom" />
-            <TableColumn prefWidth="75.0" text="Quantité" />
-            <TableColumn prefWidth="75.0" text="Unité" />
-            <TableColumn prefWidth="75.0" text="Achat" />
-            <TableColumn prefWidth="75.0" text="Vente" />
+          <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
+          <TableColumn fx:id="nom" prefWidth="128.0" text="Nom" />
+            <TableColumn fx:id="qte" prefWidth="79.0" text="Quantité" />
+            <TableColumn fx:id="unite" prefWidth="97.0" text="Unité" />
+            <TableColumn fx:id="achat" prefWidth="74.0" text="Achat" />
+            <TableColumn fx:id="vente" prefWidth="72.0" text="Vente" />
         </columns>
       </TableView>
       <Button fx:id="ajouterElem" layoutX="456.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicBoutonAjoutElem" text="Ajouter un élément" />

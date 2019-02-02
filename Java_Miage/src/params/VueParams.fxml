@@ -10,7 +10,7 @@
       <Button fx:id="boutonImportChaines" layoutX="382.0" layoutY="159.0" mnemonicParsing="false" onAction="#clicBoutonImportChaine" prefHeight="60.0" prefWidth="162.0" style="-fx-background-color: #587C73;" text="Importer un fichier CSV&#10;(Chaines)" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="boutonOk" layoutX="256.0" layoutY="319.0" mnemonicParsing="false" onAction="#clicBoutonOk" prefHeight="60.0" prefWidth="87.0" style="-fx-background-color: #587C73;" text="OK" textAlignment="CENTER" textFill="WHITE" />
       <Label fx:id="pathElement" layoutX="55.0" layoutY="231.0" prefHeight="17.0" prefWidth="162.0" text="Chemin" />
-      <Label fx:id="pathChaines" layoutX="382.0" layoutY="231.0" prefHeight="17.0" prefWidth="162.0" text="Chemin" />
+      <Label fx:id="pathChaine" layoutX="382.0" layoutY="231.0" prefHeight="17.0" prefWidth="162.0" text="Chemin" />
       <Label prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #587C73;" text="     IMPORTATION DE FICHIERS CSV" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -35,6 +35,7 @@ public class ControleurParams {
 	private Label pathChaine;
 
 	private MainApp mainApp;
+	
 	private File fichier;
 	
 	public static String pathElem;
@@ -50,7 +51,7 @@ public class ControleurParams {
 		FileChooser explorateur = new FileChooser();
 		explorateur.setTitle("Explorateur");
 		this.fichier = explorateur.showOpenDialog(fenetre);
-		String filePathElement = fichier.getAbsolutePath();
+		String filePathElement = this.fichier.getAbsolutePath();
 		System.out.println(filePathElement);
 		this.pathElement.setText(filePathElement);
 		ControleurParams.pathElem = filePathElement;
@@ -62,7 +63,7 @@ public class ControleurParams {
 		FileChooser explorateur = new FileChooser();
 		explorateur.setTitle("Explorateur");
 		this.fichier = explorateur.showOpenDialog(fenetre);
-		String filePathChaine = fichier.getAbsolutePath();
+		String filePathChaine = this.fichier.getAbsolutePath();
 		System.out.println(filePathChaine);
 		this.pathChaine.setText(filePathChaine);
 		ControleurParams.pathCh = filePathChaine;
