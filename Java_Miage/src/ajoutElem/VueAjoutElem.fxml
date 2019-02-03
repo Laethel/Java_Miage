@@ -19,14 +19,16 @@
       <Label layoutX="14.0" layoutY="139.0" text="Code :" />
       <Label layoutX="14.0" layoutY="168.0" text="Nom :" />
       <Label layoutX="14.0" layoutY="200.0" text="Unité :" />
-      <Label layoutX="12.0" layoutY="264.0" text="Prix de vente :" />
-      <Label layoutX="14.0" layoutY="232.0" text="Prix d'achat :" />
-      <TextField layoutX="61.0" layoutY="135.0" />
-      <TextField layoutX="61.0" layoutY="164.0" />
-      <TextField layoutX="61.0" layoutY="196.0" />
-      <TextField layoutX="92.0" layoutY="228.0" />
-      <TextField layoutX="92.0" layoutY="260.0" />
-      <Label layoutX="255.0" layoutY="232.0" text="(Si inconnu, taper &quot;NA&quot;)" />
-      <Label layoutX="255.0" layoutY="264.0" text="(Si inconnu, taper &quot;NA&quot;)" />
+      <Label layoutX="14.0" layoutY="299.0" text="Prix de vente :" />
+      <Label layoutX="16.0" layoutY="267.0" text="Prix d'achat :" />
+      <TextField fx:id="code" layoutX="61.0" layoutY="135.0" />
+      <TextField fx:id="nom" layoutX="61.0" layoutY="164.0" />
+      <TextField fx:id="unite" layoutX="61.0" layoutY="196.0" />
+      <TextField fx:id="achat" layoutX="94.0" layoutY="263.0" />
+      <TextField fx:id="vente" layoutX="94.0" layoutY="295.0" />
+      <Label layoutX="257.0" layoutY="267.0" text="(Si inconnu, taper &quot;NA&quot;)" />
+      <Label layoutX="257.0" layoutY="299.0" text="(Si inconnu, taper &quot;NA&quot;)" />
+      <Label layoutX="14.0" layoutY="233.0" text="Quantité :" />
+      <TextField fx:id="qte" layoutX="76.0" layoutY="229.0" />
    </children>
 </AnchorPane>

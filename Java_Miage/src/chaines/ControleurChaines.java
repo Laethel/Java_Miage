@@ -83,7 +83,6 @@ public class ControleurChaines implements Initializable{
 		        }
 				
 		        //Ajoute les données à la table
-
 				tabChaines.setItems(chaines);
 				csvParser.close();
 			

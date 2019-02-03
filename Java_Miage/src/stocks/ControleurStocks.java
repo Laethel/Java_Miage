@@ -56,7 +56,7 @@ public class ControleurStocks implements Initializable{
 	@FXML
 	private TableColumn<Element, String> vente;
 	
-	ObservableList<Element> elems = FXCollections.observableArrayList();
+	public ObservableList<Element> elems = FXCollections.observableArrayList();
 	
 	public void initialize(URL url, ResourceBundle rb) {
 		System.out.println(CSV_FILE_PATH_ELEMENT);
@@ -81,12 +81,10 @@ public class ControleurStocks implements Initializable{
 		            String prixAchat = csvRecord.get(4);
 		            String prixVente = csvRecord.get(5);
 		            Element elem = new Element(code, nom, qte, unite, prixAchat, prixVente);
-		            System.out.println(elem.toString());
 		            elems.add(elem);
 		        }
 				
 		        //Ajoute les données à la table
-
 				tabStocks.setItems(elems);
 				csvParser.close();
 			
