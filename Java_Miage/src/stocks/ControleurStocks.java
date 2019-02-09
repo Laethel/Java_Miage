@@ -1,16 +1,10 @@
 package stocks;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-
+import dao.ElementDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,14 +15,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modele.Element;
-import params.ControleurParams;
 import utils.Path;
 import utils.Path.Way;
 
 public class ControleurStocks implements Initializable{
 	
-    private static final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
-
 	@FXML
 	private Button retour;
 	
@@ -45,7 +36,7 @@ public class ControleurStocks implements Initializable{
 	private TableColumn<Element, String> nom;
 	
 	@FXML
-	private TableColumn<Element, String> qte;
+	private TableColumn<Element, Number> qte;
 	
 	@FXML
 	private TableColumn<Element, String> unite;
@@ -56,43 +47,20 @@ public class ControleurStocks implements Initializable{
 	@FXML
 	private TableColumn<Element, String> vente;
 	
-	public ObservableList<Element> elems = FXCollections.observableArrayList();
+	private ElementDAO dao = new ElementDAO();
+	private ObservableList<Element> elements;
 	
 	public void initialize(URL url, ResourceBundle rb) {
-		System.out.println(CSV_FILE_PATH_ELEMENT);
+		this.elements = FXCollections.observableArrayList(dao.findAll());
 		
-		if(CSV_FILE_PATH_ELEMENT != null) {
-			try {
-				Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_ELEMENT));
-		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';'));
-		        
-				code.setCellValueFactory(new PropertyValueFactory<Element, String>("Code"));
-				nom.setCellValueFactory(new PropertyValueFactory<Element, String>("Nom"));
-				qte.setCellValueFactory(new PropertyValueFactory<Element, String>("Qte"));
-				unite.setCellValueFactory(new PropertyValueFactory<Element, String>("Unite"));
-				achat.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixAchat"));
-				vente.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));
-				
-		        for (CSVRecord csvRecord : csvParser) {
-		            String code = csvRecord.get(0);
-		            String nom = csvRecord.get(1);
-		            String qte = csvRecord.get(2);
-		            String unite = csvRecord.get(3);
-		            String prixAchat = csvRecord.get(4);
-		            String prixVente = csvRecord.get(5);
-		            Element elem = new Element(code, nom, qte, unite, prixAchat, prixVente);
-		            elems.add(elem);
-		        }
-				
-		        //Ajoute les données à la table
-				tabStocks.setItems(elems);
-				csvParser.close();
-			
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		code.setCellValueFactory(new PropertyValueFactory<Element, String>("Code"));
+		nom.setCellValueFactory(new PropertyValueFactory<Element, String>("Nom"));
+		qte.setCellValueFactory(new PropertyValueFactory<Element, Number>("Qte"));
+		unite.setCellValueFactory(new PropertyValueFactory<Element, String>("Unite"));
+		achat.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixAchat"));
+		vente.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));
 		
+		tabStocks.setItems(elements);
 	}
 	
 	@FXML 

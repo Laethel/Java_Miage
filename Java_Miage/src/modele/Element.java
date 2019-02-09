@@ -1,75 +1,46 @@
 package modele;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Element {
 	
-	private String code;
-	private String nom;
-	private String qte;
+	private SimpleStringProperty code;
+	private SimpleStringProperty nom;
+	private SimpleDoubleProperty qte;
 	//private enum unitesMesure {LITRES, UNITES, KILOGRAMMES, PIECES};
-	private String unite;
-
-	private String prixAchat;
-	private String prixVente;
+	private SimpleStringProperty unite;
+	private SimpleStringProperty prixAchat;
+	private SimpleStringProperty prixVente;
 	
-	public Element (String code, String nom, String qte, String unite, String prixAchat, String prixVente) {
-		this.code = code;
-		this.nom = nom;
-		this.qte = qte;
-		this.unite = unite;
-		this.prixAchat = prixAchat;
-		this.prixVente = prixVente;
+	public Element (String code, String nom, double qte, String unite, String prixAchat, String prixVente) {
+		this.code = new SimpleStringProperty(code);
+		this.nom = new SimpleStringProperty(nom);
+		this.qte = new SimpleDoubleProperty(qte);
+		this.unite = new SimpleStringProperty(unite);
+		this.prixAchat = new SimpleStringProperty(prixAchat);
+		this.prixVente = new SimpleStringProperty(prixVente);
 		
 	}
 	
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public void setQte(String qte) {
-		this.qte = qte;
-	}
+	public String getCode() { return this.code.get(); }	
+	public void setCode(String code) { this.code.set(code); }
 	
+	public String getNom() { return this.nom.get(); }
+	public void setNom(String nom) { this.nom.set(nom); }
 
-	public void setUnite(String unite) {
-		this.unite = unite;
-	}
+	public double getQte() { return this.qte.get(); }
+	public void setQte(double qte) { this.qte.set(qte);	}	
 
-	public void setPrixAchat(String prixAchat) {
-		this.prixAchat = prixAchat;
-	}
+	public String getUnite() { return this.unite.get(); }
+	public void setUnite(String unite) { this.unite.set(unite);	}
 
-	public void setPrixVente(String prixVente) {
-		this.prixVente = prixVente;
-	}
+	public String getPrixAchat() { return this.prixAchat.get(); }
+	public void setPrixAchat(String prixAchat) { this.prixAchat.set(prixAchat); }
 
-	public String getCode() {
-		return code;
-	}
+	public String getPrixVente() { return this.prixVente.get(); }
+	public void setPrixVente(String prixVente) { this.prixVente.set(prixVente); }
 
-	public String getNom() {
-		return nom;
-	}
-
-	public String getQte() {
-		return qte;
-	}
-	
-	public String getUnite() {
-		return unite;
-	}
-
-	public String getPrixAchat() {
-		return prixAchat;
-	}
-
-	public String getPrixVente() {
-		return prixVente;
-	}
-	
 	public String toString() {
 		return "Code : " + this.code + " Nom : " +this.nom + " Quantité : " + this.qte + " Unité : " + this.unite 
 				+ " Prix d'achat : " + this.prixAchat + " Prix de vente : " + this.prixVente;
