@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -16,10 +18,25 @@ import params.ControleurParams;
 public class ElementDAO extends Dao<Element> {
 	
 	private final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
+	BufferedWriter bw;
 	
 	@Override
 	public boolean create(Element obj) {
-		return false;
+		try {
+			bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH_ELEMENT, true));
+			try {				
+				bw.write(obj.getCode() +";" + obj.getNom() +";" + obj.getQte() + ";" + obj.getUnite() +";" + obj.getPrixAchat() 
+							+";" + obj.getPrixVente() + "\n");
+				bw.close();
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				bw.close();
+				return false;
+			}
+		} catch (IOException e1) {
+			return false;
+		}
 	}
 
 	@Override
@@ -39,7 +56,7 @@ public class ElementDAO extends Dao<Element> {
 
 	@Override
 	public ArrayList<Element> findAll() {
-		ArrayList<Element> elements = new ArrayList();
+		ArrayList<Element> elements = new ArrayList<Element>();
 		
 		if(CSV_FILE_PATH_ELEMENT != null) {
 			try {
