@@ -64,7 +64,7 @@ public class ControleurStocks implements Initializable{
 		if(CSV_FILE_PATH_ELEMENT != null) {
 			try {
 				Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_ELEMENT));
-		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';'));
+		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader().withDelimiter(';').withNullString("").withIgnoreSurroundingSpaces());
 		        
 				code.setCellValueFactory(new PropertyValueFactory<Element, String>("Code"));
 				nom.setCellValueFactory(new PropertyValueFactory<Element, String>("Nom"));

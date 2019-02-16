@@ -9,11 +9,12 @@ public class Chaine {
 	private String nivAct;
 	private String resultat;
 	
-	public Chaine (String code, String nom, String entree, String sortie) {
+	public Chaine (String code, String nom, String entree, String sortie, String nivAct) {
 		this.code = code;
 		this.nom = nom;
 		this.entree = entree;
 		this.sortie = sortie;
+		this.nivAct = nivAct;
 	}
 	
 	public String getCode() {
@@ -39,6 +40,13 @@ public class Chaine {
 	}
 	public void setSortie(String sortie) {
 		this.sortie = sortie;
+	}
+	public String getNivAct() {
+		return nivAct;
+	}
+
+	public void setNivAct(String nivAct) {
+		this.nivAct = nivAct;
 	}
 	
 

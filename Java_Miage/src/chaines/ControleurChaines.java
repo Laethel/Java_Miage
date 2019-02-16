@@ -64,7 +64,7 @@ public class ControleurChaines implements Initializable{
 		if(CSV_FILE_PATH_CHAINE != null) {
 			try {
 				Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_CHAINE));
-		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';'));
+		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader().withDelimiter(';').withNullString("").withIgnoreSurroundingSpaces());
 		        
 				code.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Code"));
 				nom.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Nom"));
@@ -78,7 +78,15 @@ public class ControleurChaines implements Initializable{
 		            String nom = csvRecord.get(1);
 		            String entree = csvRecord.get(2);
 		            String sortie = csvRecord.get(3);
-		            Chaine chaine = new Chaine(code, nom, entree, sortie);
+		            String nivAct;
+		            //Si le niveau d'activité n'est pas précisé, le définit à "1" par défaut
+		            if (csvRecord.isSet("NivActivite")) {
+		            	nivAct = csvRecord.get(4);
+		            } else {
+		            	nivAct = "1";
+		            }
+
+		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct);
 		            chaines.add(chaine);
 		        }
 				
