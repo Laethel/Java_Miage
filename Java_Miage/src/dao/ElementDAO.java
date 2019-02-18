@@ -1,6 +1,9 @@
 package dao;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
@@ -18,12 +21,11 @@ import params.ControleurParams;
 public class ElementDAO extends Dao<Element> {
 	
 	private final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
-	BufferedWriter bw;
 	
 	@Override
 	public boolean create(Element obj) {
 		try {
-			bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH_ELEMENT, true));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH_ELEMENT, true));
 			try {				
 				bw.write(obj.getCode() +";" + obj.getNom() +";" + obj.getQte() + ";" + obj.getUnite() +";" + obj.getPrixAchat() 
 							+";" + obj.getPrixVente() + "\n");
@@ -41,7 +43,38 @@ public class ElementDAO extends Dao<Element> {
 
 	@Override
 	public boolean delete(Element obj) {
-		return false;
+		try {
+			File file = new File(CSV_FILE_PATH_ELEMENT);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			File tempFile = new File(CSV_FILE_PATH_ELEMENT + ".tmp");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
+			String line = null;
+			String remove = (obj.getCode() +";" + obj.getNom() +";" + obj.getQte() + ";" + obj.getUnite() +";" + obj.getPrixAchat() 
+			+";" + obj.getPrixVente());
+			
+			try {
+				while((line = br.readLine()) != null) {
+					if (!line.equals(remove)) {
+						bw.write(line + "\n");
+					}
+				}
+				
+				bw.close();
+				br.close();
+				
+				file.delete();
+				tempFile.renameTo(file);
+				
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				bw.close();
+				return false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

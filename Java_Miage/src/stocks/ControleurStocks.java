@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import modele.Element;
 import utils.Path;
 import utils.Path.Way;
@@ -79,16 +80,19 @@ public class ControleurStocks implements Initializable{
 	private ObservableList<Element> elements;
 	
 	public void initialize(URL url, ResourceBundle rb) {
-		this.elements = FXCollections.observableArrayList(dao.findAll());
-		
+		this.elements = FXCollections.observableArrayList(dao.findAll());		
 		codeTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Code"));
 		nomTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Nom"));
 		qteTC.setCellValueFactory(new PropertyValueFactory<Element, Number>("Qte"));
 		uniteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Unite"));
 		achatTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixAchat"));
-		venteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));
-		
+		venteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));		
 		tabStocks.setItems(elements);
+		
+		this.ajouterElem.setDisable(true);
+		this.modifierElem.setDisable(true);
+		this.annulerModifElem.setDisable(true);
+		this.supprimerElem.setDisable(true);
 	}
 	
 	@FXML 
@@ -96,19 +100,40 @@ public class ControleurStocks implements Initializable{
 		Path.goTo(event, Way.ACCUEIL);
 	}
 	
+	@FXML
+	private void handleClickTableView(MouseEvent click) {
+			Element element = tabStocks.getSelectionModel().getSelectedItem();
+	        if (element != null) {
+	        	codeTF.setText(element.getCode());
+	        	nomTF.setText(element.getNom());
+	        	uniteTF.setText(element.getUnite());
+	        	qteTF.setText(Double.toString(element.getQte()));
+	        	achatTF.setText(element.getPrixAchat());
+	        	venteTF.setText(element.getPrixVente());
+	        	
+	        	this.modifierElem.setDisable(false);
+	    		this.annulerModifElem.setDisable(false);
+	    		this.supprimerElem.setDisable(false);
+	     }
+	}
+	
 	@FXML 
 	private void clicBoutonAjoutElem(ActionEvent event) throws IOException {
-		System.out.println(codeTF.getText());
-		System.out.println(nomTF.getText());
-		System.out.println(qteTF.getText());
-		System.out.println(uniteTF.getText());
-		System.out.println(achatTF.getText());
-		System.out.println(venteTF.getText());
 		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
 				uniteTF.getText(), achatTF.getText(), venteTF.getText());
-		System.out.println("ici");
 		if(dao.create(elem)) {
 			elements.add(elem);
+		} else {
+			// Message d'erreur
+		};
+	}
+	
+	@FXML 
+	private void clicBoutonSupprimerElem(ActionEvent event) throws IOException {
+		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
+				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+		if(dao.delete(elem)) {
+			elements.remove(elem);
 		} else {
 			// Message d'erreur
 		};
