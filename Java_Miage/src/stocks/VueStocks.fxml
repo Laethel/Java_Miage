@@ -36,8 +36,8 @@
       <TextField fx:id="venteTF" layoutX="720.0" layoutY="245.0" prefWidth="75.0" />
       <Label layoutX="805.0" layoutY="249.0" prefWidth="130.0" text="(Si inconnu, taper &quot;NA&quot;)" />
       <Label layoutX="805.0" layoutY="214.0" prefWidth="130.0" text="(Si inconnu, taper &quot;NA&quot;)" />
-      <Button fx:id="modifierElem" layoutX="640.0" layoutY="315.0" mnemonicParsing="false" onAction="#clicBoutonAjoutElem" prefWidth="120.0" text="Modifier l'élément" />
-      <Button fx:id="annulerModifElem" layoutX="770.0" layoutY="315.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerElem" prefWidth="130.0" text="Annuler modification" />
+      <Button fx:id="modifierElem" layoutX="640.0" layoutY="315.0" mnemonicParsing="false" onAction="#clicBoutonModifierElem" prefWidth="120.0" text="Modifier l'élément" />
+      <Button fx:id="annulerModifElem" layoutX="770.0" layoutY="315.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationElem" prefWidth="130.0" text="Annuler modification" />
       <Button fx:id="supprimerElem" layoutX="640.0" layoutY="350.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerElem" text="Supprimer un élément" />
    </children>
 </AnchorPane>

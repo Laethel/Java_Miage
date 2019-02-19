@@ -40,6 +40,22 @@ public class Element {
 
 	public String getPrixVente() { return this.prixVente.get(); }
 	public void setPrixVente(String prixVente) { this.prixVente.set(prixVente); }
+	
+	@Override
+    public boolean equals(Object o) { 
+  
+        if (o == this) { 
+            return true; 
+        } 
+  
+        if (!(o instanceof Element)) { 
+            return false; 
+        } 
+          
+        Element elem = (Element) o; 
+            
+        return this.code.get().equals(elem.getCode());
+    } 
 
 	public String toString() {
 		return "Code : " + this.code + " Nom : " +this.nom + " Quantité : " + this.qte + " Unité : " + this.unite 

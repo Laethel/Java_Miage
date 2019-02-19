@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.ElementDAO;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,7 +81,13 @@ public class ControleurStocks implements Initializable{
 	private ElementDAO dao = new ElementDAO();
 	private ObservableList<Element> elements;
 	
+	private BooleanBinding bb;
+		
 	public void initialize(URL url, ResourceBundle rb) {
+		this.bb = codeTF.textProperty().isEmpty().or(nomTF.textProperty().isEmpty())
+				.or(qteTF.textProperty().isEmpty()).or(uniteTF.textProperty().isEmpty()).or(achatTF.textProperty().isEmpty())
+				.or(venteTF.textProperty().isEmpty()).or(modifierElem.disableProperty().not());
+		
 		this.elements = FXCollections.observableArrayList(dao.findAll());		
 		codeTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Code"));
 		nomTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Nom"));
@@ -88,8 +96,8 @@ public class ControleurStocks implements Initializable{
 		achatTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixAchat"));
 		venteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));		
 		tabStocks.setItems(elements);
-		
-		this.ajouterElem.setDisable(true);
+			
+		this.ajouterElem.disableProperty().bind(bb);
 		this.modifierElem.setDisable(true);
 		this.annulerModifElem.setDisable(true);
 		this.supprimerElem.setDisable(true);
@@ -102,18 +110,19 @@ public class ControleurStocks implements Initializable{
 	
 	@FXML
 	private void handleClickTableView(MouseEvent click) {
-			Element element = tabStocks.getSelectionModel().getSelectedItem();
-	        if (element != null) {
-	        	codeTF.setText(element.getCode());
-	        	nomTF.setText(element.getNom());
-	        	uniteTF.setText(element.getUnite());
-	        	qteTF.setText(Double.toString(element.getQte()));
-	        	achatTF.setText(element.getPrixAchat());
-	        	venteTF.setText(element.getPrixVente());
+		
+		Element element = tabStocks.getSelectionModel().getSelectedItem();
+	    if (element != null) {
+	    	codeTF.setText(element.getCode());
+	        nomTF.setText(element.getNom());
+	        uniteTF.setText(element.getUnite());
+	        qteTF.setText(Double.toString(element.getQte()));
+	        achatTF.setText(element.getPrixAchat());
+	        venteTF.setText(element.getPrixVente());
 	        	
-	        	this.modifierElem.setDisable(false);
-	    		this.annulerModifElem.setDisable(false);
-	    		this.supprimerElem.setDisable(false);
+	        this.modifierElem.setDisable(false);
+	    	this.annulerModifElem.setDisable(false);
+	    	this.supprimerElem.setDisable(false);
 	     }
 	}
 	
@@ -123,9 +132,29 @@ public class ControleurStocks implements Initializable{
 				uniteTF.getText(), achatTF.getText(), venteTF.getText());
 		if(dao.create(elem)) {
 			elements.add(elem);
+			clearTextField();
 		} else {
 			// Message d'erreur
 		};
+	}
+	
+	@FXML 
+	private void clicBoutonModifierElem(ActionEvent event) throws IOException {
+		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
+				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+		if(dao.delete(elem)) {
+			elements.remove(elem);
+			clearTextField();
+			setDisableButtons();
+		} else {
+			// Message d'erreur
+		};
+	}
+	
+	@FXML 
+	private void clicBoutonAnnulerModificationElem(ActionEvent event) throws IOException {
+		clearTextField();
+		setDisableButtons();
 	}
 	
 	@FXML 
@@ -134,8 +163,25 @@ public class ControleurStocks implements Initializable{
 				uniteTF.getText(), achatTF.getText(), venteTF.getText());
 		if(dao.delete(elem)) {
 			elements.remove(elem);
+			clearTextField();
+			setDisableButtons();
 		} else {
 			// Message d'erreur
 		};
+	}
+	
+	private void clearTextField() {
+    	codeTF.clear();
+    	nomTF.clear();
+    	uniteTF.clear();
+    	qteTF.clear();
+    	achatTF.clear();
+    	venteTF.clear();
+	}
+	
+	private void setDisableButtons() {
+		this.modifierElem.setDisable(true);
+		this.annulerModifElem.setDisable(true);
+		this.supprimerElem.setDisable(true);
 	}
 }
