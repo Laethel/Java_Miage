@@ -78,8 +78,43 @@ public class ElementDAO extends Dao<Element> {
 	}
 
 	@Override
-	public boolean update(Element obj) {
-		return false;
+	public boolean update(Element oldObj, Element newObj) {
+		try {
+			File file = new File(CSV_FILE_PATH_ELEMENT);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			File tempFile = new File(CSV_FILE_PATH_ELEMENT + ".tmp");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
+			String line = null;
+			String old = (oldObj.getCode() +";" + oldObj.getNom() +";" + oldObj.getQte() + ";" + oldObj.getUnite() +";" + oldObj.getPrixAchat() 
+			+";" + oldObj.getPrixVente()); 
+			String update = (newObj.getCode() +";" + newObj.getNom() +";" + newObj.getQte() + ";" + newObj.getUnite() +";" + newObj.getPrixAchat() 
+			+";" + newObj.getPrixVente());
+			
+			try {
+				while((line = br.readLine()) != null) {
+					if (line.equals(old)) {
+						bw.write(update + "\n");
+					} else {
+						bw.write(line + "\n");
+					}
+				}
+				
+				bw.close();
+				br.close();
+				
+				file.delete();
+				tempFile.renameTo(file);
+				
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				bw.close();
+				return false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

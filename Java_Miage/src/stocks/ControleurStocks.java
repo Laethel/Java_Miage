@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.ElementDAO;
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,6 +80,8 @@ public class ControleurStocks implements Initializable{
 	private ElementDAO dao = new ElementDAO();
 	private ObservableList<Element> elements;
 	
+	private Element oldElement;
+	
 	private BooleanBinding bb;
 		
 	public void initialize(URL url, ResourceBundle rb) {
@@ -111,14 +112,14 @@ public class ControleurStocks implements Initializable{
 	@FXML
 	private void handleClickTableView(MouseEvent click) {
 		
-		Element element = tabStocks.getSelectionModel().getSelectedItem();
-	    if (element != null) {
-	    	codeTF.setText(element.getCode());
-	        nomTF.setText(element.getNom());
-	        uniteTF.setText(element.getUnite());
-	        qteTF.setText(Double.toString(element.getQte()));
-	        achatTF.setText(element.getPrixAchat());
-	        venteTF.setText(element.getPrixVente());
+		oldElement = tabStocks.getSelectionModel().getSelectedItem();
+	    if (oldElement != null) {
+	    	codeTF.setText(oldElement.getCode());
+	        nomTF.setText(oldElement.getNom());
+	        uniteTF.setText(oldElement.getUnite());
+	        qteTF.setText(Double.toString(oldElement.getQte()));
+	        achatTF.setText(oldElement.getPrixAchat());
+	        venteTF.setText(oldElement.getPrixVente());
 	        	
 	        this.modifierElem.setDisable(false);
 	    	this.annulerModifElem.setDisable(false);
@@ -142,8 +143,8 @@ public class ControleurStocks implements Initializable{
 	private void clicBoutonModifierElem(ActionEvent event) throws IOException {
 		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
 				uniteTF.getText(), achatTF.getText(), venteTF.getText());
-		if(dao.delete(elem)) {
-			elements.remove(elem);
+		if(dao.update(oldElement, elem)) {
+			elements.set(elements.indexOf(oldElement), elem);
 			clearTextField();
 			setDisableButtons();
 		} else {
