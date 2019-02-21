@@ -1,16 +1,11 @@
 package stocks;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-
+import dao.ElementDAO;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,80 +14,94 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import modele.Element;
-import params.ControleurParams;
 import utils.Path;
 import utils.Path.Way;
 
 public class ControleurStocks implements Initializable{
 	
-    private static final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
-
 	@FXML
 	private Button retour;
+		
+	@FXML
+	private TableView <Element> tabStocks;
+	
+	@FXML
+	private TableColumn<Element, String> codeTC;
+	
+	@FXML
+	private TableColumn<Element, String> nomTC;
+	
+	@FXML
+	private TableColumn<Element, Number> qteTC;
+	
+	@FXML
+	private TableColumn<Element, String> uniteTC;
+	
+	@FXML
+	private TableColumn<Element, String> achatTC;
+	
+	@FXML
+	private TableColumn<Element, String> venteTC;
+	
+	@FXML
+	private TextField codeTF;
+	
+	@FXML
+	private TextField nomTF;
+	
+	@FXML
+	private TextField uniteTF;
+	
+	@FXML
+	private TextField qteTF;
+	
+	@FXML
+	private TextField achatTF;
+	
+	@FXML
+	private TextField venteTF;
 	
 	@FXML
 	private Button ajouterElem;
 	
 	@FXML
-	private TableView <Element> tabStocks;
+	private Button modifierElem;
 	
 	@FXML
-	private TableColumn<Element, String> code;
+	private Button annulerModifElem;
 	
 	@FXML
-	private TableColumn<Element, String> nom;
+	private Button supprimerElem;
 	
-	@FXML
-	private TableColumn<Element, String> qte;
+	private ElementDAO dao = new ElementDAO();
+	private ObservableList<Element> elements;
 	
-	@FXML
-	private TableColumn<Element, String> unite;
+	private Element oldElement;
 	
-	@FXML
-	private TableColumn<Element, String> achat;
-	
-	@FXML
-	private TableColumn<Element, String> vente;
-	
-	public ObservableList<Element> elems = FXCollections.observableArrayList();
-	
+	private BooleanBinding bb;
+		
 	public void initialize(URL url, ResourceBundle rb) {
-		System.out.println(CSV_FILE_PATH_ELEMENT);
+		this.bb = codeTF.textProperty().isEmpty().or(nomTF.textProperty().isEmpty())
+				.or(qteTF.textProperty().isEmpty()).or(uniteTF.textProperty().isEmpty()).or(achatTF.textProperty().isEmpty())
+				.or(venteTF.textProperty().isEmpty()).or(modifierElem.disableProperty().not());
 		
-		if(CSV_FILE_PATH_ELEMENT != null) {
-			try {
-				Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_ELEMENT));
-		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader().withDelimiter(';').withNullString("").withIgnoreSurroundingSpaces());
-		        
-				code.setCellValueFactory(new PropertyValueFactory<Element, String>("Code"));
-				nom.setCellValueFactory(new PropertyValueFactory<Element, String>("Nom"));
-				qte.setCellValueFactory(new PropertyValueFactory<Element, String>("Qte"));
-				unite.setCellValueFactory(new PropertyValueFactory<Element, String>("Unite"));
-				achat.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixAchat"));
-				vente.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));
-				
-		        for (CSVRecord csvRecord : csvParser) {
-		            String code = csvRecord.get(0);
-		            String nom = csvRecord.get(1);
-		            String qte = csvRecord.get(2);
-		            String unite = csvRecord.get(3);
-		            String prixAchat = csvRecord.get(4);
-		            String prixVente = csvRecord.get(5);
-		            Element elem = new Element(code, nom, qte, unite, prixAchat, prixVente);
-		            elems.add(elem);
-		        }
-				
-		        //Ajoute les données à la table
-				tabStocks.setItems(elems);
-				csvParser.close();
+		this.elements = FXCollections.observableArrayList(dao.findAll());		
+		codeTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Code"));
+		nomTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Nom"));
+		qteTC.setCellValueFactory(new PropertyValueFactory<Element, Number>("Qte"));
+		uniteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Unite"));
+		achatTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixAchat"));
+		venteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));		
+		tabStocks.setItems(elements);
 			
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
+		this.ajouterElem.disableProperty().bind(bb);
+		this.modifierElem.setDisable(true);
+		this.annulerModifElem.setDisable(true);
+		this.supprimerElem.setDisable(true);
 	}
 	
 	@FXML 
@@ -100,8 +109,80 @@ public class ControleurStocks implements Initializable{
 		Path.goTo(event, Way.ACCUEIL);
 	}
 	
+	@FXML
+	private void handleClickTableView(MouseEvent click) {
+		
+		oldElement = tabStocks.getSelectionModel().getSelectedItem();
+	    if (oldElement != null) {
+	    	codeTF.setText(oldElement.getCode());
+	        nomTF.setText(oldElement.getNom());
+	        uniteTF.setText(oldElement.getUnite());
+	        qteTF.setText(Double.toString(oldElement.getQte()));
+	        achatTF.setText(oldElement.getPrixAchat());
+	        venteTF.setText(oldElement.getPrixVente());
+	        	
+	        this.modifierElem.setDisable(false);
+	    	this.annulerModifElem.setDisable(false);
+	    	this.supprimerElem.setDisable(false);
+	     }
+	}
+	
 	@FXML 
 	private void clicBoutonAjoutElem(ActionEvent event) throws IOException {
-		Path.goTo(event, Way.AJOUT_ELEM);
+		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
+				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+		if(dao.create(elem)) {
+			elements.add(elem);
+			clearTextField();
+		} else {
+			// Message d'erreur
+		};
+	}
+	
+	@FXML 
+	private void clicBoutonModifierElem(ActionEvent event) throws IOException {
+		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
+				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+		if(dao.update(oldElement, elem)) {
+			elements.set(elements.indexOf(oldElement), elem);
+			clearTextField();
+			setDisableButtons();
+		} else {
+			// Message d'erreur
+		};
+	}
+	
+	@FXML 
+	private void clicBoutonAnnulerModificationElem(ActionEvent event) throws IOException {
+		clearTextField();
+		setDisableButtons();
+	}
+	
+	@FXML 
+	private void clicBoutonSupprimerElem(ActionEvent event) throws IOException {
+		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
+				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+		if(dao.delete(elem)) {
+			elements.remove(elem);
+			clearTextField();
+			setDisableButtons();
+		} else {
+			// Message d'erreur
+		};
+	}
+	
+	private void clearTextField() {
+    	codeTF.clear();
+    	nomTF.clear();
+    	uniteTF.clear();
+    	qteTF.clear();
+    	achatTF.clear();
+    	venteTF.clear();
+	}
+	
+	private void setDisableButtons() {
+		this.modifierElem.setDisable(true);
+		this.annulerModifElem.setDisable(true);
+		this.supprimerElem.setDisable(true);
 	}
 }
