@@ -4,22 +4,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chaines.ControleurChaines">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chaines.ControleurChaines">
    <children>
-      <Label layoutY="-2.0" prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #587C73;" text="     CHAINES DE PRODUCTION" textFill="WHITE" />
-      <Button fx:id="retour" layoutX="534.0" layoutY="9.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
-      <TableView fx:id="tabChaines" layoutX="25.0" layoutY="88.0" prefHeight="298.0" prefWidth="550.0">
+      <Label layoutY="-2.0" prefHeight="50.0" prefWidth="960.0" style="-fx-background-color: #587C73;" text="     CHAINES DE PRODUCTION" textFill="WHITE" />
+      <Button fx:id="retour" layoutX="880.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
+      <TableView fx:id="tabChaines" layoutX="20.0" layoutY="70.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.topAnchor="70.0">
         <columns>
-          <TableColumn fx:id="code" minWidth="0.0" prefWidth="66.0" text="Code" />
-          <TableColumn fx:id="nom" prefWidth="95.0" text="Nom" />
-            <TableColumn fx:id="entree" minWidth="0.0" prefWidth="134.0" text="Entrée (Code, Qte)" />
-            <TableColumn fx:id="sortie" minWidth="0.0" prefWidth="126.0" text="Sortie (Code, Qte)" />
-            <TableColumn fx:id="nivAct" minWidth="0.0" prefWidth="64.0" text="  Niveau &#10;d'activité" />
-            <TableColumn fx:id="resultat" prefWidth="64.0" text="Résultat" />
+          <TableColumn fx:id="code" minWidth="0.0" prefWidth="70.0" text="Code" />
+          <TableColumn fx:id="nom" prefWidth="100.0" text="Nom" />
+            <TableColumn fx:id="entree" minWidth="0.0" prefWidth="165.0" text="Entrée (Code, Qte)" />
+            <TableColumn fx:id="sortie" minWidth="0.0" prefWidth="165.0" text="Sortie (Code, Qte)" />
         </columns>
       </TableView>
-      <Button fx:id="testProd" layoutX="441.0" layoutY="54.0" mnemonicParsing="false" onAction="#clicBoutonTestProd" text="Tester une production" />
+      <Button fx:id="testProd" layoutX="569.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonTestProd" text="Tester une production" />
+      <Label layoutX="540.0" layoutY="74.0" text="Code :" />
+      <Label layoutX="640.0" layoutY="109.0" text="Nom :" />
+      <Label layoutX="640.0" layoutY="144.0" text="Eléments en entrée :" />
+      <Label layoutX="640.0" layoutY="214.0" text="Niveau d'activité :" />
+      <Label layoutX="640.0" layoutY="179.0" text="Eléments en sortie :" />
+      <TextField fx:id="code1" layoutX="620.0" layoutY="70.0" prefHeight="25.0" prefWidth="125.0" />
+      <TextField fx:id="nom1" layoutX="720.0" layoutY="105.0" />
+      <TextField fx:id="elemEntree" layoutX="801.0" layoutY="202.0" />
+      <TextField fx:id="elemSortie" layoutX="801.0" layoutY="234.0" />
+      <TextField fx:id="nivActivite" layoutX="721.0" layoutY="268.0" />
    </children>
 </AnchorPane>
