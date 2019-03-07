@@ -129,7 +129,7 @@ public class ElementDAO extends Dao<Element> {
 		if(CSV_FILE_PATH_ELEMENT != null) {
 			try {
 				Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_ELEMENT));
-		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';'));
+		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader().withDelimiter(';').withNullString("").withIgnoreSurroundingSpaces());
 		        				
 		        for (CSVRecord csvRecord : csvParser) {
 		            String code = csvRecord.get(0);
