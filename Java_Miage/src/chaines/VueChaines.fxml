@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -21,14 +22,18 @@
       </TableView>
       <Button fx:id="testProd" layoutX="569.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonTestProd" text="Tester une production" />
       <Label layoutX="540.0" layoutY="74.0" text="Code :" />
-      <Label layoutX="640.0" layoutY="109.0" text="Nom :" />
-      <Label layoutX="640.0" layoutY="144.0" text="Eléments en entrée :" />
-      <Label layoutX="640.0" layoutY="214.0" text="Niveau d'activité :" />
-      <Label layoutX="640.0" layoutY="179.0" text="Eléments en sortie :" />
-      <TextField fx:id="code1" layoutX="620.0" layoutY="70.0" prefHeight="25.0" prefWidth="125.0" />
-      <TextField fx:id="nom1" layoutX="720.0" layoutY="105.0" />
-      <TextField fx:id="elemEntree" layoutX="801.0" layoutY="202.0" />
-      <TextField fx:id="elemSortie" layoutX="801.0" layoutY="234.0" />
-      <TextField fx:id="nivActivite" layoutX="721.0" layoutY="268.0" />
+      <Label layoutX="540.0" layoutY="109.0" text="Nom :" />
+      <Label layoutX="540.0" layoutY="144.0" text="Eléments en entrée :" />
+      <Label layoutX="540.0" layoutY="274.0" text="Niveau d'activité :" />
+      <TextField fx:id="code1" layoutX="680.0" layoutY="70.0" prefHeight="25.0" prefWidth="100.0" />
+      <TextField fx:id="nom1" layoutX="680.0" layoutY="105.0" prefWidth="150.0" />
+      <TextField fx:id="elemEntree" layoutX="680.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="elemSortie" layoutX="680.0" layoutY="305.0" prefWidth="100.0" />
+      <TextField fx:id="nivActivite" layoutX="680.0" layoutY="270.0" prefWidth="75.0" />
+      <ChoiceBox layoutX="680.0" layoutY="140.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="540.0" layoutY="209.0" text="Eléments en sortie :" />
+      <TextField fx:id="elemEntree1" layoutX="680.0" layoutY="235.0" prefHeight="25.0" prefWidth="200.0" />
+      <ChoiceBox layoutX="680.0" layoutY="205.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="540.0" layoutY="309.0" text="Résultat :" />
    </children>
 </AnchorPane>
