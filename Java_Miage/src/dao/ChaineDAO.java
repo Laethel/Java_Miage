@@ -4,26 +4,27 @@ import java.util.ArrayList;
 
 import modele.Chaine;
 
-public class ChaineDAO extends Dao {
+public class ChaineDAO extends Dao<Chaine> {
 
-	public boolean create(Object obj) {
+	public boolean create(Chaine obj) {
 		return false;
 	}
 
-	public boolean delete(Object obj) {
+	public boolean delete(Chaine obj) {
 		return false;
 	}
 
-	public boolean update(Object oldObj, Object newObj) {
+	public boolean update(Chaine oldObj, Chaine newObj) {
 		return false;
 	}
 
-	public Object find(int id) {
+	public Chaine find(int id) {
 		return null;
 	}
 
 	public ArrayList<Chaine> findAll() {
 		return null;
 	}
+
 
 }
