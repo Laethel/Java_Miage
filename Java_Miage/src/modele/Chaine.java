@@ -1,6 +1,6 @@
 package modele;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -12,8 +12,8 @@ public class Chaine {
 	private SimpleStringProperty nom;
 	private SimpleStringProperty sEntree;
 	private SimpleStringProperty sSortie;
-	private List<Element> lEntree;
-	private List<Element> lSortie;
+	private ArrayList<Element> lEntree;
+	private ArrayList<Element> lSortie;
 	private SimpleIntegerProperty nivAct;
 	private SimpleFloatProperty resultat;
 	
@@ -23,6 +23,9 @@ public class Chaine {
 		this.sEntree = new SimpleStringProperty(sEntree);
 		this.sSortie = new SimpleStringProperty(sSortie);
 		this.nivAct = new SimpleIntegerProperty(nivAct);
+		
+		lEntree = new ArrayList<Element>();
+		lSortie = new ArrayList<Element>();
 	}
 	
 	public String getCode() { return this.code.get(); }

@@ -14,10 +14,10 @@
       <Button fx:id="retour" layoutX="880.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
       <TableView fx:id="tabChaines" layoutX="20.0" layoutY="70.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.topAnchor="70.0">
         <columns>
-          <TableColumn fx:id="code" minWidth="0.0" prefWidth="70.0" text="Code" />
-          <TableColumn fx:id="nom" prefWidth="100.0" text="Nom" />
-            <TableColumn fx:id="entree" minWidth="0.0" prefWidth="165.0" text="Entrée (Code, Qte)" />
-            <TableColumn fx:id="sortie" minWidth="0.0" prefWidth="165.0" text="Sortie (Code, Qte)" />
+          <TableColumn fx:id="codeTC" minWidth="0.0" prefWidth="70.0" text="Code" />
+          <TableColumn fx:id="nomTC" prefWidth="100.0" text="Nom" />
+          <TableColumn fx:id="entreeTC" minWidth="0.0" prefWidth="165.0" text="Entrée (Code, Qte)" />
+          <TableColumn fx:id="sortieTC" minWidth="0.0" prefWidth="165.0" text="Sortie (Code, Qte)" />
         </columns>
       </TableView>
       <Button fx:id="testProd" layoutX="569.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonTestProd" text="Tester une production" />
@@ -27,13 +27,21 @@
       <Label layoutX="540.0" layoutY="274.0" text="Niveau d'activité :" />
       <TextField fx:id="code1" layoutX="680.0" layoutY="70.0" prefHeight="25.0" prefWidth="100.0" />
       <TextField fx:id="nom1" layoutX="680.0" layoutY="105.0" prefWidth="150.0" />
-      <TextField fx:id="elemEntree" layoutX="680.0" layoutY="170.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="elemEntree" layoutX="680.0" layoutY="170.0" prefHeight="25.0" prefWidth="150.0" />
       <TextField fx:id="elemSortie" layoutX="680.0" layoutY="305.0" prefWidth="100.0" />
       <TextField fx:id="nivActivite" layoutX="680.0" layoutY="270.0" prefWidth="75.0" />
-      <ChoiceBox layoutX="680.0" layoutY="140.0" prefHeight="25.0" prefWidth="200.0" />
+      <ChoiceBox fx:id="entreeCB" layoutX="680.0" layoutY="140.0" prefHeight="25.0" prefWidth="150.0" />
       <Label layoutX="540.0" layoutY="209.0" text="Eléments en sortie :" />
-      <TextField fx:id="elemEntree1" layoutX="680.0" layoutY="235.0" prefHeight="25.0" prefWidth="200.0" />
-      <ChoiceBox layoutX="680.0" layoutY="205.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextField fx:id="elemEntree1" layoutX="680.0" layoutY="235.0" prefHeight="25.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="sortieCB" layoutX="680.0" layoutY="205.0" prefHeight="25.0" prefWidth="150.0" />
       <Label layoutX="540.0" layoutY="309.0" text="Résultat :" />
+      <Button fx:id="retour1" layoutX="835.0" layoutY="235.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Réinitialiser" />
+      <Button fx:id="retour11" layoutX="835.0" layoutY="170.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Réinitialiser" />
+      <TextField fx:id="nivActivite1" layoutX="836.0" layoutY="205.0" prefWidth="50.0" />
+      <TextField fx:id="nivActivite11" layoutX="836.0" layoutY="140.0" prefWidth="50.0" />
+      <Button fx:id="retour111" layoutX="891.0" layoutY="140.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Ajouter" />
+      <Button fx:id="retour1111" layoutX="890.0" layoutY="205.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Ajouter" />
+      <Label layoutX="540.0" layoutY="161.0" text="(Elément, Quantité)" />
+      <Label layoutX="538.0" layoutY="226.0" text="(Elément, Quantité)" />
    </children>
 </AnchorPane>
