@@ -2,7 +2,6 @@ package modele;
 
 import java.util.ArrayList;
 
-import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -15,14 +14,15 @@ public class Chaine {
 	private ArrayList<Element> lEntree;
 	private ArrayList<Element> lSortie;
 	private SimpleIntegerProperty nivAct;
-	private SimpleFloatProperty resultat;
+	private SimpleStringProperty resultat;
 	
-	public Chaine (String code, String nom, String sEntree, String sSortie, int nivAct) {
+	public Chaine (String code, String nom, String sEntree, String sSortie, int nivAct, String resultat) {
 		this.code = new SimpleStringProperty(code);
 		this.nom = new SimpleStringProperty(nom);
 		this.sEntree = new SimpleStringProperty(sEntree);
 		this.sSortie = new SimpleStringProperty(sSortie);
 		this.nivAct = new SimpleIntegerProperty(nivAct);
+		this.resultat = new SimpleStringProperty(resultat);
 		
 		lEntree = new ArrayList<Element>();
 		lSortie = new ArrayList<Element>();
@@ -43,8 +43,8 @@ public class Chaine {
 	public int getNivAct() {	return this.nivAct.get(); }
 	public void setNivAct(int nivAct) { this.nivAct.set(nivAct); }
 	
-	public float getResultat() {	return this.resultat.get(); }
-	public void setResutat(float resultat) { this.resultat.set(resultat); }
+	public String getResultat() {	return this.resultat.get(); }
+	public void setResutat(String resultat) { this.resultat.set(resultat); }
 	
 	public String toString() {
 		return "Code : " + this.code + " Nom : " + this.nom + " Elements en entrée : " + this.sEntree + 

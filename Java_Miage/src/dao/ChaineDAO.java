@@ -1,5 +1,10 @@
 package dao;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -18,15 +23,95 @@ public class ChaineDAO extends Dao<Chaine> {
 	private final String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
 
 	public boolean create(Chaine obj) {
-		return false;
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH_CHAINE, true));
+			try {				
+				bw.write(obj.getCode() +";" + obj.getNom() +";" + obj.getSEntree() + ";" + obj.getSSortie() +";" + obj.getNivAct() 
+							+";" + obj.getResultat() + "\n");
+				bw.close();
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				bw.close();
+				return false;
+			}
+		} catch (IOException e1) {
+			return false;
+		}
 	}
 
 	public boolean delete(Chaine obj) {
-		return false;
+		try {
+			File file = new File(CSV_FILE_PATH_CHAINE);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			File tempFile = new File(CSV_FILE_PATH_CHAINE + ".tmp");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
+			String line = null;
+			String remove = (obj.getCode() +";" + obj.getNom() +";" + obj.getSEntree() + ";" + obj.getSSortie() +";" + obj.getNivAct() 
+			+";" + obj.getResultat());
+			
+			try {
+				while((line = br.readLine()) != null) {
+					if (!line.equals(remove)) {
+						bw.write(line + "\n");
+					}
+				}
+				
+				bw.close();
+				br.close();
+				
+				file.delete();
+				tempFile.renameTo(file);
+				
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				bw.close();
+				return false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean update(Chaine oldObj, Chaine newObj) {
-		return false;
+		try {
+			File file = new File(CSV_FILE_PATH_CHAINE);
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			File tempFile = new File(CSV_FILE_PATH_CHAINE + ".tmp");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
+			String line = null;
+			String old = (oldObj.getCode() +";" + oldObj.getNom() +";" + oldObj.getSEntree() + ";" + oldObj.getSSortie() +";" + oldObj.getNivAct() 
+			+";" + oldObj.getResultat()); 
+			String update = (newObj.getCode() +";" + newObj.getNom() +";" + newObj.getSEntree() + ";" + newObj.getSSortie() +";" + newObj.getNivAct() 
+			+";" + newObj.getResultat());
+			
+			try {
+				while((line = br.readLine()) != null) {
+					if (line.equals(old)) {
+						bw.write(update + "\n");
+					} else {
+						bw.write(line + "\n");
+					}
+				}
+				
+				bw.close();
+				br.close();
+				
+				file.delete();
+				tempFile.renameTo(file);
+				
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				bw.close();
+				return false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public Chaine find(int id) {
@@ -48,6 +133,7 @@ public class ChaineDAO extends Dao<Chaine> {
 		            String entree = csvRecord.get(2);
 		            String sortie = csvRecord.get(3);
 		            int nivAct;
+		            String resultat;
 		            
 		            //Si le niveau d'activité n'est pas précisé, le définit à "1" par défaut
 		            if (csvRecord.isSet("NivActivite")) {
@@ -56,7 +142,14 @@ public class ChaineDAO extends Dao<Chaine> {
 		            	nivAct = 1;
 		            }
 		            
-		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct);
+		            //Si le niveau d'activité n'est pas précisé, le définit à "1" par défaut
+		            if (csvRecord.isSet("Resultat")) {
+		            	resultat = csvRecord.get(5);
+		            } else {
+		            	resultat = "Indéfini";
+		            }
+		            		            
+		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct, resultat);
 		            chaines.add(chaine);
 		        }
 				csvParser.close();
