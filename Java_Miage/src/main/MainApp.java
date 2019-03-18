@@ -11,8 +11,15 @@ import javafx.stage.Stage;
 import params.ControleurParams;
 
 //La MainApp va nous permettre de lancer chaque page FXML
+/**
+ * @author Quentin Beaussart et Damian Riquart
+ *
+ */
 public class MainApp extends Application {
 
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -37,6 +44,10 @@ public class MainApp extends Application {
         
 	}
 
+	/**
+	 * @param args
+	 * Cette méthode permet le lancement de l'application
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -18,6 +18,10 @@ import org.apache.commons.csv.CSVRecord;
 import modele.Element;
 import params.ControleurParams;
 
+/**
+ * @author Quentin Beaussart et Damian Riquart
+ *
+ */
 public class ElementDAO extends Dao<Element> {
 	
 	private final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
@@ -41,6 +45,9 @@ public class ElementDAO extends Dao<Element> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#delete(java.lang.Object)
+	 */
 	@Override
 	public boolean delete(Element obj) {
 		try {
@@ -77,6 +84,9 @@ public class ElementDAO extends Dao<Element> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#update(java.lang.Object, java.lang.Object)
+	 */
 	@Override
 	public boolean update(Element oldObj, Element newObj) {
 		try {
@@ -117,11 +127,17 @@ public class ElementDAO extends Dao<Element> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#find(int)
+	 */
 	@Override
 	public Element find(int id) {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#findAll()
+	 */
 	@Override
 	public ArrayList<Element> findAll() {
 		ArrayList<Element> elements = new ArrayList<Element>();

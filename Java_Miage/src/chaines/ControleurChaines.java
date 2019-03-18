@@ -25,39 +25,79 @@ import params.ControleurParams;
 import utils.Path;
 import utils.Path.Way;
 
+/**
+ * @author Quentin Beaussart et Damian Riquart
+ *
+ */
 public class ControleurChaines implements Initializable{
 	
+    /**
+     * Constante contenant le chemin vers le fichier CSV des chaines de production
+     */
     private static final String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
     
+	/**
+	 * Le bouton "Retour"
+	 */
 	@FXML
 	private Button retour;
 	
+	/**
+	 * Le bouton permettant d'ajouter une chaine de production ou d'en modifier les paramètres
+	 */
 	@FXML
 	private Button testProd;
 	
+	/**
+	 * Le tableau contenant les différentes colonnes d'information des chaines
+	 */
 	@FXML
 	TableView<Chaine> tabChaines;
 	
+	/**
+	 * La colonne indiquant le code de la chaine
+	 */
 	@FXML
 	private TableColumn<Chaine, String> code;
 	
+	/**
+	 * La colonne indiquant le nom de la chaine
+	 */
 	@FXML
 	private TableColumn<Chaine, String> nom;
 	
+	/**
+	 * La colonne indiquant les éléments en entrée de la chaine
+	 */
 	@FXML
 	private TableColumn<Chaine, String> entree;
 	
+	/**
+	 * La colonne indiquant les éléments en sortie de la chaine
+	 */
 	@FXML
 	private TableColumn<Chaine, String> sortie;
 	
+	/**
+	 * La colonne indiquant le niveau d'activité de la chaine
+	 */
 	@FXML
 	private TableColumn<Chaine, String> nivAct;
 	
+	/**
+	 * La colonne indiquant le resultat de la chaine
+	 */
 	@FXML
 	private TableColumn<Chaine, String> resultat;
 	
+	/**
+	 * Liste des chaines de production
+	 */
 	ObservableList<Chaine> chaines = FXCollections.observableArrayList();
 	
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	public void initialize(URL url, ResourceBundle rb) {
 		System.out.println(CSV_FILE_PATH_CHAINE);
 		
@@ -100,11 +140,22 @@ public class ControleurChaines implements Initializable{
 		}
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
+	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
 		Path.goTo(event, Way.ACCUEIL);
 	}
 	
+
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Tester une production", amenant l'utilisateur vers l'écran d'ajout de chaine
+	 */
 	@FXML 
 	private void clicBoutonTestProd(ActionEvent event) throws IOException {
 		Path.goTo(event, Way.TEST_PROD);

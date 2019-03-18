@@ -9,8 +9,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * @author Quentin Beaussart et Damian Riquart
+ * 
+ */
 public class Path {
 	
+	/**
+	 * @author Quentin Beaussart et Damian Riquart
+	 *
+	 */
 	public enum Way {
 		
 		ACCUEIL("/accueil/VueAccueil.fxml"), 
@@ -32,6 +40,11 @@ public class Path {
 	    
 	}
 
+	/**
+	 * @param actionEvent
+	 * @param way
+	 * Méthode prenant en paramètres un des éléments de l'enum "Way", permettant d'accèder à une des pages de l'application
+	 */
 	public static void goTo(ActionEvent actionEvent, Way way) {
 		try {
 			Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
