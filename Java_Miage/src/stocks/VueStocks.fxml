@@ -15,10 +15,10 @@
         <columns>
           <TableColumn fx:id="codeTC" prefWidth="75.0" text="Code" />
           <TableColumn fx:id="nomTC" prefWidth="128.0" text="Nom" />
-            <TableColumn fx:id="qteTC" prefWidth="79.0" text="Quantité" />
-            <TableColumn fx:id="uniteTC" prefWidth="97.0" text="Unité" />
-            <TableColumn fx:id="achatTC" prefWidth="74.0" text="Achat" />
-            <TableColumn fx:id="venteTC" prefWidth="72.0" text="Vente" />
+          <TableColumn fx:id="qteTC" prefWidth="79.0" text="Quantité" />
+          <TableColumn fx:id="uniteTC" prefWidth="97.0" text="Unité" />
+          <TableColumn fx:id="achatTC" prefWidth="74.0" text="Achat" />
+          <TableColumn fx:id="venteTC" prefWidth="72.0" text="Vente" />
         </columns>
       </TableView>
       <Button fx:id="ajouterElem" layoutX="640.0" layoutY="280.0" mnemonicParsing="false" onAction="#clicBoutonAjoutElem" prefWidth="120.0" text="Ajouter un élément" />

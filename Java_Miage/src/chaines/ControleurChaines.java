@@ -1,27 +1,28 @@
 package chaines;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-
+import dao.ChaineDAO;
+import dao.ElementDAO;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
 import modele.Chaine;
-import params.ControleurParams;
+import modele.Element;
 import utils.Path;
 import utils.Path.Way;
 
@@ -30,26 +31,18 @@ import utils.Path.Way;
  *
  */
 public class ControleurChaines implements Initializable{
-	
-    /**
-     * Constante contenant le chemin vers le fichier CSV des chaines de production
-     */
-    private static final String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
-    
-	/**
-	 * Le bouton "Retour"
-	 */
+	    
 	@FXML
 	private Button retour;
 	
 	/**
-	 * Le bouton permettant d'ajouter une chaine de production ou d'en modifier les paramètres
+	 * Le bouton permettant d'ajouter une chaine de production ou d'en modifier les paramï¿½tres
 	 */
 	@FXML
 	private Button testProd;
 	
 	/**
-	 * Le tableau contenant les différentes colonnes d'information des chaines
+	 * Le tableau contenant les diffï¿½rentes colonnes d'information des chaines
 	 */
 	@FXML
 	TableView<Chaine> tabChaines;
@@ -58,106 +51,229 @@ public class ControleurChaines implements Initializable{
 	 * La colonne indiquant le code de la chaine
 	 */
 	@FXML
-	private TableColumn<Chaine, String> code;
+	private TableColumn<Chaine, String> codeTC;
 	
 	/**
 	 * La colonne indiquant le nom de la chaine
 	 */
 	@FXML
-	private TableColumn<Chaine, String> nom;
+	private TableColumn<Chaine, String> nomTC;
 	
 	/**
-	 * La colonne indiquant les éléments en entrée de la chaine
+	 * La colonne indiquant les ï¿½lï¿½ments en entrï¿½e de la chaine
 	 */
 	@FXML
-	private TableColumn<Chaine, String> entree;
+	private TableColumn<Chaine, String> entreeTC;
 	
 	/**
-	 * La colonne indiquant les éléments en sortie de la chaine
+	 * La colonne indiquant les ï¿½lï¿½ments en sortie de la chaine
 	 */
 	@FXML
-	private TableColumn<Chaine, String> sortie;
+	private TableColumn<Chaine, String> sortieTC;
 	
 	/**
-	 * La colonne indiquant le niveau d'activité de la chaine
+	 * La colonne indiquant le niveau d'activitï¿½ de la chaine
 	 */
 	@FXML
-	private TableColumn<Chaine, String> nivAct;
+	private TextField codeTF;
 	
 	/**
 	 * La colonne indiquant le resultat de la chaine
 	 */
 	@FXML
-	private TableColumn<Chaine, String> resultat;
+	private TextField nomTF;
 	
-	/**
-	 * Liste des chaines de production
-	 */
-	ObservableList<Chaine> chaines = FXCollections.observableArrayList();
+	@FXML
+	private TextField elemEntreeQteTF;
 	
-	/* (non-Javadoc)
-	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
-	 */
-	public void initialize(URL url, ResourceBundle rb) {
-		System.out.println(CSV_FILE_PATH_CHAINE);
-		
-		if(CSV_FILE_PATH_CHAINE != null) {
-			try {
-				Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_CHAINE));
-		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader().withDelimiter(';').withNullString("").withIgnoreSurroundingSpaces());
-		        
-				code.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Code"));
-				nom.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Nom"));
-				entree.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Entree"));
-				sortie.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Sortie"));
-				nivAct.setCellValueFactory(new PropertyValueFactory<Chaine, String>("NivAct"));
-				resultat.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Resultat"));
-				
-		        for (CSVRecord csvRecord : csvParser) {
-		            String code = csvRecord.get(0);
-		            String nom = csvRecord.get(1);
-		            String entree = csvRecord.get(2);
-		            String sortie = csvRecord.get(3);
-		            String nivAct;
-		            //Si le niveau d'activité n'est pas précisé, le définit à "1" par défaut
-		            if (csvRecord.isSet("NivActivite")) {
-		            	nivAct = csvRecord.get(4);
-		            } else {
-		            	nivAct = "1";
-		            }
-
-		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct);
-		            chaines.add(chaine);
-		        }
-				
-		        //Ajoute les données à la table
-				tabChaines.setItems(chaines);
-				csvParser.close();
+	@FXML
+	private TextField elemEntreeTF;
+	
+	@FXML
+	private TextField elemSortieQteTF;
+	
+	@FXML
+	private TextField elemSortieTF;
+	
+	@FXML
+	private TextField nivActiviteTF;
+	
+	@FXML
+	private TextField resultatTF;
+	
+	@FXML
+	private ChoiceBox<Element> entreeCB;
+	
+	@FXML
+	private ChoiceBox<Element> sortieCB;
+	
+	@FXML
+	private Button ajouterElemEntree;
+	
+	@FXML
+	private Button ajouterElemSortie;
+	
+	@FXML
+	private Button reinitElemEntree;
+	
+	@FXML
+	private Button reinitElemSortie;
+	
+	@FXML
+	private Button ajouterChaine;
+	
+	@FXML
+	private Button modifierChaine;
+	
+	@FXML
+	private Button annulerModifChaine;
+	
+	@FXML
+	private Button supprimerChaine;
+	
+	@FXML
+	private Button testerChaine;
 			
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	private ChaineDAO daoC = new ChaineDAO();
+	private ElementDAO daoE = new ElementDAO();
+	
+	private ObservableList<Chaine> chaines;
+	private Chaine oldChaine;
+	
+	private BooleanBinding bbForm;
+	private BooleanBinding bbElemEntree;
+	private BooleanBinding bbElemSortie;
+		
+	public void initialize(URL url, ResourceBundle rb) {	
+		this.chaines = FXCollections.observableArrayList(daoC.findAll());
+		
+		codeTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Code"));
+		nomTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Nom"));
+		entreeTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("sEntree"));
+		sortieTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("sSortie"));
+		tabChaines.setItems(chaines);
+		
+		ArrayList<Element> elements = daoE.findAll();
+		entreeCB.setItems(FXCollections.observableArrayList(elements));
+		sortieCB.setItems(FXCollections.observableArrayList(elements));		
+		formatCB();
+		
+		this.bbForm = codeTF.textProperty().isEmpty().or(nomTF.textProperty().isEmpty().or(elemEntreeTF.textProperty().isEmpty())
+				.or(elemSortieTF.textProperty().isEmpty().or(nivActiviteTF.textProperty().isEmpty())));		
+		this.bbElemEntree = entreeCB.getSelectionModel().selectedItemProperty().isNull().or(elemEntreeQteTF.textProperty().isEmpty());
+		this.bbElemSortie = sortieCB.getSelectionModel().selectedItemProperty().isNull().or(elemSortieQteTF.textProperty().isEmpty());
+		
+		this.ajouterChaine.disableProperty().bind(bbForm);
+		this.ajouterElemEntree.disableProperty().bind(bbElemEntree);
+		this.ajouterElemSortie.disableProperty().bind(bbElemSortie);
+		
+		this.modifierChaine.setDisable(true);
+		this.annulerModifChaine.setDisable(true);
+		this.supprimerChaine.setDisable(true);
+		this.testerChaine.setDisable(true);
+		
 	}
 	
 	/**
 	 * @param event
 	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
+	 * Mï¿½thode dï¿½clenchï¿½e lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
 		Path.goTo(event, Way.ACCUEIL);
 	}
 	
-
-	/**
-	 * @param event
-	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Tester une production", amenant l'utilisateur vers l'écran d'ajout de chaine
-	 */
+	@FXML
+	private void handleClickTableView(MouseEvent click) {
+		
+		oldChaine = tabChaines.getSelectionModel().getSelectedItem();
+	    if (oldChaine != null) {
+	    	codeTF.setText(oldChaine.getCode());
+	        nomTF.setText(oldChaine.getNom());
+	        elemEntreeTF.setText(oldChaine.getSEntree());
+	        elemSortieTF.setText(oldChaine.getSSortie());
+	        nivActiviteTF.setText(Integer.toString(oldChaine.getNivAct()));
+	        resultatTF.setText(oldChaine.getResultat());              
+	     }
+	}
+	
 	@FXML 
-	private void clicBoutonTestProd(ActionEvent event) throws IOException {
-		Path.goTo(event, Way.TEST_PROD);
+	private void clicBoutonReinitElemEntree(ActionEvent event) throws IOException {
+		elemEntreeTF.clear();
+	}
+	
+	@FXML 
+	private void clicBoutonReinitElemSortie(ActionEvent event) throws IOException {
+		elemSortieTF.clear();
+	}
+	
+	@FXML 
+	private void clicBoutonAjoutChaine(ActionEvent event) throws IOException {
+		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
+				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()), resultatTF.getText());
+		if(daoC.create(ch)) {
+			chaines.add(ch);
+			clearTextField();
+		} else {
+			// Message d'erreur
+		};
+	}
+	
+	@FXML 
+	private void clicBoutonModifierChaine(ActionEvent event) throws IOException {
+	}
+	
+	@FXML 
+	private void clicBoutonAnnulerModificationChaine(ActionEvent event) throws IOException {
+	}
+	
+	@FXML 
+	private void clicBoutonSupprimerChaine(ActionEvent event) throws IOException {
+	}
+	
+	@FXML 
+	private void clicBoutonTesterChaine(ActionEvent event) throws IOException {
+	}
+	
+	private void clearTextField() {
+    	codeTF.clear();
+    	nomTF.clear();
+    	entreeCB.getSelectionModel().select(0);
+    	elemEntreeQteTF.clear();
+    	elemEntreeTF.clear();
+    	sortieCB.getSelectionModel().select(0);
+    	elemSortieQteTF.clear();
+    	elemSortieTF.clear();
+    	nivActiviteTF.clear();
+    	resultatTF.clear();
+	}
+		
+	private void formatCB() {
+		entreeCB.setConverter(new StringConverter<Element>() {
+		    @Override
+		    public String toString(Element elem) {
+		        return elem.getCode() + " - " + elem.getNom();
+		    }
+		    
+		    @Override
+		    // Pas utile
+		    public Element fromString(String s) {
+		        return null ;
+		    }
+		});
+		
+		sortieCB.setConverter(new StringConverter<Element>() {
+		    @Override
+		    public String toString(Element elem) {
+		        return elem.getCode() + " - " + elem.getNom();
+		    }
+		    
+		    @Override
+		    // Pas utile
+		    public Element fromString(String s) {
+		        return null ;
+		    }
+		});
 	}
 }
