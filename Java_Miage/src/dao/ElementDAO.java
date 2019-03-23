@@ -131,8 +131,31 @@ public class ElementDAO extends Dao<Element> {
 	 * @see dao.Dao#find(int)
 	 */
 	@Override
-	public Element find(int id) {
-		return null;
+	public Element find(String id) {
+		Element elem = null;
+		if(CSV_FILE_PATH_ELEMENT != null) {
+			try {
+				Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_ELEMENT));
+		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader().withDelimiter(';').withNullString("").withIgnoreSurroundingSpaces());
+		        				
+		        for (CSVRecord csvRecord : csvParser) {
+		            String code = csvRecord.get(0);
+		            
+		            if (code == id) {
+		            	String nom = csvRecord.get(1);
+				        double qte = Double.parseDouble(csvRecord.get(2));
+				        String unite = csvRecord.get(3);
+				        String prixAchat = csvRecord.get(4);
+				        String prixVente =csvRecord.get(5);
+				        elem = new Element(code, nom, qte, unite, prixAchat, prixVente);
+		            }
+		        }				
+				csvParser.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return elem;
 	}
 
 	/* (non-Javadoc)

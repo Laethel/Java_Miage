@@ -34,18 +34,18 @@
       <TextField fx:id="elemSortieTF" editable="false" layoutX="680.0" layoutY="235.0" prefHeight="25.0" prefWidth="150.0" style="-fx-text-fill: grey;" />
       <ChoiceBox fx:id="sortieCB" layoutX="680.0" layoutY="205.0" prefHeight="25.0" prefWidth="150.0" />
       <Label layoutX="540.0" layoutY="309.0" text="Résultat :" />
-      <Button fx:id="reinitElemEntree" layoutX="835.0" layoutY="235.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Réinitialiser" />
-      <Button fx:id="reinitElemSortie" layoutX="835.0" layoutY="170.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Réinitialiser" />
+      <Button fx:id="reinitElemEntree" layoutX="835.0" layoutY="170.0" mnemonicParsing="false" onAction="#clicBoutonReinitElemEntree" text="Réinitialiser" />
+      <Button fx:id="reinitElemSortie" layoutX="835.0" layoutY="235.0" mnemonicParsing="false" onAction="#clicBoutonReinitElemSortie" text="Réinitialiser" />
       <TextField fx:id="elemSortieQteTF" layoutX="836.0" layoutY="205.0" prefWidth="50.0" />
       <TextField fx:id="elemEntreeQteTF" layoutX="836.0" layoutY="140.0" prefWidth="50.0" />
-      <Button fx:id="ajouterElemEntree" layoutX="891.0" layoutY="140.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Ajouter" />
-      <Button fx:id="ajouterElemSortie" layoutX="890.0" layoutY="205.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Ajouter" />
+      <Button fx:id="ajouterElemEntree" layoutX="891.0" layoutY="140.0" mnemonicParsing="false" onAction="#clicBoutonAjouterElemEntree" text="Ajouter" />
+      <Button fx:id="ajouterElemSortie" layoutX="890.0" layoutY="205.0" mnemonicParsing="false" onAction="#clicBoutonAjouterElemSortie" text="Ajouter" />
       <Label layoutX="540.0" layoutY="161.0" text="(Elément, Quantité)" />
       <Label layoutX="538.0" layoutY="226.0" text="(Elément, Quantité)" />
-      <Button fx:id="ajouterChaine" layoutX="540.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonTesterChaine" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
+      <Button fx:id="ajouterChaine" layoutX="540.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonAjoutChaine" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
       <Button fx:id="modifierChaine" layoutX="610.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonModifierChaine" prefHeight="25.0" prefWidth="65.0" text="Modifier" />
       <Button fx:id="annulerModifChaine" layoutX="685.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationChaine" prefHeight="25.0" prefWidth="110.0" text="Annuler modif." />
       <Button fx:id="supprimerChaine" layoutX="805.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerChaine" prefWidth="75.0" text="Supprimer" />
-      <Button fx:id="testerChaine" layoutX="890.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonAjoutChaine" prefHeight="25.0" prefWidth="52.0" text="Tester" />
+      <Button fx:id="testerChaine" layoutX="890.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonTesterChaine" prefHeight="25.0" prefWidth="52.0" text="Tester" />
    </children>
 </AnchorPane>

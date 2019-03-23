@@ -167,11 +167,7 @@ public class ControleurChaines implements Initializable{
 		this.ajouterElemEntree.disableProperty().bind(bbElemEntree);
 		this.ajouterElemSortie.disableProperty().bind(bbElemSortie);
 		
-		this.modifierChaine.setDisable(true);
-		this.annulerModifChaine.setDisable(true);
-		this.supprimerChaine.setDisable(true);
-		this.testerChaine.setDisable(true);
-		
+		setDisableButtons(true);		
 	}
 	
 	/**
@@ -196,6 +192,8 @@ public class ControleurChaines implements Initializable{
 	        nivActiviteTF.setText(Integer.toString(oldChaine.getNivAct()));
 	        resultatTF.setText(oldChaine.getResultat());              
 	     }
+	    
+	    setDisableButtons(false);
 	}
 	
 	@FXML 
@@ -206,6 +204,24 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonReinitElemSortie(ActionEvent event) throws IOException {
 		elemSortieTF.clear();
+	}
+	
+	@FXML 
+	private void clicBoutonAjouterElemEntree(ActionEvent event) throws IOException {
+		if (elemEntreeTF.getText().isEmpty()) {
+			elemEntreeTF.setText("(" + entreeCB.getValue().getCode() + "," + elemEntreeQteTF.getText() + ")");	
+		} else {
+			elemEntreeTF.setText(elemEntreeTF.getText() + ",(" + entreeCB.getValue().getCode() + "," + elemEntreeQteTF.getText() + ")");	
+		}
+	}
+	
+	@FXML 
+	private void clicBoutonAjouterElemSortie(ActionEvent event) throws IOException {
+		if (elemSortieTF.getText().isEmpty()) {
+			elemSortieTF.setText("(" + sortieCB.getValue().getCode() + "," + elemSortieQteTF.getText() + ")");	
+		} else {
+			elemSortieTF.setText(elemSortieTF.getText() + ",(" + sortieCB.getValue().getCode() + "," + elemSortieQteTF.getText() + ")");	
+		}
 	}
 	
 	@FXML 
@@ -222,14 +238,34 @@ public class ControleurChaines implements Initializable{
 	
 	@FXML 
 	private void clicBoutonModifierChaine(ActionEvent event) throws IOException {
+		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
+				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()), resultatTF.getText());
+		if(daoC.update(oldChaine,ch)) {
+			chaines.set(chaines.indexOf(oldChaine), ch);
+			clearTextField();
+			setDisableButtons(true);
+		} else {
+			// Message d'erreur
+		};
 	}
 	
 	@FXML 
 	private void clicBoutonAnnulerModificationChaine(ActionEvent event) throws IOException {
+		clearTextField();
+		setDisableButtons(true);
 	}
 	
 	@FXML 
 	private void clicBoutonSupprimerChaine(ActionEvent event) throws IOException {
+		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
+				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()), resultatTF.getText());
+		if(daoC.delete(ch)) {
+			chaines.remove(ch);
+			clearTextField();
+			setDisableButtons(true);
+		} else {
+			// Message d'erreur
+		};
 	}
 	
 	@FXML 
@@ -239,14 +275,21 @@ public class ControleurChaines implements Initializable{
 	private void clearTextField() {
     	codeTF.clear();
     	nomTF.clear();
-    	entreeCB.getSelectionModel().select(0);
+    	entreeCB.getSelectionModel().select(-1);
     	elemEntreeQteTF.clear();
     	elemEntreeTF.clear();
-    	sortieCB.getSelectionModel().select(0);
+    	sortieCB.getSelectionModel().select(-1);
     	elemSortieQteTF.clear();
     	elemSortieTF.clear();
     	nivActiviteTF.clear();
     	resultatTF.clear();
+	}
+	
+	private void setDisableButtons(boolean pDisable) {
+		this.modifierChaine.setDisable(pDisable);
+		this.annulerModifChaine.setDisable(pDisable);
+		this.supprimerChaine.setDisable(pDisable);
+		this.testerChaine.setDisable(pDisable);
 	}
 		
 	private void formatCB() {

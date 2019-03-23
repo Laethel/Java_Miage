@@ -32,7 +32,7 @@ public abstract class Dao<T> {
 	 * @param id
 	 * @return
 	 */
-	public abstract T find(int id);
+	public abstract T find(String id);
 	
 	/**
 	 * @return

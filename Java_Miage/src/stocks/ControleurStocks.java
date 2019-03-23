@@ -202,9 +202,7 @@ public class ControleurStocks implements Initializable{
 	        achatTF.setText(oldElement.getPrixAchat());
 	        venteTF.setText(oldElement.getPrixVente());
 	        	
-	        this.modifierElem.setDisable(false);
-	    	this.annulerModifElem.setDisable(false);
-	    	this.supprimerElem.setDisable(false);
+	        setDisableButtons(false);
 	     }
 	}
 	
@@ -237,7 +235,7 @@ public class ControleurStocks implements Initializable{
 		if(dao.update(oldElement, elem)) {
 			elements.set(elements.indexOf(oldElement), elem);
 			clearTextField();
-			setDisableButtons();
+			setDisableButtons(true);
 		} else {
 			// Message d'erreur
 		};
@@ -251,7 +249,7 @@ public class ControleurStocks implements Initializable{
 	@FXML 
 	private void clicBoutonAnnulerModificationElem(ActionEvent event) throws IOException {
 		clearTextField();
-		setDisableButtons();
+		setDisableButtons(true);
 	}
 	
 	/**
@@ -266,7 +264,7 @@ public class ControleurStocks implements Initializable{
 		if(dao.delete(elem)) {
 			elements.remove(elem);
 			clearTextField();
-			setDisableButtons();
+			setDisableButtons(true);
 		} else {
 			// Message d'erreur
 		};
@@ -287,9 +285,9 @@ public class ControleurStocks implements Initializable{
 	/**
 	 * Rend les boutons Supprimer, Modifier et Annuler non cliquables
 	 */
-	private void setDisableButtons() {
-		this.modifierElem.setDisable(true);
-		this.annulerModifElem.setDisable(true);
-		this.supprimerElem.setDisable(true);
+	private void setDisableButtons(boolean pDisable) {
+		this.modifierElem.setDisable(pDisable);
+		this.annulerModifElem.setDisable(pDisable);
+		this.supprimerElem.setDisable(pDisable);
 	}
 }

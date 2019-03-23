@@ -49,7 +49,7 @@ public class ChaineDAO extends Dao<Chaine> {
 			String line = null;
 			String remove = (obj.getCode() +";" + obj.getNom() +";" + obj.getSEntree() + ";" + obj.getSSortie() +";" + obj.getNivAct() 
 			+";" + obj.getResultat());
-			
+						
 			try {
 				while((line = br.readLine()) != null) {
 					if (!line.equals(remove)) {
@@ -114,7 +114,7 @@ public class ChaineDAO extends Dao<Chaine> {
 		}
 	}
 
-	public Chaine find(int id) {
+	public Chaine find(String id) {
 		return null;
 	}
 
@@ -132,22 +132,10 @@ public class ChaineDAO extends Dao<Chaine> {
 		            String nom = csvRecord.get(1);
 		            String entree = csvRecord.get(2);
 		            String sortie = csvRecord.get(3);
-		            int nivAct;
-		            String resultat;
 		            
-		            //Si le niveau d'activité n'est pas précisé, le définit à "1" par défaut
-		            if (csvRecord.isSet("NivActivite")) {
-		            	nivAct = Integer.parseInt(csvRecord.get(4));
-		            } else {
-		            	nivAct = 1;
-		            }
-		            
-		            //Si le niveau d'activité n'est pas précisé, le définit à "1" par défaut
-		            if (csvRecord.isSet("Resultat")) {
-		            	resultat = csvRecord.get(5);
-		            } else {
-		            	resultat = "Indéfini";
-		            }
+		            int nivAct = Integer.parseInt(csvRecord.get(4));
+
+		   		    String resultat = csvRecord.get(5);
 		            		            
 		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct, resultat);
 		            chaines.add(chaine);

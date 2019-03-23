@@ -27,7 +27,7 @@ public class Chaine {
 		lEntree = new ArrayList<Element>();
 		lSortie = new ArrayList<Element>();
 	}
-	
+		
 	public String getCode() { return this.code.get(); }
 	public void setCode(String code) { this.code.set(code); }
 	
@@ -45,6 +45,28 @@ public class Chaine {
 	
 	public String getResultat() {	return this.resultat.get(); }
 	public void setResutat(String resultat) { this.resultat.set(resultat); }
+	
+	public void addlEntree(Element elem) { this.lEntree.add(elem); }
+	public ArrayList<Element> getlEntree() { return this.lEntree; };
+	
+	public void addlSortie(Element elem) { this.lSortie.add(elem); }
+	public ArrayList<Element> getlSortie() { return this.lSortie; };
+	
+	@Override
+    public boolean equals(Object o) { 
+  
+        if (o == this) { 
+            return true; 
+        } 
+  
+        if (!(o instanceof Chaine)) { 
+            return false; 
+        } 
+          
+        Chaine ch = (Chaine) o; 
+            
+        return this.code.get().equals(ch.getCode());
+    } 
 	
 	public String toString() {
 		return "Code : " + this.code + " Nom : " + this.nom + " Elements en entr�e : " + this.sEntree + 
