@@ -14,15 +14,13 @@ public class Chaine {
 	private ArrayList<Element> lEntree;
 	private ArrayList<Element> lSortie;
 	private SimpleIntegerProperty nivAct;
-	private SimpleStringProperty resultat;
 	
-	public Chaine (String code, String nom, String sEntree, String sSortie, int nivAct, String resultat) {
+	public Chaine (String code, String nom, String sEntree, String sSortie, int nivAct) {
 		this.code = new SimpleStringProperty(code);
 		this.nom = new SimpleStringProperty(nom);
 		this.sEntree = new SimpleStringProperty(sEntree);
 		this.sSortie = new SimpleStringProperty(sSortie);
 		this.nivAct = new SimpleIntegerProperty(nivAct);
-		this.resultat = new SimpleStringProperty(resultat);
 		
 		lEntree = new ArrayList<Element>();
 		lSortie = new ArrayList<Element>();
@@ -42,15 +40,14 @@ public class Chaine {
 	
 	public int getNivAct() {	return this.nivAct.get(); }
 	public void setNivAct(int nivAct) { this.nivAct.set(nivAct); }
-	
-	public String getResultat() {	return this.resultat.get(); }
-	public void setResutat(String resultat) { this.resultat.set(resultat); }
-	
+		
 	public void addlEntree(Element elem) { this.lEntree.add(elem); }
 	public ArrayList<Element> getlEntree() { return this.lEntree; };
+	public void clearLEntree() { this.lEntree.clear(); }
 	
 	public void addlSortie(Element elem) { this.lSortie.add(elem); }
 	public ArrayList<Element> getlSortie() { return this.lSortie; };
+	public void clearLSortie() { this.lSortie.clear(); }
 	
 	@Override
     public boolean equals(Object o) { 
@@ -70,8 +67,7 @@ public class Chaine {
 	
 	public String toString() {
 		return "Code : " + this.code + " Nom : " + this.nom + " Elements en entr�e : " + this.sEntree + 
-				" Elements en sortie : " + this.sSortie + " NIveau d'activation : " + this.nivAct + 
-				" R�sultat : " + this.resultat;
+				" Elements en sortie : " + this.sSortie + " NIveau d'activation : " + this.nivAct;
 	}
 
 }

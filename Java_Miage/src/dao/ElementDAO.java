@@ -141,7 +141,7 @@ public class ElementDAO extends Dao<Element> {
 		        for (CSVRecord csvRecord : csvParser) {
 		            String code = csvRecord.get(0);
 		            
-		            if (code == id) {
+		            if (code.equals(id)) {
 		            	String nom = csvRecord.get(1);
 				        double qte = Double.parseDouble(csvRecord.get(2));
 				        String unite = csvRecord.get(3);

@@ -26,8 +26,7 @@ public class ChaineDAO extends Dao<Chaine> {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH_CHAINE, true));
 			try {				
-				bw.write(obj.getCode() +";" + obj.getNom() +";" + obj.getSEntree() + ";" + obj.getSSortie() +";" + obj.getNivAct() 
-							+";" + obj.getResultat() + "\n");
+				bw.write(obj.getCode() +";" + obj.getNom() +";" + obj.getSEntree() + ";" + obj.getSSortie() +";" + obj.getNivAct()  + "\n");
 				bw.close();
 				return true;
 			} catch (IOException e) {
@@ -47,8 +46,7 @@ public class ChaineDAO extends Dao<Chaine> {
 			File tempFile = new File(CSV_FILE_PATH_CHAINE + ".tmp");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
 			String line = null;
-			String remove = (obj.getCode() +";" + obj.getNom() +";" + obj.getSEntree() + ";" + obj.getSSortie() +";" + obj.getNivAct() 
-			+";" + obj.getResultat());
+			String remove = (obj.getCode() +";" + obj.getNom() +";" + obj.getSEntree() + ";" + obj.getSSortie() +";" + obj.getNivAct());
 						
 			try {
 				while((line = br.readLine()) != null) {
@@ -82,10 +80,8 @@ public class ChaineDAO extends Dao<Chaine> {
 			File tempFile = new File(CSV_FILE_PATH_CHAINE + ".tmp");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
 			String line = null;
-			String old = (oldObj.getCode() +";" + oldObj.getNom() +";" + oldObj.getSEntree() + ";" + oldObj.getSSortie() +";" + oldObj.getNivAct() 
-			+";" + oldObj.getResultat()); 
-			String update = (newObj.getCode() +";" + newObj.getNom() +";" + newObj.getSEntree() + ";" + newObj.getSSortie() +";" + newObj.getNivAct() 
-			+";" + newObj.getResultat());
+			String old = (oldObj.getCode() +";" + oldObj.getNom() +";" + oldObj.getSEntree() + ";" + oldObj.getSSortie() +";" + oldObj.getNivAct()); 
+			String update = (newObj.getCode() +";" + newObj.getNom() +";" + newObj.getSEntree() + ";" + newObj.getSSortie() +";" + newObj.getNivAct());
 			
 			try {
 				while((line = br.readLine()) != null) {
@@ -134,10 +130,8 @@ public class ChaineDAO extends Dao<Chaine> {
 		            String sortie = csvRecord.get(3);
 		            
 		            int nivAct = Integer.parseInt(csvRecord.get(4));
-
-		   		    String resultat = csvRecord.get(5);
 		            		            
-		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct, resultat);
+		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct);
 		            chaines.add(chaine);
 		        }
 				csvParser.close();

@@ -13,7 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -97,10 +100,7 @@ public class ControleurChaines implements Initializable{
 	
 	@FXML
 	private TextField nivActiviteTF;
-	
-	@FXML
-	private TextField resultatTF;
-	
+		
 	@FXML
 	private ChoiceBox<Element> entreeCB;
 	
@@ -140,6 +140,8 @@ public class ControleurChaines implements Initializable{
 	private ObservableList<Chaine> chaines;
 	private Chaine oldChaine;
 	
+	ArrayList<Element> elements;
+	
 	private BooleanBinding bbForm;
 	private BooleanBinding bbElemEntree;
 	private BooleanBinding bbElemSortie;
@@ -153,7 +155,7 @@ public class ControleurChaines implements Initializable{
 		sortieTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("sSortie"));
 		tabChaines.setItems(chaines);
 		
-		ArrayList<Element> elements = daoE.findAll();
+		elements = daoE.findAll();
 		entreeCB.setItems(FXCollections.observableArrayList(elements));
 		sortieCB.setItems(FXCollections.observableArrayList(elements));		
 		formatCB();
@@ -189,8 +191,7 @@ public class ControleurChaines implements Initializable{
 	        nomTF.setText(oldChaine.getNom());
 	        elemEntreeTF.setText(oldChaine.getSEntree());
 	        elemSortieTF.setText(oldChaine.getSSortie());
-	        nivActiviteTF.setText(Integer.toString(oldChaine.getNivAct()));
-	        resultatTF.setText(oldChaine.getResultat());              
+	        nivActiviteTF.setText(Integer.toString(oldChaine.getNivAct()));          
 	     }
 	    
 	    setDisableButtons(false);
@@ -227,7 +228,7 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonAjoutChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
-				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()), resultatTF.getText());
+				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()));
 		if(daoC.create(ch)) {
 			chaines.add(ch);
 			clearTextField();
@@ -239,7 +240,7 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonModifierChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
-				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()), resultatTF.getText());
+				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()));
 		if(daoC.update(oldChaine,ch)) {
 			chaines.set(chaines.indexOf(oldChaine), ch);
 			clearTextField();
@@ -258,7 +259,7 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonSupprimerChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
-				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()), resultatTF.getText());
+				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()));
 		if(daoC.delete(ch)) {
 			chaines.remove(ch);
 			clearTextField();
@@ -270,6 +271,102 @@ public class ControleurChaines implements Initializable{
 	
 	@FXML 
 	private void clicBoutonTesterChaine(ActionEvent event) throws IOException {
+		loadElemEntreeSortie();
+		
+		ArrayList<Element> stocktmp = daoE.findAll();
+		ArrayList<Element> listeAchat = new ArrayList<Element>();
+		
+		int resultat = 0;
+		boolean productionPossible = true;
+		
+		
+		for (Chaine ch : chaines) {
+			for (Element el : ch.getlEntree()) {
+				double qteASoustraire = el.getQte() * ch.getNivAct();
+				stocktmp.get(stocktmp.indexOf(el)).soustraireStock(qteASoustraire);
+			}
+			
+			for (Element el : ch.getlSortie()) {
+				double qteAAjouter = el.getQte() * ch.getNivAct();
+				stocktmp.get(stocktmp.indexOf(el)).ajouterStock(qteAAjouter);
+			}
+		}
+		
+		for (int i = 0; i < stocktmp.size(); i++) {
+			System.out.println(stocktmp.get(i));
+			if (stocktmp.get(i).getQte() < 0 ) {
+				if (stocktmp.get(i).getPrixAchat().equals("NA")) {
+					productionPossible = false;
+					break;
+				} else {
+					listeAchat.add(stocktmp.get(i));
+
+					resultat -= Integer.parseInt(stocktmp.get(i).getPrixAchat()) * stocktmp.get(i).getQte();
+					System.out.println(Integer.parseInt(stocktmp.get(i).getPrixAchat()) * stocktmp.get(i).getQte());
+				}
+			} else {
+				if (!stocktmp.get(i).getPrixVente().equals("NA")) {
+					resultat += Integer.parseInt(stocktmp.get(i).getPrixVente());
+				}
+			}
+		}
+		
+		if (productionPossible) {
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminé. Résultat obtenu : " + resultat + ".\n"
+					+ "Voulez-vous exporter le résultat dans un fichier externe (.csv) ? \n"
+					+ "(Les stocks seront automatiquement mis à jour.)"					
+					, ButtonType.YES, ButtonType.NO);
+			alert.showAndWait();
+
+			if (alert.getResult() == ButtonType.YES) {
+				// Mise à jour du stock
+				for (int i = 0; i < elements.size(); i++) {
+					daoE.update(elements.get(i), stocktmp.get(i));
+				}
+				
+				// GENERER LA LISTE D'ACHAT (VARIABLE LISTE ACHAT) ET L'EXPORTER AU FORMAT CSV 
+			}
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essaie de production. \n"
+					+ "Le prix d'achat de certains éléments n'est pas renseigné."					
+					, ButtonType.OK);
+			alert.showAndWait();
+		}
+		
+	}
+	
+	private void loadElemEntreeSortie() {
+		for (Chaine ch : chaines) {
+			
+			ch.clearLEntree();
+			ch.clearLSortie();
+			
+			String[] sElemsEntree = ch.getSEntree().split("\\),\\(");
+			
+			for (String s : sElemsEntree) {
+				s = s.replace("(", "");
+				s = s.replace(")", "");
+								
+				String[] sElem = s.split(",");
+				
+				Element elem = daoE.find(sElem[0]);
+				elem.setQte(Double.parseDouble(sElem[1]));
+				ch.addlEntree(elem);
+			}
+			
+			String[] sElemsSortie = ch.getSSortie().split("\\),\\(");
+			
+			for (String s : sElemsSortie) {
+				s = s.replace("(", "");
+				s = s.replace(")", "");
+								
+				String[] sElem = s.split(",");
+				
+				Element elem = daoE.find(sElem[0]);
+				elem.setQte(Double.parseDouble(sElem[1]));
+				ch.addlSortie(elem);
+			}			
+		}	
 	}
 	
 	private void clearTextField() {
@@ -282,14 +379,12 @@ public class ControleurChaines implements Initializable{
     	elemSortieQteTF.clear();
     	elemSortieTF.clear();
     	nivActiviteTF.clear();
-    	resultatTF.clear();
 	}
 	
 	private void setDisableButtons(boolean pDisable) {
 		this.modifierChaine.setDisable(pDisable);
 		this.annulerModifChaine.setDisable(pDisable);
 		this.supprimerChaine.setDisable(pDisable);
-		this.testerChaine.setDisable(pDisable);
 	}
 		
 	private void formatCB() {

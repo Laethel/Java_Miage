@@ -112,6 +112,9 @@ public class Element {
 	 */
 	public void setPrixVente(String prixVente) { this.prixVente.set(prixVente); }
 	
+	public void soustraireStock(double qte) { this.qte.set(this.getQte() - qte); }
+	public void ajouterStock(double qte) { this.qte.set(this.getQte() + qte); }
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
