@@ -1,9 +1,18 @@
 package chaines;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
 import dao.ChaineDAO;
 import dao.ElementDAO;
@@ -35,6 +44,8 @@ import utils.Path.Way;
  */
 public class ControleurChaines implements Initializable{
 	    
+	private static File listeAchats = new File("./src/utils/listeAchats.csv");
+
 	@FXML
 	private Button retour;
 	
@@ -175,7 +186,7 @@ public class ControleurChaines implements Initializable{
 	/**
 	 * @param event
 	 * @throws IOException
-	 * Mï¿½thode dï¿½clenchï¿½e lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
+	 * Méthode déclenchée lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
@@ -324,10 +335,29 @@ public class ControleurChaines implements Initializable{
 					daoE.update(elements.get(i), stocktmp.get(i));
 				}
 				
-				// GENERER LA LISTE D'ACHAT (VARIABLE LISTE ACHAT) ET L'EXPORTER AU FORMAT CSV 
+				// Génération de liste d'achat
+				BufferedWriter writer = new BufferedWriter(new FileWriter(listeAchats));
+				CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
+				for(Element i : listeAchat) {
+					System.out.println(i);
+					writer.write("Code; Nom ; Quantité à acheter \n");
+					writer.write(i.getCode() +";" + i.getNom() + ";" + Math.abs(i.getQte()) +" " + i.getUnite() +"\n");
+
+				}
+				csvPrinter.close();
+				writer.close();
+				Alert alertListeAchat = new Alert(AlertType.CONFIRMATION, "Liste d'achat générée. (" + listeAchats.getPath() + ") \n"
+						+ "Voulez vous accéder dès maintenant à la liste ?"					
+						, ButtonType.YES, ButtonType.NO);
+				alertListeAchat.showAndWait();
+				
+				//Ouvre la liste d'achats
+				if (alertListeAchat.getResult() == ButtonType.YES) {
+					java.awt.Desktop.getDesktop().open(listeAchats);
+				}
 			}
 		} else {
-			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essaie de production. \n"
+			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essai de production. \n"
 					+ "Le prix d'achat de certains éléments n'est pas renseigné."					
 					, ButtonType.OK);
 			alert.showAndWait();
