@@ -4,10 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -44,7 +41,8 @@ import utils.Path.Way;
  */
 public class ControleurChaines implements Initializable{
 	    
-	private static File listeAchats = new File("./src/utils/listeAchats.csv");
+	//private static File listeAchats = new File("./src/utils/listeAchats.csv");
+	private static File crProd = new File("./src/utils/crProd.csv");
 
 	@FXML
 	private Button retour;
@@ -84,6 +82,12 @@ public class ControleurChaines implements Initializable{
 	 */
 	@FXML
 	private TableColumn<Chaine, String> sortieTC;
+	
+	/**
+	 * La colonne indiquant le niveau d'activité de la chaine
+	 */
+	@FXML
+	private TableColumn<Chaine, String> nivActTC;
 	
 	/**
 	 * La colonne indiquant le niveau d'activitï¿½ de la chaine
@@ -144,6 +148,9 @@ public class ControleurChaines implements Initializable{
 	
 	@FXML
 	private Button testerChaine;
+	
+	@FXML
+	private Button resetTest;
 			
 	private ChaineDAO daoC = new ChaineDAO();
 	private ElementDAO daoE = new ElementDAO();
@@ -156,6 +163,9 @@ public class ControleurChaines implements Initializable{
 	private BooleanBinding bbForm;
 	private BooleanBinding bbElemEntree;
 	private BooleanBinding bbElemSortie;
+
+	ArrayList<Element> elementsSave = new ArrayList<Element>();
+	
 		
 	public void initialize(URL url, ResourceBundle rb) {	
 		this.chaines = FXCollections.observableArrayList(daoC.findAll());
@@ -164,6 +174,7 @@ public class ControleurChaines implements Initializable{
 		nomTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Nom"));
 		entreeTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("sEntree"));
 		sortieTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("sSortie"));
+		nivActTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("nivAct"));
 		tabChaines.setItems(chaines);
 		
 		elements = daoE.findAll();
@@ -179,6 +190,10 @@ public class ControleurChaines implements Initializable{
 		this.ajouterChaine.disableProperty().bind(bbForm);
 		this.ajouterElemEntree.disableProperty().bind(bbElemEntree);
 		this.ajouterElemSortie.disableProperty().bind(bbElemSortie);
+		elementsSave.clear();
+		for (Element e : elements) {
+			elementsSave.add(e);
+		}
 		
 		setDisableButtons(true);		
 	}
@@ -268,6 +283,23 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	@FXML 
+	private void clicBoutonResetTest(ActionEvent event) throws IOException {
+		//Réinitialise les stocks à leur état pré-test 
+		/*for (Element e : elements) {
+			daoE.delete(e);
+			elements.remove(e);
+		}
+		for (Element e : elementsSave) {
+			daoE.create(e);
+			elements.add(e);
+		}
+		setDisableButtons(true);
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production réinitialisé !"					
+				, ButtonType.OK);
+		alert.showAndWait();*/
+	}
+	
+	@FXML 
 	private void clicBoutonSupprimerChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
 				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()));
@@ -289,6 +321,7 @@ public class ControleurChaines implements Initializable{
 		
 		int resultat = 0;
 		boolean productionPossible = true;
+		Element elemManquant = null;
 		
 		
 		for (Chaine ch : chaines) {
@@ -302,12 +335,14 @@ public class ControleurChaines implements Initializable{
 				stocktmp.get(stocktmp.indexOf(el)).ajouterStock(qteAAjouter);
 			}
 		}
+
 		
 		for (int i = 0; i < stocktmp.size(); i++) {
 			System.out.println(stocktmp.get(i));
 			if (stocktmp.get(i).getQte() < 0 ) {
 				if (stocktmp.get(i).getPrixAchat().equals("NA")) {
 					productionPossible = false;
+					elemManquant = stocktmp.get(i);
 					break;
 				} else {
 					listeAchat.add(stocktmp.get(i));
@@ -323,8 +358,8 @@ public class ControleurChaines implements Initializable{
 		}
 		
 		if (productionPossible) {
-			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminé. Résultat obtenu : " + resultat + ".\n"
-					+ "Voulez-vous exporter le résultat dans un fichier externe (.csv) ? \n"
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminé. Résultat obtenu : " + resultat + ".\n \n"
+					+ "Voulez-vous exporter le compte-rendu de la production dans un fichier externe (.csv) ? \n \n"
 					+ "(Les stocks seront automatiquement mis à jour.)"					
 					, ButtonType.YES, ButtonType.NO);
 			alert.showAndWait();
@@ -333,32 +368,57 @@ public class ControleurChaines implements Initializable{
 				// Mise à jour du stock
 				for (int i = 0; i < elements.size(); i++) {
 					daoE.update(elements.get(i), stocktmp.get(i));
+					elements.set(elements.indexOf(elements.get(i)), stocktmp.get(i));
 				}
 				
-				// Génération de liste d'achat
-				BufferedWriter writer = new BufferedWriter(new FileWriter(listeAchats));
-				CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
+				// Génération du compte-rendu de production
+				BufferedWriter writerCr = new BufferedWriter(new FileWriter(crProd));
+				CSVPrinter csvPrinterCr = new CSVPrinter(writerCr, CSVFormat.DEFAULT);
+				writerCr.write("Compte-rendu de la production : \n");
+				writerCr.write("Chaines actives; Elements consommés; Elements produits \n");
+				for (Chaine ch : chaines) {
+					writerCr.write(ch.getNom() +"(" + ch.getCode()+") - Niveau " + ch.getNivAct() + ";");
+					for (Element el : ch.getlEntree()) {
+						double qteConsommee = el.getQte() * ch.getNivAct();
+						writerCr.write(el.getNom() +"(" + qteConsommee+"), ");
+					}
+					writerCr.write(";");
+					for (Element el : ch.getlSortie()) {
+						double qteProduite = el.getQte() * ch.getNivAct();
+						writerCr.write(el.getNom() +"(" + qteProduite+"), ");
+					}
+					writerCr.write("; \n");
+				}
+				writerCr.write("\n Total consommé; Total produit \n");
+				//TODO
+				//Grouper les éléments produits ici ?
+				writerCr.write("\n Résultat \n");
+				writerCr.write(Integer.toString(resultat));
+				writerCr.write("\n \n \n");
+				writerCr.write("Liste d'achats \n");
+				writerCr.write("Code; Nom ; Quantité à acheter \n");
 				for(Element i : listeAchat) {
 					System.out.println(i);
-					writer.write("Code; Nom ; Quantité à acheter \n");
-					writer.write(i.getCode() +";" + i.getNom() + ";" + Math.abs(i.getQte()) +" " + i.getUnite() +"\n");
+					writerCr.write(i.getCode() +";" + i.getNom() + ";" + Math.abs(i.getQte()) +" " + i.getUnite() +"\n");
 
 				}
-				csvPrinter.close();
-				writer.close();
-				Alert alertListeAchat = new Alert(AlertType.CONFIRMATION, "Liste d'achat générée. (" + listeAchats.getPath() + ") \n"
-						+ "Voulez vous accéder dès maintenant à la liste ?"					
-						, ButtonType.YES, ButtonType.NO);
-				alertListeAchat.showAndWait();
 				
-				//Ouvre la liste d'achats
-				if (alertListeAchat.getResult() == ButtonType.YES) {
-					java.awt.Desktop.getDesktop().open(listeAchats);
+				csvPrinterCr.close();
+				writerCr.close();
+				Alert alertCrProd = new Alert(AlertType.CONFIRMATION, "Compte-rendu de production généré. (" + crProd.getPath() + ") \n \n"
+						+ "Voulez vous y accéder dès maintenant ?"					
+						, ButtonType.YES, ButtonType.NO);
+				alertCrProd.showAndWait();
+				
+				//Ouvre le CR
+				if (alertCrProd.getResult() == ButtonType.YES) {
+					java.awt.Desktop.getDesktop().open(crProd);
 				}
+				
 			}
 		} else {
 			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essai de production. \n"
-					+ "Le prix d'achat de certains éléments n'est pas renseigné."					
+					+ "Le prix d'achat de certains éléments n'est pas renseigné : "	+ elemManquant.getNom()				
 					, ButtonType.OK);
 			alert.showAndWait();
 		}

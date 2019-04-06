@@ -14,10 +14,11 @@
       <Button fx:id="retour" layoutX="880.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
       <TableView fx:id="tabChaines" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleClickTableView" prefHeight="300.0" prefWidth="500.0" AnchorPane.topAnchor="70.0">
         <columns>
-          <TableColumn fx:id="codeTC" minWidth="0.0" prefWidth="70.0" text="Code" />
+          <TableColumn fx:id="codeTC" minWidth="0.0" prefWidth="62.0" text="Code" />
           <TableColumn fx:id="nomTC" prefWidth="100.0" text="Nom" />
-          <TableColumn fx:id="entreeTC" minWidth="0.0" prefWidth="160.0" text="Entrée (Code, Qte)" />
-          <TableColumn fx:id="sortieTC" minWidth="0.0" prefWidth="160.0" text="Sortie (Code, Qte)" />
+          <TableColumn fx:id="entreeTC" minWidth="0.0" prefWidth="140.0" text="Entrée (Code, Qte)" />
+          <TableColumn fx:id="sortieTC" minWidth="0.0" prefWidth="140.0" text="Sortie (Code, Qte)" />
+            <TableColumn fx:id="nivActTC" prefWidth="58.0" text="Activité" />
         </columns>
       </TableView>
       <Label layoutX="540.0" layoutY="74.0" text="Code :" />
@@ -45,5 +46,6 @@
       <Button fx:id="annulerModifChaine" layoutX="685.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationChaine" prefHeight="25.0" prefWidth="110.0" text="Annuler modif." />
       <Button fx:id="supprimerChaine" layoutX="805.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerChaine" prefWidth="75.0" text="Supprimer" />
       <Button fx:id="testerChaine" layoutX="540.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonTesterChaine" prefHeight="25.0" prefWidth="135.0" text="Tester la production" />
+      <Button fx:id="resetTest" layoutX="810.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonResetTest" prefHeight="25.0" prefWidth="135.0" text="Réinitialiser le test" />
    </children>
 </AnchorPane>
