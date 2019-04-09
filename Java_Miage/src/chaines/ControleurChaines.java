@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 import org.apache.commons.csv.CSVFormat;
@@ -190,6 +191,7 @@ public class ControleurChaines implements Initializable{
 		this.ajouterChaine.disableProperty().bind(bbForm);
 		this.ajouterElemEntree.disableProperty().bind(bbElemEntree);
 		this.ajouterElemSortie.disableProperty().bind(bbElemSortie);
+		
 		elementsSave.clear();
 		for (Element e : elements) {
 			elementsSave.add(e);
@@ -285,18 +287,24 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonResetTest(ActionEvent event) throws IOException {
 		//Réinitialise les stocks à leur état pré-test 
-		/*for (Element e : elements) {
+		ArrayList<Element> toRemove = new ArrayList<Element>();
+		ArrayList<Element> toAdd = new ArrayList<Element>();
+
+		for (Element e : elements) {
 			daoE.delete(e);
-			elements.remove(e);
+			toRemove.add(e);
 		}
 		for (Element e : elementsSave) {
 			daoE.create(e);
-			elements.add(e);
+			toAdd.add(e);
 		}
+		elements.removeAll(toRemove);
+		elements.addAll(toAdd);
+		
 		setDisableButtons(true);
 		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production réinitialisé !"					
 				, ButtonType.OK);
-		alert.showAndWait();*/
+		alert.showAndWait();
 	}
 	
 	@FXML 

@@ -3,16 +3,14 @@ Chaines actives; Elements consommés; Elements produits
 Propulsion(C001) - Niveau 1;Servomoteurs(1.0), Plastique(0.5), Plaques aluminium(0.1), ;Propulsions(1.0), ; 
 Coques(C002) - Niveau 1;Plastique(5.0), Plaques aluminium(1.0), ;Coques(10.0), ; 
 Drones(C003) - Niveau 1;Propulsions(24.0), Coques(4.0), Circuit principal(8.0), ;Drones(4.0), ; 
-Test(C004) - Niveau 2;Circuit principal(4.0), Plaques aluminium(10.0), ;Coques(4.0), ; 
 
  Total consommé; Total produit 
 
  Résultat 
-19660
+16830
  
  
 Liste d'achats 
 Code; Nom ; Quantité à acheter 
-E001;Circuit principal;448.0 pieces
-E003;Plaques aluminium;277.99999999999994 pieces
-E005;Propulsions;249.0 pieces
+E001;Circuit principal;48.0 pieces
+E005;Propulsions;713.0 pieces
