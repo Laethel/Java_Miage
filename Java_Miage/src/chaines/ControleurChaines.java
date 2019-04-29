@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 import org.apache.commons.csv.CSVFormat;
@@ -85,7 +84,7 @@ public class ControleurChaines implements Initializable{
 	private TableColumn<Chaine, String> sortieTC;
 	
 	/**
-	 * La colonne indiquant le niveau d'activité de la chaine
+	 * La colonne indiquant le niveau d'activitï¿½ de la chaine
 	 */
 	@FXML
 	private TableColumn<Chaine, String> nivActTC;
@@ -203,7 +202,7 @@ public class ControleurChaines implements Initializable{
 	/**
 	 * @param event
 	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
+	 * Mï¿½thode dï¿½clenchï¿½e lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
@@ -286,7 +285,7 @@ public class ControleurChaines implements Initializable{
 	
 	@FXML 
 	private void clicBoutonResetTest(ActionEvent event) throws IOException {
-		//Réinitialise les stocks à leur état pré-test 
+		//RÃ©initialise les stocks Ã  leur Ã©tat prÃ©-test 
 		ArrayList<Element> toRemove = new ArrayList<Element>();
 		ArrayList<Element> toAdd = new ArrayList<Element>();
 
@@ -302,7 +301,7 @@ public class ControleurChaines implements Initializable{
 		elements.addAll(toAdd);
 		
 		setDisableButtons(true);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production réinitialisé !"					
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production rÃ©initialisÃ© !"					
 				, ButtonType.OK);
 		alert.showAndWait();
 	}
@@ -346,7 +345,6 @@ public class ControleurChaines implements Initializable{
 
 		
 		for (int i = 0; i < stocktmp.size(); i++) {
-			System.out.println(stocktmp.get(i));
 			if (stocktmp.get(i).getQte() < 0 ) {
 				if (stocktmp.get(i).getPrixAchat().equals("NA")) {
 					productionPossible = false;
@@ -356,7 +354,6 @@ public class ControleurChaines implements Initializable{
 					listeAchat.add(stocktmp.get(i));
 
 					resultat -= Integer.parseInt(stocktmp.get(i).getPrixAchat()) * stocktmp.get(i).getQte();
-					System.out.println(Integer.parseInt(stocktmp.get(i).getPrixAchat()) * stocktmp.get(i).getQte());
 				}
 			} else {
 				if (!stocktmp.get(i).getPrixVente().equals("NA")) {
@@ -366,24 +363,24 @@ public class ControleurChaines implements Initializable{
 		}
 		
 		if (productionPossible) {
-			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminé. Résultat obtenu : " + resultat + ".\n \n"
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminÃ©. RÃ©sultat obtenu : " + resultat + ".\n \n"
 					+ "Voulez-vous exporter le compte-rendu de la production dans un fichier externe (.csv) ? \n \n"
-					+ "(Les stocks seront automatiquement mis à jour.)"					
+					+ "(Les stocks seront automatiquement mis Ã  jour.)"					
 					, ButtonType.YES, ButtonType.NO);
 			alert.showAndWait();
 
 			if (alert.getResult() == ButtonType.YES) {
-				// Mise à jour du stock
+				// Mise ï¿½ jour du stock
 				for (int i = 0; i < elements.size(); i++) {
 					daoE.update(elements.get(i), stocktmp.get(i));
 					elements.set(elements.indexOf(elements.get(i)), stocktmp.get(i));
 				}
 				
-				// Génération du compte-rendu de production
+				// Gï¿½nï¿½ration du compte-rendu de production
 				BufferedWriter writerCr = new BufferedWriter(new FileWriter(crProd));
 				CSVPrinter csvPrinterCr = new CSVPrinter(writerCr, CSVFormat.DEFAULT);
 				writerCr.write("Compte-rendu de la production : \n");
-				writerCr.write("Chaines actives; Elements consommés; Elements produits \n");
+				writerCr.write("Chaines actives; Elements consommÃ©s; Elements produits \n");
 				for (Chaine ch : chaines) {
 					writerCr.write(ch.getNom() +"(" + ch.getCode()+") - Niveau " + ch.getNivAct() + ";");
 					for (Element el : ch.getlEntree()) {
@@ -397,24 +394,23 @@ public class ControleurChaines implements Initializable{
 					}
 					writerCr.write("; \n");
 				}
-				writerCr.write("\n Total consommé; Total produit \n");
+				writerCr.write("\n Total consommÃ©; Total produit \n");
 				//TODO
-				//Grouper les éléments produits ici ?
-				writerCr.write("\n Résultat \n");
+				//Grouper les Ã©lÃ©ments produits ici ?
+				writerCr.write("\n RÃ©sultat \n");
 				writerCr.write(Integer.toString(resultat));
 				writerCr.write("\n \n \n");
 				writerCr.write("Liste d'achats \n");
-				writerCr.write("Code; Nom ; Quantité à acheter \n");
+				writerCr.write("Code; Nom ; QuantitÃ© Ã  acheter \n");
 				for(Element i : listeAchat) {
-					System.out.println(i);
 					writerCr.write(i.getCode() +";" + i.getNom() + ";" + Math.abs(i.getQte()) +" " + i.getUnite() +"\n");
 
 				}
 				
 				csvPrinterCr.close();
 				writerCr.close();
-				Alert alertCrProd = new Alert(AlertType.CONFIRMATION, "Compte-rendu de production généré. (" + crProd.getPath() + ") \n \n"
-						+ "Voulez vous y accéder dès maintenant ?"					
+				Alert alertCrProd = new Alert(AlertType.CONFIRMATION, "Compte-rendu de production gÃ©nÃ©rÃ©e. (" + crProd.getPath() + ") \n \n"
+						+ "Voulez vous y accÃ©der dÃ©s maintenant ?"					
 						, ButtonType.YES, ButtonType.NO);
 				alertCrProd.showAndWait();
 				
@@ -426,7 +422,7 @@ public class ControleurChaines implements Initializable{
 			}
 		} else {
 			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essai de production. \n"
-					+ "Le prix d'achat de certains éléments n'est pas renseigné : "	+ elemManquant.getNom()				
+					+ "Le prix d'achat de certains Ã©lÃ©ments n'est pas renseignÃ© : "	+ elemManquant.getNom()				
 					, ButtonType.OK);
 			alert.showAndWait();
 		}

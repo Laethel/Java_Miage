@@ -1,16 +1,46 @@
 Compte-rendu de la production : 
-Chaines actives; Elements consomm�s; Elements produits 
-Propulsion(C001) - Niveau 1;Servomoteurs(1.0), Plastique(0.5), Plaques aluminium(0.1), ;Propulsions(1.0), ; 
-Coques(C002) - Niveau 1;Plastique(5.0), Plaques aluminium(1.0), ;Coques(10.0), ; 
-Drones(C003) - Niveau 1;Propulsions(24.0), Coques(4.0), Circuit principal(8.0), ;Drones(4.0), ; 
+Chaines actives; Elements consommés; Elements produits 
+Chocolat 30 %(C001) - Niveau 1;pate cacao(3.0), lait en poudre(5.0), beurre cacao(2.0), Sucre(3.0), ;Chocolat 30 %(10.0), ; 
+Chocolat 40 %(C002) - Niveau 1;pate cacao(4.0), lait en poudre(4.0), beurre cacao(2.0), Sucre(2.0), ;Chocolat 40 %(10.0), ; 
+Chocolat 50 %(C003) - Niveau 1;pate cacao(5.0), beurre cacao(5.0), Sucre(2.0), ;Chocolat 50 %(10.0), ; 
+Pate biscuit Q1(C004) - Niveau 1;farine(5.0), Sucre(3.0), huile palme(2.0), Poudre a lever(1.0), ;Pate biscuit Q1(10.0), ; 
+Pate biscuit Q2(C005) - Niveau 1;farine(5.0), Sucre(3.0), huile colza(2.0), emulsifiant(1.0), Poudre a lever(1.0), ;Pate biscuit Q2(10.0), ; 
+Pate biscuit Q3(C006) - Niveau 1;farine(5.0), Sucre(3.0), beurre(2.0), Poudre a lever(1.0), ;Pate biscuit Q3(10.0), ; 
+Gateau marque A(C007) - Niveau 1;Pate biscuit Q3(5.0), Chocolat 50 %(1.0), ;Gateau marque A(5.0), ; 
+Gateau marque B(C008) - Niveau 1;Pate biscuit Q2(5.0), Chocolat 40 %(1.0), ;Gateau marque B(5.0), ; 
+Gateau marque C(C009) - Niveau 1;Pate biscuit Q1(5.0), Chocolat 30 %(1.0), ;Gateau marque C(5.0), ; 
+Pate levée huile(C010) - Niveau 1;farine(20.0), huile colza(5.0), Sucre(5.0), levure(2.0), ;Pate levée huile(25.0), ; 
+Pate levée beurre(C011) - Niveau 1;farine(20.0), beurre(5.0), Sucre(5.0), levure(2.0), ;Pate levée beurre(25.0), ; 
+Brioche(C012) - Niveau 1;Pate levée huile(10.0), ;Brioche(10.0), ; 
+Brioche beurre(C013) - Niveau 1;Pate levée beurre(10.0), ;Brioche beurre(10.0), ; 
+Pain chocolat A(C014) - Niveau 1;Pate levée huile(9.0), Chocolat 40 %(3.0), ;Pain chocolat A(10.0), ; 
+Pain chocolat B(C015) - Niveau 1;Pate levée huile(9.0), Chocolat 30 %(3.0), ;Pain chocolat B(10.0), ; 
+Biscuit marque A(C016) - Niveau 1;Pate biscuit Q1(7.0), ;Biscuit marque A(7.0), ; 
+Biscuit marque B et C(C017) - Niveau 1;Pate biscuit Q2(8.0), ;Biscuit marque B et C(8.0), ; 
+Pate crepes(C018) - Niveau 1;farine(10.0), Sucre(2.0), lait en poudre(5.0), huile colza(2.0), emulsifiant(1.0), ;Pate crepes(12.0), ; 
+Crepes natures(C019) - Niveau 1;Pate crepes(10.0), ;Crepes natures(5.0), ; 
+Crepes fourrees choc(C020) - Niveau 1;Pate crepes(10.0), Chocolat 30 %(3.0), ;Crepes fourrees choc(5.0), ; 
+Crepes fourres abricot(C021) - Niveau 1;Pate crepes(10.0), confiture abricot(3.0), ;Crepes fourres abricot(5.0), ; 
+Brownies marque A(C022) - Niveau 1;Pate biscuit Q2(5.0), jaune oeuf(2.0), Chocolat 50 %(2.0), noix(1.0), ;Brownies marque A(6.0), ; 
+Brownies marque B(C023) - Niveau 1;Pate biscuit Q3(5.0), jaune oeuf(2.0), Chocolat 40 %(2.0), noix(1.0), ;Brownies marque A(6.0), ; 
+Cookies Choc(C024) - Niveau 1;Pate biscuit Q3(4.0), Chocolat 40 %(1.0), ;Cookies Choc/Noix marque A(3.0), Cookies Choc/Noix marque B(2.0), ; 
+Cookies Choc/Noix(C025) - Niveau 1;Pate biscuit Q3(4.0), Chocolat 40 %(1.0), noix(1.0), ;Pate Madeleines Q1(3.0), Pate Madeleines Q2(2.0), ; 
+Pate Madeleines Q1(C026) - Niveau 1;farine(5.0), Sucre(3.0), beurre(1.0), Poudre a lever(1.0), blanc oeuf(1.0), jaune oeuf(1.0), ;Pate Madeleines Q1(11.0), ; 
+Pate Madeleines Q2(C027) - Niveau 1;farine(5.0), Sucre(3.0), huile palme(1.0), Poudre a lever(1.0), blanc oeuf(1.0), jaune oeuf(1.0), ;Pate Madeleines Q2(11.0), ; 
+Madeleines marque A(C028) - Niveau 1;Pate Madeleines Q1(5.0), ;Madeleines marque A(5.0), ; 
+Madeleines marque B(C029) - Niveau 1;Pate Madeleines Q2(5.0), ;Madeleines marque B(5.0), ; 
+Madeleines Choc(C030) - Niveau 1;Pate Madeleines Q2(5.0), Chocolat 30 %(1.0), ;Madeleines Choc(5.0), ; 
 
- Total consomm�; Total produit 
+ Total consommé; Total produit 
 
- R�sultat 
-16830
+ Résultat 
+588
  
  
 Liste d'achats 
-Code; Nom ; Quantit� � acheter 
-E001;Circuit principal;48.0 pieces
-E005;Propulsions;713.0 pieces
+Code; Nom ; Quantité à acheter 
+E022;Pate biscuit Q1;4.0 litre
+E023;Pate biscuit Q2;16.0 litre
+E024;Pate biscuit Q3;16.0 litre
+E028;Pate levée huile;6.0 kg
+E036;Pate crepes;11.0 litre

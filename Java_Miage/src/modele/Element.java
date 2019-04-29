@@ -10,35 +10,40 @@ import javafx.beans.property.SimpleStringProperty;
 public class Element {
 	
 	/**
-	 * Le code d'un élément
+	 * Le code d'un ï¿½lï¿½ment
 	 */
 	private SimpleStringProperty code;
 	
 	/**
-	 * Le nom d'un élément
+	 * Le nom d'un ï¿½lï¿½ment
 	 */
 	private SimpleStringProperty nom;
 	
 	/**
-	 * La quantité d'un élément
+	 * La quantitï¿½ d'un ï¿½lï¿½ment
 	 */
 	private SimpleDoubleProperty qte;
 	
 	//private enum unitesMesure {LITRES, UNITES, KILOGRAMMES, PIECES};
 	/**
-	 * L'unité d'un élément
+	 * L'unitï¿½ d'un ï¿½lï¿½ment
 	 */
 	private SimpleStringProperty unite;
 	
 	/**
-	 * Le prix d'achat d'un élément
+	 * Le prix d'achat d'un ï¿½lï¿½ment
 	 */
 	private SimpleStringProperty prixAchat;
 	
 	/**
-	 * Le prix de vente d'un élément
+	 * Le prix de vente d'un ï¿½lï¿½ment
 	 */
 	private SimpleStringProperty prixVente;
+	
+	/**
+	 * Minimum d'unitï¿½s ï¿½ produire et ï¿½ vendre d'un ï¿½lï¿½ment
+	 */
+	private SimpleDoubleProperty demande;
 	
 	/**
 	 * @param code
@@ -48,14 +53,14 @@ public class Element {
 	 * @param prixAchat
 	 * @param prixVente
 	 */
-	public Element (String code, String nom, double qte, String unite, String prixAchat, String prixVente) {
+	public Element (String code, String nom, double qte, String unite, String prixAchat, String prixVente, double demande) {
 		this.code = new SimpleStringProperty(code);
 		this.nom = new SimpleStringProperty(nom);
 		this.qte = new SimpleDoubleProperty(qte);
 		this.unite = new SimpleStringProperty(unite);
 		this.prixAchat = new SimpleStringProperty(prixAchat);
 		this.prixVente = new SimpleStringProperty(prixVente);
-		
+		this.demande = new SimpleDoubleProperty(demande);
 	}
 	
 	/**
@@ -112,6 +117,15 @@ public class Element {
 	 */
 	public void setPrixVente(String prixVente) { this.prixVente.set(prixVente); }
 	
+	/**
+	 * @return
+	 */
+	public double getDemande() { return this.demande.get(); }
+	/**
+	 * @param demande
+	 */
+	public void setDemande(double demande) { this.demande.set(demande); }
+	
 	public void soustraireStock(double qte) { this.qte.set(this.getQte() - qte); }
 	public void ajouterStock(double qte) { this.qte.set(this.getQte() + qte); }
 	
@@ -138,8 +152,8 @@ public class Element {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "Code : " + this.code + " Nom : " +this.nom + " Quantité : " + this.qte + " Unité : " + this.unite 
-				+ " Prix d'achat : " + this.prixAchat + " Prix de vente : " + this.prixVente;
+		return "Code : " + this.code + " Nom : " +this.nom + " QuantitÃ© : " + this.qte + " UnitÃ© : " + this.unite 
+				+ " Prix d'achat : " + this.prixAchat + " Prix de vente : " + this.prixVente + " Demande : " + this.demande;
 	}
 
 }
