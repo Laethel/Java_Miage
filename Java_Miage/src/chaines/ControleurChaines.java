@@ -2,8 +2,9 @@ package chaines;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -364,61 +365,73 @@ public class ControleurChaines implements Initializable{
 		
 		if (productionPossible) {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminé. Résultat obtenu : " + resultat + ".\n \n"
-					+ "Voulez-vous exporter le compte-rendu de la production dans un fichier externe (.csv) ? \n \n"
-					+ "(Les stocks seront automatiquement mis à jour.)"					
+					+ "Un compte-rendu de la production a été généré dans un fichier externe (" + crProd.getPath() + ") \n \n"
+					+ "Voulez vous mettre à jour les stocks ?"					
 					, ButtonType.YES, ButtonType.NO);
+			
+			// Génération du compte-rendu de production
+			OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(crProd),"UTF-8");
+			BufferedWriter writerCr = new BufferedWriter(out);
+			CSVPrinter csvPrinterCr = new CSVPrinter(writerCr, CSVFormat.DEFAULT);
+			
+			
+			writerCr.write("COMPTE RENDU DE LA PRODUCTION \n");
+			writerCr.write("\nRÉSULTAT :;" + Integer.toString(resultat));
+			writerCr.write("\n \n");
+			writerCr.write("CHAINES ACTIVES;ÉLÉMENTS CONSOMMÉS;ÉLÉMENTS PRODUITS \n");
+			for (Chaine ch : chaines) {
+				writerCr.write(ch.getNom() +"(" + ch.getCode()+") - Niveau " + ch.getNivAct() + ";");
+				String sElEntree = "";
+				for (Element el : ch.getlEntree()) {
+					double qteConsommee = el.getQte() * ch.getNivAct();
+					sElEntree += el.getNom() +"(" + qteConsommee+"), ";
+					stocktmp.get(stocktmp.indexOf(el)).ajouterQteConsommee(qteConsommee);
+				}
+				sElEntree = sElEntree.substring(0, sElEntree.lastIndexOf(','));
+				writerCr.write(sElEntree + ";");
+				
+				String sElSortie = "";
+				for (Element el : ch.getlSortie()) {
+					double qteProduite = el.getQte() * ch.getNivAct();
+					sElSortie += el.getNom() +"(" + qteProduite+"), ";
+					stocktmp.get(stocktmp.indexOf(el)).ajouterQteProduite(qteProduite);
+				}
+				sElSortie = sElSortie.substring(0, sElSortie.lastIndexOf(','));
+				writerCr.write(sElSortie + "; \n");
+			}
+
+			//ETAT DU STOCK TEMPORAIRE
+			writerCr.write("\nETAT DU STOCK TEMPORAIRE :\n");
+			writerCr.write("CODE;NOM;QUANTITÉ;UNITÉ;QUANTITÉ CONSOMMÉE;QUANTITÉ PRODUITE;% DEMANDE\n");
+			for(Element el : stocktmp) {
+				String statdemande = "NA";
+				if (el.getDemande() != 0.0) {
+					statdemande = Double.toString(Math.floor((el.getQteProduite()/el.getDemande())*100)) + "%";
+				}
+				writerCr.write(el.getCode() + ";" + el.getNom() + ";" + el.getQte() + ";" + el.getUnite() + ";" + el.getQteConsommee() + ";" + 
+						el.getQteProduite() + ";" + statdemande + "\n");
+			}
+
+			writerCr.write("\nLISTE D'ACHATS \n");
+			writerCr.write("CODE;NOM;QUANTITÉ À ACHETER;UNITÉ;PRIX UNITAIRE;MONTANT \n");
+			double totalAchat = 0.0;
+			for(Element i : listeAchat) {
+				writerCr.write(i.getCode() +";" + i.getNom() + ";" + Math.abs(i.getQte()) + ";" + i.getUnite() + ";" +  i.getPrixAchat() + ";" + Math.abs(i.getQte()) * Integer.parseInt(i.getPrixAchat()) +"\n");
+				totalAchat += Math.abs(i.getQte()) * Integer.parseInt(i.getPrixAchat());
+			}
+			writerCr.write(";;;;MONTANT TOTAL :;" + totalAchat);
+			csvPrinterCr.close();
+			writerCr.close();
+			java.awt.Desktop.getDesktop().open(crProd);			
+			
 			alert.showAndWait();
 
 			if (alert.getResult() == ButtonType.YES) {
-				// Mise � jour du stock
+				// Mise à jour du stock
 				for (int i = 0; i < elements.size(); i++) {
 					daoE.update(elements.get(i), stocktmp.get(i));
 					elements.set(elements.indexOf(elements.get(i)), stocktmp.get(i));
-				}
-				
-				// G�n�ration du compte-rendu de production
-				BufferedWriter writerCr = new BufferedWriter(new FileWriter(crProd));
-				CSVPrinter csvPrinterCr = new CSVPrinter(writerCr, CSVFormat.DEFAULT);
-				writerCr.write("Compte-rendu de la production : \n");
-				writerCr.write("Chaines actives; Elements consommés; Elements produits \n");
-				for (Chaine ch : chaines) {
-					writerCr.write(ch.getNom() +"(" + ch.getCode()+") - Niveau " + ch.getNivAct() + ";");
-					for (Element el : ch.getlEntree()) {
-						double qteConsommee = el.getQte() * ch.getNivAct();
-						writerCr.write(el.getNom() +"(" + qteConsommee+"), ");
-					}
-					writerCr.write(";");
-					for (Element el : ch.getlSortie()) {
-						double qteProduite = el.getQte() * ch.getNivAct();
-						writerCr.write(el.getNom() +"(" + qteProduite+"), ");
-					}
-					writerCr.write("; \n");
-				}
-				writerCr.write("\n Total consommé; Total produit \n");
-				//TODO
-				//Grouper les éléments produits ici ?
-				writerCr.write("\n Résultat \n");
-				writerCr.write(Integer.toString(resultat));
-				writerCr.write("\n \n \n");
-				writerCr.write("Liste d'achats \n");
-				writerCr.write("Code; Nom ; Quantité à acheter \n");
-				for(Element i : listeAchat) {
-					writerCr.write(i.getCode() +";" + i.getNom() + ";" + Math.abs(i.getQte()) +" " + i.getUnite() +"\n");
-
-				}
-				
-				csvPrinterCr.close();
-				writerCr.close();
-				Alert alertCrProd = new Alert(AlertType.CONFIRMATION, "Compte-rendu de production générée. (" + crProd.getPath() + ") \n \n"
-						+ "Voulez vous y accéder dés maintenant ?"					
-						, ButtonType.YES, ButtonType.NO);
-				alertCrProd.showAndWait();
-				
-				//Ouvre le CR
-				if (alertCrProd.getResult() == ButtonType.YES) {
-					java.awt.Desktop.getDesktop().open(crProd);
-				}
-				
+				}			
 			}
 		} else {
 			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essai de production. \n"

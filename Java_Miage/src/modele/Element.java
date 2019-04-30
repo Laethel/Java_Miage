@@ -46,6 +46,12 @@ public class Element {
 	private SimpleDoubleProperty demande;
 	
 	/**
+	 * Variable de calcul pour le compte rendu
+	 */
+	private double qteConsommee;
+	private double qteProduite;
+	
+	/**
 	 * @param code
 	 * @param nom
 	 * @param qte
@@ -61,6 +67,8 @@ public class Element {
 		this.prixAchat = new SimpleStringProperty(prixAchat);
 		this.prixVente = new SimpleStringProperty(prixVente);
 		this.demande = new SimpleDoubleProperty(demande);
+		this.qteConsommee = 0;
+		this.qteProduite = 0;
 	}
 	
 	/**
@@ -125,9 +133,28 @@ public class Element {
 	 * @param demande
 	 */
 	public void setDemande(double demande) { this.demande.set(demande); }
-	
+		
+	public double getQteConsommee() {
+		return qteConsommee;
+	}
+
+	public void setQteConsommee(double qteConsommee) {
+		this.qteConsommee = qteConsommee;
+	}
+
+	public double getQteProduite() {
+		return qteProduite;
+	}
+
+	public void setQteProduite(double qteProduite) {
+		this.qteProduite = qteProduite;
+	}
+
 	public void soustraireStock(double qte) { this.qte.set(this.getQte() - qte); }
 	public void ajouterStock(double qte) { this.qte.set(this.getQte() + qte); }
+	
+	public void ajouterQteConsommee(double qte) { this.qteConsommee = this.getQteConsommee() + qte; }
+	public void ajouterQteProduite(double qte) { this.qteProduite = this.getQteProduite() + qte; }
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
