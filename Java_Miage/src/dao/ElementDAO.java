@@ -28,11 +28,12 @@ public class ElementDAO extends Dao<Element> {
 	
 	@Override
 	public boolean create(Element obj) {
-		try {
+		try {			
 			BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH_ELEMENT, true));
+			
 			try {				
 				bw.write(obj.getCode() +";" + obj.getNom() +";" + obj.getQte() + ";" + obj.getUnite() +";" + obj.getPrixAchat() 
-							+";" + obj.getPrixVente() + "\n");
+							+";" + obj.getPrixVente() + ";" + obj.getDemande() + "\n");
 				bw.close();
 				return true;
 			} catch (IOException e) {
@@ -56,8 +57,8 @@ public class ElementDAO extends Dao<Element> {
 			File tempFile = new File(CSV_FILE_PATH_ELEMENT + ".tmp");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
 			String line = null;
-			String remove = (obj.getCode() +";" + obj.getNom() +";" + obj.getQte() + ";" + obj.getUnite() +";" + obj.getPrixAchat() 
-			+";" + obj.getPrixVente());
+			String remove = obj.getCode() +";" + obj.getNom() +";" + obj.getQte() + ";" + obj.getUnite() +";" + obj.getPrixAchat() 
+			+";" + obj.getPrixVente() + ";" + obj.getDemande();
 			
 			try {
 				while((line = br.readLine()) != null) {
@@ -95,11 +96,11 @@ public class ElementDAO extends Dao<Element> {
 			File tempFile = new File(CSV_FILE_PATH_ELEMENT + ".tmp");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile, true));
 			String line = null;
-			String old = (oldObj.getCode() +";" + oldObj.getNom() +";" + oldObj.getQte() + ";" + oldObj.getUnite() +";" + oldObj.getPrixAchat() 
-			+";" + oldObj.getPrixVente()); 
-			String update = (newObj.getCode() +";" + newObj.getNom() +";" + newObj.getQte() + ";" + newObj.getUnite() +";" + newObj.getPrixAchat() 
-			+";" + newObj.getPrixVente());
-			
+			String old = oldObj.getCode() +";" + oldObj.getNom() +";" + oldObj.getQte() + ";" + oldObj.getUnite() +";" + oldObj.getPrixAchat() 
+			+";" + oldObj.getPrixVente() + ";" + oldObj.getDemande(); 
+			String update = newObj.getCode() +";" + newObj.getNom() +";" + newObj.getQte() + ";" + newObj.getUnite() +";" + newObj.getPrixAchat() 
+			+";" + newObj.getPrixVente() + ";" + newObj.getDemande();
+						
 			try {
 				while((line = br.readLine()) != null) {
 					if (line.equals(old)) {
@@ -147,7 +148,8 @@ public class ElementDAO extends Dao<Element> {
 				        String unite = csvRecord.get(3);
 				        String prixAchat = csvRecord.get(4);
 				        String prixVente =csvRecord.get(5);
-				        elem = new Element(code, nom, qte, unite, prixAchat, prixVente);
+				        double demande = Double.parseDouble(csvRecord.get(6));
+				        elem = new Element(code, nom, qte, unite, prixAchat, prixVente, demande);
 		            }
 		        }				
 				csvParser.close();
@@ -177,7 +179,8 @@ public class ElementDAO extends Dao<Element> {
 		            String unite = csvRecord.get(3);
 		            String prixAchat = csvRecord.get(4);
 		            String prixVente =csvRecord.get(5);
-		            Element elem = new Element(code, nom, qte, unite, prixAchat, prixVente);
+		            double demande = Double.parseDouble(csvRecord.get(6));
+		            Element elem = new Element(code, nom, qte, unite, prixAchat, prixVente, demande);
 		            elements.add(elem);
 		        }
 				

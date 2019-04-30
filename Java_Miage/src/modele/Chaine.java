@@ -66,8 +66,8 @@ public class Chaine {
     } 
 	
 	public String toString() {
-		return "Code : " + this.code + " Nom : " + this.nom + " Elements en entr�e : " + this.sEntree + 
-				" Elements en sortie : " + this.sSortie + " NIveau d'activation : " + this.nivAct;
+		return "Code : " + this.code + " Nom : " + this.nom + " Elements en entrée : " + this.sEntree + 
+				" Elements en sortie : " + this.sSortie + " Niveau d'activation : " + this.nivAct;
 	}
 
 }

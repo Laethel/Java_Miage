@@ -76,6 +76,12 @@ public class ControleurStocks implements Initializable{
 	private TableColumn<Element, String> venteTC;
 	
 	/**
+	 * La colonne indiquant la demande de l'élément
+	 */
+	@FXML
+	private TableColumn<Element, Number> demandeTC;
+	
+	/**
 	 * Le champ de texte indiquant le code de l'élément
 	 */
 	@FXML
@@ -110,6 +116,12 @@ public class ControleurStocks implements Initializable{
 	 */
 	@FXML
 	private TextField venteTF;
+	
+	/**
+	 * Le champ de texte indiquant la demande de l'élément
+	 */
+	@FXML
+	private TextField demandeTF;
 	
 	/**
 	 * Le bouton permettant d'ajouter un nouvel élément
@@ -168,7 +180,8 @@ public class ControleurStocks implements Initializable{
 		qteTC.setCellValueFactory(new PropertyValueFactory<Element, Number>("Qte"));
 		uniteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("Unite"));
 		achatTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixAchat"));
-		venteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));		
+		venteTC.setCellValueFactory(new PropertyValueFactory<Element, String>("PrixVente"));
+		demandeTC.setCellValueFactory(new PropertyValueFactory<Element, Number>("Demande"));
 		tabStocks.setItems(elements);
 			
 		this.ajouterElem.disableProperty().bind(bb);
@@ -201,6 +214,7 @@ public class ControleurStocks implements Initializable{
 	        qteTF.setText(Double.toString(oldElement.getQte()));
 	        achatTF.setText(oldElement.getPrixAchat());
 	        venteTF.setText(oldElement.getPrixVente());
+	        demandeTF.setText(Double.toString(oldElement.getDemande()));
 	        	
 	        setDisableButtons(false);
 	     }
@@ -214,7 +228,7 @@ public class ControleurStocks implements Initializable{
 	@FXML 
 	private void clicBoutonAjoutElem(ActionEvent event) throws IOException {
 		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
-				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+				uniteTF.getText(), achatTF.getText(), venteTF.getText(), Double.parseDouble(demandeTF.getText()));
 		if(dao.create(elem)) {
 			elements.add(elem);
 			clearTextField();
@@ -231,7 +245,7 @@ public class ControleurStocks implements Initializable{
 	@FXML 
 	private void clicBoutonModifierElem(ActionEvent event) throws IOException {
 		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
-				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+				uniteTF.getText(), achatTF.getText(), venteTF.getText(), Double.parseDouble(demandeTF.getText()));
 		if(dao.update(oldElement, elem)) {
 			elements.set(elements.indexOf(oldElement), elem);
 			clearTextField();
@@ -260,7 +274,7 @@ public class ControleurStocks implements Initializable{
 	@FXML 
 	private void clicBoutonSupprimerElem(ActionEvent event) throws IOException {
 		Element elem = new Element(codeTF.getText(), nomTF.getText(), Double.parseDouble(qteTF.getText()), 
-				uniteTF.getText(), achatTF.getText(), venteTF.getText());
+				uniteTF.getText(), achatTF.getText(), venteTF.getText(), Double.parseDouble(demandeTF.getText()));
 		if(dao.delete(elem)) {
 			elements.remove(elem);
 			clearTextField();
@@ -280,6 +294,7 @@ public class ControleurStocks implements Initializable{
     	qteTF.clear();
     	achatTF.clear();
     	venteTF.clear();
+    	demandeTF.clear();
 	}
 	
 	/**
