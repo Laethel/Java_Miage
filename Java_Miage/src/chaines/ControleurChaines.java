@@ -302,7 +302,7 @@ public class ControleurChaines implements Initializable{
 		elements.addAll(toAdd);
 		
 		setDisableButtons(true);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production r√©initialis√© !"					
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production rÈinitialisÈ !"					
 				, ButtonType.OK);
 		alert.showAndWait();
 	}
@@ -364,9 +364,9 @@ public class ControleurChaines implements Initializable{
 		}
 		
 		if (productionPossible) {
-			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production termin√©. R√©sultat obtenu : " + resultat + ".\n \n"
-					+ "Un compte-rendu de la production a √©t√© g√©n√©r√© dans un fichier externe (" + crProd.getPath() + ") \n \n"
-					+ "Voulez vous mettre √† jour les stocks ?"					
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminÈ. RÈsultat obtenu : " + resultat + ".\n \n"
+					+ "Un compte-rendu de la production a ÈtÈ gÈnÈrÈ dans un fichier externe (" + crProd.getPath() + ") \n \n"
+					+ "Voulez vous mettre ‡† jour les stocks ?"					
 					, ButtonType.YES, ButtonType.NO);
 			
 			// G√©n√©ration du compte-rendu de production
