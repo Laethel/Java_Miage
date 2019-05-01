@@ -1,8 +1,8 @@
 COMPTE RENDU DE LA PRODUCTION 
 
-RÃ‰SULTAT :;359
+RÉSULTAT :;359
  
-CHAINES ACTIVES;Ã‰LÃ‰MENTS CONSOMMÃ‰S;Ã‰LÃ‰MENTS PRODUITS 
+CHAINES ACTIVES;ÉLÉMENTS CONSOMMÉS;ÉLÉMENTS PRODUITS 
 Chocolat 30 %(C001) - Niveau 1;pate cacao(3.0), lait en poudre(5.0), beurre cacao(2.0), Sucre(3.0);Chocolat 30 %(10.0); 
 Chocolat 40 %(C002) - Niveau 1;pate cacao(4.0), lait en poudre(4.0), beurre cacao(2.0), Sucre(2.0);Chocolat 40 %(10.0); 
 Chocolat 50 %(C003) - Niveau 1;pate cacao(5.0), beurre cacao(5.0), Sucre(2.0);Chocolat 50 %(10.0); 
@@ -35,7 +35,7 @@ Madeleines marque B(C029) - Niveau 1;Pate Madeleines Q2(5.0);Madeleines marque B
 Madeleines Choc(C030) - Niveau 1;Pate Madeleines Q2(5.0), Chocolat 30 %(1.0);Madeleines Choc(5.0); 
 
 ETAT DU STOCK TEMPORAIRE :
-CODE;NOM;QUANTITÃ‰;UNITÃ‰;QUANTITÃ‰ CONSOMMÃ‰E;QUANTITÃ‰ PRODUITE;% DEMANDE
+CODE;NOM;QUANTITÉ;UNITÉ;QUANTITÉ CONSOMMÉE;QUANTITÉ PRODUITE;% DEMANDE
 E001;Sucre;466.0;kg;34.0;0.0;NA
 E002;farine;1425.0;kg;75.0;0.0;NA
 E003;farine complete;0.0;kg;0.0;0.0;NA
@@ -89,7 +89,7 @@ E050;Madeleines Choc;5.0;carton;0.0;5.0;5.0%
 E051;Poudre a lever;23.0;kg;5.0;0.0;NA
 
 LISTE D'ACHATS 
-CODE;NOM;QUANTITÃ‰ Ã€ ACHETER;UNITÃ‰;PRIX UNITAIRE;MONTANT 
+CODE;NOM;QUANTITÉ À ACHETER;UNITÉ;PRIX UNITAIRE;MONTANT 
 E022;Pate biscuit Q1;2.0;litre;5;10.0
 E023;Pate biscuit Q2;8.0;litre;6;48.0
 E024;Pate biscuit Q3;8.0;litre;6;48.0

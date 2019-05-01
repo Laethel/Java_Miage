@@ -25,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -152,6 +153,15 @@ public class ControleurChaines implements Initializable{
 	
 	@FXML
 	private Button resetTest;
+	
+	@FXML
+	private Button semainePrec;
+	
+	@FXML
+	private Button semaineSuiv;
+	
+	@FXML
+	private Label semaineAct;
 			
 	private ChaineDAO daoC = new ChaineDAO();
 	private ElementDAO daoE = new ElementDAO();
@@ -197,7 +207,8 @@ public class ControleurChaines implements Initializable{
 			elementsSave.add(e);
 		}
 		
-		setDisableButtons(true);		
+		setDisableButtons(true);
+		this.semainePrec.setDisable(true);
 	}
 	
 	/**
@@ -302,7 +313,7 @@ public class ControleurChaines implements Initializable{
 		elements.addAll(toAdd);
 		
 		setDisableButtons(true);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production réinitialisé !"					
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production rï¿½initialisï¿½ !"					
 				, ButtonType.OK);
 		alert.showAndWait();
 	}
@@ -364,9 +375,9 @@ public class ControleurChaines implements Initializable{
 		}
 		
 		if (productionPossible) {
-			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminé. Résultat obtenu : " + resultat + ".\n \n"
-					+ "Un compte-rendu de la production a été généré dans un fichier externe (" + crProd.getPath() + ") \n \n"
-					+ "Voulez vous mettre à  jour les stocks ?"					
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminÃ©. RÃ©sultat obtenu : " + resultat + ".\n \n"
+					+ "Un compte-rendu de la production a Ã©tÃ© gÃ©nÃ©rÃ© dans un fichier externe (" + crProd.getPath() + ") \n \n"
+					+ "Voulez vous mettre Ã  jour les stocks ?"					
 					, ButtonType.YES, ButtonType.NO);
 			
 			// GÃ©nÃ©ration du compte-rendu de production
@@ -520,5 +531,26 @@ public class ControleurChaines implements Initializable{
 		        return null ;
 		    }
 		});
+	}
+	
+	@FXML
+	private void clicBoutonSemaineSuiv(ActionEvent event) throws IOException {
+		int i = Integer.parseInt(semaineAct.getText());
+		i++;
+		semaineAct.setText(Integer.toString(i));
+		this.semainePrec.setDisable(false);
+	}
+	
+	@FXML
+	private void clicBoutonSemainePrec(ActionEvent event) throws IOException {
+		int i = Integer.parseInt(semaineAct.getText());
+		System.out.println(i);
+		if(i>1) {
+			i--;
+			semaineAct.setText(Integer.toString(i));
+		}
+		if(i == 1) {
+			this.semainePrec.setDisable(true);
+		}
 	}
 }
