@@ -1,97 +1,64 @@
 COMPTE RENDU DE LA PRODUCTION 
 
-RÉSULTAT :;359
+RÉSULTAT :;229
  
 CHAINES ACTIVES;ÉLÉMENTS CONSOMMÉS;ÉLÉMENTS PRODUITS 
-Chocolat 30 %(C001) - Niveau 1;pate cacao(3.0), lait en poudre(5.0), beurre cacao(2.0), Sucre(3.0);Chocolat 30 %(10.0); 
-Chocolat 40 %(C002) - Niveau 1;pate cacao(4.0), lait en poudre(4.0), beurre cacao(2.0), Sucre(2.0);Chocolat 40 %(10.0); 
-Chocolat 50 %(C003) - Niveau 1;pate cacao(5.0), beurre cacao(5.0), Sucre(2.0);Chocolat 50 %(10.0); 
-Pate biscuit Q1(C004) - Niveau 1;farine(5.0), Sucre(3.0), huile palme(2.0), Poudre a lever(1.0);Pate biscuit Q1(10.0); 
-Pate biscuit Q2(C005) - Niveau 1;farine(5.0), Sucre(3.0), huile colza(2.0), emulsifiant(1.0), Poudre a lever(1.0);Pate biscuit Q2(10.0); 
-Pate biscuit Q3(C006) - Niveau 1;farine(5.0), Sucre(3.0), beurre(2.0), Poudre a lever(1.0);Pate biscuit Q3(10.0); 
-Gateau marque A(C007) - Niveau 1;Pate biscuit Q3(5.0), Chocolat 50 %(1.0);Gateau marque A(5.0); 
-Gateau marque B(C008) - Niveau 1;Pate biscuit Q2(5.0), Chocolat 40 %(1.0);Gateau marque B(5.0); 
-Gateau marque C(C009) - Niveau 1;Pate biscuit Q1(5.0), Chocolat 30 %(1.0);Gateau marque C(5.0); 
-Pate levée huile(C010) - Niveau 1;farine(20.0), huile colza(5.0), Sucre(5.0), levure(2.0);Pate levée huile(25.0); 
-Pate levée beurre(C011) - Niveau 1;farine(20.0), beurre(5.0), Sucre(5.0), levure(2.0);Pate levée beurre(25.0); 
-Brioche(C012) - Niveau 1;Pate levée huile(10.0);Brioche(10.0); 
-Brioche beurre(C013) - Niveau 1;Pate levée beurre(10.0);Brioche beurre(10.0); 
-Pain chocolat A(C014) - Niveau 1;Pate levée huile(9.0), Chocolat 40 %(3.0);Pain chocolat A(10.0); 
-Pain chocolat B(C015) - Niveau 1;Pate levée huile(9.0), Chocolat 30 %(3.0);Pain chocolat B(10.0); 
-Biscuit marque A(C016) - Niveau 1;Pate biscuit Q1(7.0);Biscuit marque A(7.0); 
-Biscuit marque B et C(C017) - Niveau 1;Pate biscuit Q2(8.0);Biscuit marque B et C(8.0); 
-Pate crepes(C018) - Niveau 1;farine(10.0), Sucre(2.0), lait en poudre(5.0), huile colza(2.0), emulsifiant(1.0);Pate crepes(12.0); 
-Crepes natures(C019) - Niveau 1;Pate crepes(10.0);Crepes natures(5.0); 
-Crepes fourrees choc(C020) - Niveau 1;Pate crepes(10.0), Chocolat 30 %(3.0);Crepes fourrees choc(5.0); 
-Crepes fourres abricot(C021) - Niveau 1;Pate crepes(10.0), confiture abricot(3.0);Crepes fourres abricot(5.0); 
-Brownies marque A(C022) - Niveau 1;Pate biscuit Q2(5.0), jaune oeuf(2.0), Chocolat 50 %(2.0), noix(1.0);Brownies marque A(6.0); 
-Brownies marque B(C023) - Niveau 1;Pate biscuit Q3(5.0), jaune oeuf(2.0), Chocolat 40 %(2.0), noix(1.0);Brownies marque A(6.0); 
-Cookies Choc(C024) - Niveau 1;Pate biscuit Q3(4.0), Chocolat 40 %(1.0);Cookies Choc/Noix marque A(3.0), Cookies Choc/Noix marque B(2.0); 
-Cookies Choc/Noix(C025) - Niveau 1;Pate biscuit Q3(4.0), Chocolat 40 %(1.0), noix(1.0);Pate Madeleines Q1(3.0), Pate Madeleines Q2(2.0); 
-Pate Madeleines Q1(C026) - Niveau 1;farine(5.0), Sucre(3.0), beurre(1.0), Poudre a lever(1.0), blanc oeuf(1.0), jaune oeuf(1.0);Pate Madeleines Q1(11.0); 
-Pate Madeleines Q2(C027) - Niveau 1;farine(5.0), Sucre(3.0), huile palme(1.0), Poudre a lever(1.0), blanc oeuf(1.0), jaune oeuf(1.0);Pate Madeleines Q2(11.0); 
-Madeleines marque A(C028) - Niveau 1;Pate Madeleines Q1(5.0);Madeleines marque A(5.0); 
-Madeleines marque B(C029) - Niveau 1;Pate Madeleines Q2(5.0);Madeleines marque B(5.0); 
-Madeleines Choc(C030) - Niveau 1;Pate Madeleines Q2(5.0), Chocolat 30 %(1.0);Madeleines Choc(5.0); 
+Test Semaine 2 ok(C001) - Niveau 1;pate cacao(3.0), lait en poudre(5.0), beurre cacao(2.0), Sucre(3.0);Chocolat 30 %(10.0); 
 
 ETAT DU STOCK TEMPORAIRE :
 CODE;NOM;QUANTITÉ;UNITÉ;QUANTITÉ CONSOMMÉE;QUANTITÉ PRODUITE;% DEMANDE
-E001;Sucre;466.0;kg;34.0;0.0;NA
-E002;farine;1425.0;kg;75.0;0.0;NA
+E001;Sucre;497.0;kg;3.0;0.0;NA
+E002;farine;1500.0;kg;0.0;0.0;NA
 E003;farine complete;0.0;kg;0.0;0.0;NA
-E004;blanc oeuf;198.0;litre;2.0;0.0;NA
-E005;jaune oeuf;394.0;litre;6.0;0.0;NA
-E006;beurre;2492.0;kg;8.0;0.0;NA
+E004;blanc oeuf;200.0;litre;0.0;0.0;NA
+E005;jaune oeuf;400.0;litre;0.0;0.0;NA
+E006;beurre;2500.0;kg;0.0;0.0;NA
 E007;margarine;0.0;kg;0.0;0.0;NA
-E008;huile palme;4997.0;litre;3.0;0.0;NA
-E009;huile colza;1491.0;litre;9.0;0.0;NA
+E008;huile palme;5000.0;litre;0.0;0.0;NA
+E009;huile colza;1500.0;litre;0.0;0.0;NA
 E010;poudre a lever;50.0;kg;0.0;0.0;NA
-E011;beurre cacao;791.0;kg;9.0;0.0;NA
-E012;pate cacao;138.0;kg;12.0;0.0;NA
+E011;beurre cacao;798.0;kg;2.0;0.0;NA
+E012;pate cacao;147.0;kg;3.0;0.0;NA
 E013;proteine de lait;0.0;kg;0.0;0.0;NA
-E014;lait en poudre;486.0;kg;14.0;0.0;NA
-E015;emulsifiant;8.0;litre;2.0;0.0;NA
-E016;levure;85.0;unite;4.0;0.0;NA
-E017;confiture abricot;47.0;litre;3.0;0.0;NA
-E018;noix;47.0;kg;3.0;0.0;NA
-E019;Chocolat 30 %;22.0;litre;8.0;10.0;NA
-E020;Chocolat 40 %;14.0;litre;8.0;10.0;NA
-E021;Chocolat 50 %;37.0;litre;3.0;10.0;NA
-E022;Pate biscuit Q1;-2.0;litre;12.0;10.0;NA
-E023;Pate biscuit Q2;-8.0;litre;18.0;10.0;NA
-E024;Pate biscuit Q3;-8.0;litre;18.0;10.0;NA
-E025;Gateau marque A;5.0;carton;0.0;5.0;2.0%
-E026;Gateau marque B;5.0;carton;0.0;5.0;1.0%
-E027;Gateau marque C;5.0;carton;0.0;5.0;2.0%
-E028;Pate levée huile;-3.0;kg;28.0;25.0;NA
-E029;Pate levée beurre;15.0;kg;10.0;25.0;NA
-E030;Brioche;20.0;carton;0.0;10.0;3.0%
-E031;Brioche beurre;10.0;carton;0.0;10.0;10.0%
-E032;Pain chocolat A;10.0;carton;0.0;10.0;20.0%
-E033;Pain chocolat B;10.0;carton;0.0;10.0;13.0%
-E034;Biscuit marque A;7.0;carton;0.0;7.0;1.0%
-E035;Biscuit marque B et C;8.0;carton;0.0;8.0;1.0%
-E036;Pate crepes;7.0;litre;30.0;12.0;NA
-E037;Crepes natures;5.0;carton;0.0;5.0;2.0%
-E038;Crepes fourrees choc;5.0;carton;0.0;5.0;5.0%
-E039;Crepes fourres abricot;5.0;carton;0.0;5.0;6.0%
-E040;Brownies marque A;12.0;carton;0.0;12.0;4.0%
+E014;lait en poudre;495.0;kg;5.0;0.0;NA
+E015;emulsifiant;10.0;litre;0.0;0.0;NA
+E016;levure;89.0;unite;0.0;0.0;NA
+E017;confiture abricot;50.0;litre;0.0;0.0;NA
+E018;noix;50.0;kg;0.0;0.0;NA
+E019;Chocolat 30 %;30.0;litre;0.0;10.0;NA
+E020;Chocolat 40 %;12.0;litre;0.0;0.0;NA
+E021;Chocolat 50 %;30.0;litre;0.0;0.0;NA
+E022;Pate biscuit Q1;0.0;litre;0.0;0.0;NA
+E023;Pate biscuit Q2;0.0;litre;0.0;0.0;NA
+E024;Pate biscuit Q3;0.0;litre;0.0;0.0;NA
+E025;Gateau marque A;0.0;carton;0.0;0.0;0.0%
+E026;Gateau marque B;0.0;carton;0.0;0.0;0.0%
+E027;Gateau marque C;0.0;carton;0.0;0.0;0.0%
+E028;Pate levée huile;0.0;kg;0.0;0.0;NA
+E029;Pate levée beurre;0.0;kg;0.0;0.0;NA
+E030;Brioche;10.0;carton;0.0;0.0;0.0%
+E031;Brioche beurre;0.0;carton;0.0;0.0;0.0%
+E032;Pain chocolat A;0.0;carton;0.0;0.0;0.0%
+E033;Pain chocolat B;0.0;carton;0.0;0.0;0.0%
+E034;Biscuit marque A;0.0;carton;0.0;0.0;0.0%
+E035;Biscuit marque B et C;0.0;carton;0.0;0.0;0.0%
+E036;Pate crepes;25.0;litre;0.0;0.0;NA
+E037;Crepes natures;0.0;carton;0.0;0.0;0.0%
+E038;Crepes fourrees choc;0.0;carton;0.0;0.0;0.0%
+E039;Crepes fourres abricot;0.0;carton;0.0;0.0;0.0%
+E040;Brownies marque A;0.0;carton;0.0;0.0;0.0%
 E041;Brownies marque B;0.0;carton;0.0;0.0;0.0%
 E042;Cookies Choc marque A;0.0;carton;0.0;0.0;0.0%
 E043;Cookies Choc marque B;0.0;carton;0.0;0.0;0.0%
-E044;Cookies Choc/Noix marque A;3.0;carton;0.0;3.0;2.0%
-E045;Cookies Choc/Noix marque B;2.0;carton;0.0;2.0;0.0%
-E046;Pate Madeleines Q1;9.0;litre;5.0;14.0;NA
-E047;Pate Madeleines Q2;3.0;litre;10.0;13.0;NA
-E048;Madeleines marque A;5.0;carton;0.0;5.0;2.0%
-E049;Madeleines marque B;5.0;carton;0.0;5.0;3.0%
-E050;Madeleines Choc;5.0;carton;0.0;5.0;5.0%
-E051;Poudre a lever;23.0;kg;5.0;0.0;NA
+E044;Cookies Choc/Noix marque A;0.0;carton;0.0;0.0;0.0%
+E045;Cookies Choc/Noix marque B;0.0;carton;0.0;0.0;0.0%
+E046;Pate Madeleines Q1;0.0;litre;0.0;0.0;NA
+E047;Pate Madeleines Q2;0.0;litre;0.0;0.0;NA
+E048;Madeleines marque A;0.0;carton;0.0;0.0;0.0%
+E049;Madeleines marque B;0.0;carton;0.0;0.0;0.0%
+E050;Madeleines Choc;0.0;carton;0.0;0.0;0.0%
+E051;Poudre a lever;28.0;kg;0.0;0.0;NA
 
 LISTE D'ACHATS 
 CODE;NOM;QUANTITÉ À ACHETER;UNITÉ;PRIX UNITAIRE;MONTANT 
-E022;Pate biscuit Q1;2.0;litre;5;10.0
-E023;Pate biscuit Q2;8.0;litre;6;48.0
-E024;Pate biscuit Q3;8.0;litre;6;48.0
-E028;Pate levée huile;3.0;kg;8;24.0
-;;;;MONTANT TOTAL :;130.0
+;;;;MONTANT TOTAL :;0.0

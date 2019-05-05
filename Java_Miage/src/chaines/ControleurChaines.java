@@ -34,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
 import modele.Chaine;
 import modele.Element;
+import params.ControleurParams;
 import utils.Path;
 import utils.Path.Way;
 
@@ -45,6 +46,7 @@ public class ControleurChaines implements Initializable{
 	    
 	//private static File listeAchats = new File("./src/utils/listeAchats.csv");
 	private static File crProd = new File("./src/utils/crProd.csv");
+	private final String CHEMIN_SEMAINE = "./src/utils/chaineSemaine_";
 
 	@FXML
 	private Button retour;
@@ -152,6 +154,9 @@ public class ControleurChaines implements Initializable{
 	private Button testerChaine;
 	
 	@FXML
+	private Button testerSemainesAll;
+	
+	@FXML
 	private Button resetTest;
 	
 	@FXML
@@ -179,7 +184,7 @@ public class ControleurChaines implements Initializable{
 	
 		
 	public void initialize(URL url, ResourceBundle rb) {	
-		this.chaines = FXCollections.observableArrayList(daoC.findAll());
+		this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
 		
 		codeTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Code"));
 		nomTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Nom"));
@@ -214,7 +219,7 @@ public class ControleurChaines implements Initializable{
 	/**
 	 * @param event
 	 * @throws IOException
-	 * M�thode d�clench�e lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
+	 * Méthode déclenchée lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
@@ -313,7 +318,7 @@ public class ControleurChaines implements Initializable{
 		elements.addAll(toAdd);
 		
 		setDisableButtons(true);
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production r�initialis� !"					
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Test de production réinitialisé !"					
 				, ButtonType.OK);
 		alert.showAndWait();
 	}
@@ -539,18 +544,53 @@ public class ControleurChaines implements Initializable{
 		i++;
 		semaineAct.setText(Integer.toString(i));
 		this.semainePrec.setDisable(false);
+		daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE +i +".csv");
+		this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
+		tabChaines.setItems(chaines);
+		tabChaines.refresh();
+		if(i == 8) {
+			this.semaineSuiv.setDisable(true);
+			daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE + "8.csv");
+			this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
+			tabChaines.setItems(chaines);
+			tabChaines.refresh();
+		}
 	}
 	
 	@FXML
 	private void clicBoutonSemainePrec(ActionEvent event) throws IOException {
 		int i = Integer.parseInt(semaineAct.getText());
-		System.out.println(i);
-		if(i>1) {
-			i--;
+		i--;
+		if(i>1) {			
 			semaineAct.setText(Integer.toString(i));
+			daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE +i +".csv");
+			this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
+			tabChaines.setItems(chaines);
+			tabChaines.refresh();
 		}
 		if(i == 1) {
+			semaineAct.setText(Integer.toString(i));
 			this.semainePrec.setDisable(true);
+			daoC.setCSV_FILE_PATH_CHAINE(ControleurParams.pathCh);
+			this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
+			tabChaines.setItems(chaines);
+			tabChaines.refresh();
 		}
 	}
+	
+	@FXML
+	private void clicBoutonTesterAll(ActionEvent event) throws IOException{
+		this.chaines.removeAll(chaines);
+		daoC.setCSV_FILE_PATH_CHAINE(ControleurParams.pathCh);
+		this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
+		for(int i = 2;i<9;i++) {
+			daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE +i +".csv");
+			System.out.println(i);
+			this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
+		}
+		clicBoutonTesterChaine(event);	
+		clicBoutonSemaineSuiv(event);
+		clicBoutonSemainePrec(event);
+	}
+	
 }

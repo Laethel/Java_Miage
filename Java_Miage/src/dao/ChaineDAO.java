@@ -20,7 +20,15 @@ import params.ControleurParams;
 
 public class ChaineDAO extends Dao<Chaine> {
 	
-	private final String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
+	private String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
+
+	public String getCSV_FILE_PATH_CHAINE() {
+		return CSV_FILE_PATH_CHAINE;
+	}
+
+	public void setCSV_FILE_PATH_CHAINE(String cSV_FILE_PATH_CHAINE) {
+		CSV_FILE_PATH_CHAINE = cSV_FILE_PATH_CHAINE;
+	}
 
 	public boolean create(Chaine obj) {
 		try {
@@ -143,6 +151,37 @@ public class ChaineDAO extends Dao<Chaine> {
 		
 		return chaines;
 	}
+	
+	//WIP Override
+	/*public ArrayList<Chaine> findAll(String cheminSemaine) {
+
+		ArrayList<Chaine> chaines = new ArrayList<Chaine>();
+		
+		if(cheminSemaine != null) {
+			try {
+				Reader reader = Files.newBufferedReader(Paths.get(cheminSemaine));
+		        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader().withDelimiter(';').withNullString("").withIgnoreSurroundingSpaces());
+		        				
+		        for (CSVRecord csvRecord : csvParser) {
+		            String code = csvRecord.get(0);
+		            String nom = csvRecord.get(1);
+		            String entree = csvRecord.get(2);
+		            String sortie = csvRecord.get(3);
+		            
+		            int nivAct = Integer.parseInt(csvRecord.get(4));
+		            		            
+		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct);
+		            chaines.add(chaine);
+		        }
+				csvParser.close();
+			
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return chaines;
+	}*/
 
 
 }

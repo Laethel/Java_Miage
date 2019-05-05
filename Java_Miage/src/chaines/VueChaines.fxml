@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chaines.ControleurChaines">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chaines.ControleurChaines">
    <children>
       <Label layoutY="-2.0" prefHeight="50.0" prefWidth="960.0" style="-fx-background-color: #587C73;" text="     CHAINES DE PRODUCTION" textFill="WHITE" />
       <Button fx:id="retour" layoutX="880.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
@@ -45,11 +45,12 @@
       <Button fx:id="modifierChaine" layoutX="610.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonModifierChaine" prefHeight="25.0" prefWidth="65.0" text="Modifier" />
       <Button fx:id="annulerModifChaine" layoutX="685.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationChaine" prefHeight="25.0" prefWidth="110.0" text="Annuler modif." />
       <Button fx:id="supprimerChaine" layoutX="805.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerChaine" prefWidth="75.0" text="Supprimer" />
-      <Button fx:id="testerChaine" layoutX="540.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonTesterChaine" prefHeight="25.0" prefWidth="135.0" text="Tester la production" />
+      <Button fx:id="testerChaine" layoutX="540.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonTesterChaine" prefHeight="25.0" prefWidth="258.0" text="Tester la production de la semaine" />
       <Button fx:id="resetTest" layoutX="810.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonResetTest" prefHeight="25.0" prefWidth="135.0" text="Réinitialiser le test" />
-      <Label layoutX="237.0" layoutY="349.0" text="Semaine n°" />
-      <Button fx:id="semaineSuiv" layoutX="348.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonSemaineSuiv" text="Semaine suivante" />
-      <Button fx:id="semainePrec" layoutX="62.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonSemainePrec" text="Semaine précédente" />
-      <Label fx:id="semaineAct" layoutX="297.0" layoutY="349.0" text="1" />
+      <Label layoutX="237.0" layoutY="362.0" text="Semaine n°" />
+      <Button fx:id="semaineSuiv" layoutX="347.0" layoutY="358.0" mnemonicParsing="false" onAction="#clicBoutonSemaineSuiv" text="Semaine suivante" />
+      <Button fx:id="semainePrec" layoutX="65.0" layoutY="358.0" mnemonicParsing="false" onAction="#clicBoutonSemainePrec" text="Semaine précédente" />
+      <Label fx:id="semaineAct" layoutX="297.0" layoutY="362.0" text="1" />
+      <Button fx:id="testerSemainesAll" layoutX="541.0" layoutY="379.0" mnemonicParsing="false" onAction="#clicBoutonTesterAll" prefHeight="25.0" prefWidth="258.0" text="Tester la production de toutes les semaines" />
    </children>
 </AnchorPane>
