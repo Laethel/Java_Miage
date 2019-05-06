@@ -563,6 +563,7 @@ public class ControleurChaines implements Initializable{
 		i--;
 		if(i>1) {			
 			semaineAct.setText(Integer.toString(i));
+			this.semaineSuiv.setDisable(false);
 			daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE +i +".csv");
 			this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
 			tabChaines.setItems(chaines);
@@ -571,6 +572,7 @@ public class ControleurChaines implements Initializable{
 		if(i == 1) {
 			semaineAct.setText(Integer.toString(i));
 			this.semainePrec.setDisable(true);
+			this.semaineSuiv.setDisable(false);
 			daoC.setCSV_FILE_PATH_CHAINE(ControleurParams.pathCh);
 			this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
 			tabChaines.setItems(chaines);
