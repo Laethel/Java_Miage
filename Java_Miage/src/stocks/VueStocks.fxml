@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stocks.ControleurStocks">
+   <children>
+      <Label prefHeight="50.0" prefWidth="980.0" style="-fx-background-color: #587C73;" text="     STOCKS" textFill="WHITE" />
+      <Button fx:id="retour" layoutX="900.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonRetour" prefHeight="30.0" prefWidth="60.0" text="Retour" />
+      <TableView fx:id="tabStocks" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleClickTableView" prefHeight="340.0" prefWidth="620.0">
+        <columns>
+          <TableColumn fx:id="codeTC" prefWidth="75.0" text="Code" />
+          <TableColumn fx:id="nomTC" prefWidth="130.0" text="Nom" />
+          <TableColumn fx:id="qteTC" text="Quantité" />
+          <TableColumn fx:id="uniteTC" prefWidth="100.0" text="Unité" />
+          <TableColumn fx:id="achatTC" prefWidth="70.0" text="Achat" />
+          <TableColumn fx:id="venteTC" prefWidth="70.0" text="Vente" />
+            <TableColumn fx:id="demandeTC" prefWidth="70.0" text="Demande" />
+        </columns>
+      </TableView>
+      <Button fx:id="ajouterElem" layoutX="660.0" layoutY="315.0" mnemonicParsing="false" onAction="#clicBoutonAjoutElem" prefWidth="120.0" text="Ajouter un élément" />
+      <Label layoutX="660.0" layoutY="74.0" text="Code :" />
+      <TextField fx:id="codeTF" layoutX="740.0" layoutY="70.0" prefHeight="25.0" prefWidth="125.0" />
+      <Label layoutX="660.0" layoutY="109.0" text="Nom :" />
+      <Label layoutX="660.0" layoutY="144.0" text="Unité :" />
+      <TextField fx:id="nomTF" layoutX="740.0" layoutY="105.0" prefWidth="200.0" />
+      <TextField fx:id="uniteTF" layoutX="740.0" layoutY="140.0" prefWidth="125.0" />
+      <Label layoutX="660.0" layoutY="179.0" text="Quantité :" />
+      <TextField fx:id="qteTF" layoutX="740.0" layoutY="175.0" prefWidth="50.0" />
+      <Label layoutX="660.0" layoutY="249.0" text="Prix de vente :" />
+      <Label layoutX="660.0" layoutY="214.0" text="Prix d'achat :" />
+      <TextField fx:id="achatTF" layoutX="740.0" layoutY="210.0" prefWidth="75.0" />
+      <TextField fx:id="venteTF" layoutX="740.0" layoutY="245.0" prefWidth="75.0" />
+      <Label layoutX="825.0" layoutY="249.0" prefWidth="130.0" text="(Si inconnu, taper &quot;NA&quot;)" />
+      <Label layoutX="825.0" layoutY="214.0" prefWidth="130.0" text="(Si inconnu, taper &quot;NA&quot;)" />
+      <Button fx:id="modifierElem" layoutX="660.0" layoutY="350.0" mnemonicParsing="false" onAction="#clicBoutonModifierElem" prefWidth="120.0" text="Modifier l'élément" />
+      <Button fx:id="annulerModifElem" layoutX="790.0" layoutY="350.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationElem" prefWidth="130.0" text="Annuler modification" />
+      <Button fx:id="supprimerElem" layoutX="660.0" layoutY="385.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerElem" text="Supprimer un élément" />
+      <Label layoutX="661.0" layoutY="284.0" text="Demande :" />
+      <TextField fx:id="demandeTF" layoutX="741.0" layoutY="280.0" prefHeight="25.0" prefWidth="75.0" />
+   </children>
+</AnchorPane>

@@ -3,21 +3,26 @@ package zTest;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+
+import params.ControleurParams;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class CsvReader {
-    private static final String CSV_FILE_PATH = "/Users/quent/Documents/FichiersV1__78__0/elements.csv";
-
+    private static final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
+    private static final String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
     public static void main(String[] args) throws IOException {
         try (
-            Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
-            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter(';'));
+            Reader readerElement = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_ELEMENT));
+        	Reader readerChaine = Files.newBufferedReader(Paths.get(CSV_FILE_PATH_CHAINE));
+            CSVParser csvParserElem = new CSVParser(readerElement, CSVFormat.DEFAULT.withDelimiter(';'));
+        	CSVParser csvParserChaine = new CSVParser(readerChaine, CSVFormat.DEFAULT.withDelimiter(';'));
         		
         ) {
-            for (CSVRecord csvRecord : csvParser) {
+            for (CSVRecord csvRecord : csvParserElem) {
                 // Accessing Values by Column Index
                 String code = csvRecord.get(0);
                 String nom = csvRecord.get(1);

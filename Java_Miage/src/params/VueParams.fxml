@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="params.ControleurParams">
+   <children>
+      <Button fx:id="boutonImportElems" layoutX="55.0" layoutY="159.0" mnemonicParsing="false" onAction="#clicBoutonImportElem" prefHeight="60.0" prefWidth="162.0" style="-fx-background-color: #587C73;" text="Importer un fichier CSV&#10;(Elements)" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="boutonImportChaines" layoutX="382.0" layoutY="159.0" mnemonicParsing="false" onAction="#clicBoutonImportChaine" prefHeight="60.0" prefWidth="162.0" style="-fx-background-color: #587C73;" text="Importer un fichier CSV&#10;(Chaines)" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="boutonOk" layoutX="256.0" layoutY="319.0" mnemonicParsing="false" onAction="#clicBoutonOk" prefHeight="60.0" prefWidth="87.0" style="-fx-background-color: #587C73;" text="OK" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="pathElement" layoutX="55.0" layoutY="231.0" prefHeight="17.0" prefWidth="162.0" text="Chemin" />
+      <Label fx:id="pathChaine" layoutX="382.0" layoutY="231.0" prefHeight="17.0" prefWidth="162.0" text="Chemin" />
+      <Label prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #587C73;" text="     IMPORTATION DE FICHIERS CSV" textFill="WHITE" />
+   </children>
+</AnchorPane>
