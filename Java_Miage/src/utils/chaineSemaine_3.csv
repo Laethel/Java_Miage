@@ -1,5 +1,5 @@
 Code;Nom;Entree (code,qte);Sortie (code,qte);NivActivite
-C001;Chocolat 30 %;(E012,3),(E014,5),(E011,2),(E001,3);(E019,10);1
+C001;Chocolat 30 %;(E012,3),(E014,5),(E011,2),(E001,3);(E019,10);2
 C002;Chocolat 40 %;(E012,4),(E014,4),(E011,2),(E001,2);(E020,10);1
 C003;Chocolat 50 %;(E012,5),(E011,5),(E001,2);(E021,10);1
 C004;Pate biscuit Q1;(E002,5),(E001,3),(E008,2),(E051,1);(E022,10);1

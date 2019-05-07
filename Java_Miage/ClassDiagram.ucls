@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="accueil.ControleurAccueil" project="Java_Miage" 
     file="/Java_Miage/src/accueil/ControleurAccueil.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1842" y="836"/>    
+    <position height="-1" width="-1" x="1996" y="620"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="chaines.ControleurChaines" project="Java_Miage" 
     file="/Java_Miage/src/chaines/ControleurChaines.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="527" y="214"/>    
+    <position height="-1" width="-1" x="677" y="310"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="dao.Dao" project="Java_Miage" file="/Java_Miage/src/dao/Dao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="970" y="176"/>    
+    <position height="-1" width="-1" x="1214" y="240"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="dao.ElementDAO" project="Java_Miage" file="/Java_Miage/src/dao/ElementDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1209" y="468"/>    
+    <position height="-1" width="-1" x="1553" y="496"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,8 +57,8 @@
   </class>  
   <class id="7" language="java" name="modele.Element" project="Java_Miage" file="/Java_Miage/src/modele/Element.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="396" y="1017"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="756" width="472" x="18" y="1021"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -75,8 +75,8 @@
   </class>  
   <class id="9" language="java" name="stocks.ControleurStocks" project="Java_Miage" 
     file="/Java_Miage/src/stocks/ControleurStocks.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1215" y="1010"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="696" width="474" x="1319" y="896"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -84,120 +84,124 @@
   </class>  
   <class id="10" language="java" name="zTest.ControleurTestProd" project="Java_Miage" 
     file="/Java_Miage/src/zTest/ControleurTestProd.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1551" y="852"/>    
+    <position height="-1" width="-1" x="1995" y="1004"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="utils.Path" project="Java_Miage" file="/Java_Miage/src/utils/Path.java" 
+  <class id="11" language="java" name="dao.ChaineDAO" project="Java_Miage" file="/Java_Miage/src/dao/ChaineDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1614" y="195"/>    
+    <position height="-1" width="-1" x="1200" y="548"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="12" language="java" name="utils.Path.Way" project="Java_Miage" file="/Java_Miage/src/utils/Path.java" 
+  <class id="12" language="java" name="utils.Path" project="Java_Miage" file="/Java_Miage/src/utils/Path.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1614" y="448"/>    
+    <position height="-1" width="-1" x="1938" y="-94"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="13" language="java" name="utils.Path.Way" project="Java_Miage" file="/Java_Miage/src/utils/Path.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1913" y="132"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="13" language="java" name="dao.ChaineDAO" project="Java_Miage" file="/Java_Miage/src/dao/ChaineDAO.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="880" y="604"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="14">    
+  <nesting id="14">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
+  </nesting>  
+  <association id="15">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="15" name="daoC"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="18">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="19" name="dao">        
+      <attribute id="16" name="chaines">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="22">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="23" name="chaines">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="2147483647">        
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="25">    
+  <generalization id="18">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="19">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="20" name="dao">        
+        <position height="0" width="0" x="344" y="28"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="344" y="28"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="26" name="mainApp">        
+      <attribute id="23" name="mainApp">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
+      <multiplicity id="24" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="28">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="12"/>  
-  </nesting>  
-  <association id="29">    
-    <bendpoint x="570" y="1028"/>    
+  <generalization id="25">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="26">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="30" name="elements">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="27" name="elements">        
+        <position height="0" width="0" x="-114" y="382"/>      
       </attribute>      
-      <multiplicity id="31" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-114" y="382"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <bendpoint x="578" y="1234"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="30" name="oldElement">        
+        <position height="0" width="0" x="-114" y="382"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-114" y="382"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="32">    
-    <bendpoint x="576" y="932"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="33" name="oldElement">        
-        <position height="0" width="0" x="0" y="0"/>      
+    <bendpoint x="938" y="550"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="33" name="daoC">        
+        <position height="0" width="0" x="320" y="-56"/>      
       </attribute>      
       <multiplicity id="34" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="320" y="-56"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
