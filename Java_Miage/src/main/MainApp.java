@@ -2,6 +2,7 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,7 @@ public class MainApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        //récupère les précédents CSV utilisés automatiquement
+        //rÃ©cupÃ¨re les prÃ©cÃ©dents CSV utilisÃ©s automatiquement
         BufferedReader brElem = new BufferedReader(new FileReader(ControleurParams.getLoadCsvElem()));
         String prevElem = brElem.readLine();
         System.out.println(prevElem);
@@ -46,9 +47,11 @@ public class MainApp extends Application {
 
 	/**
 	 * @param args
-	 * Cette méthode permet le lancement de l'application
+	 * Cette mÃ©thode permet le lancement de l'application
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		ControleurParams.install();
 		launch(args);
 	}
 }

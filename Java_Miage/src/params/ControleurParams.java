@@ -22,31 +22,31 @@ import utils.Path.Way;
 public class ControleurParams {
 
 	/**
-	 * Bouton permettant d'importer le fichier CSV où sont stockés les éléments
+	 * Bouton permettant d'importer le fichier CSV oï¿½ sont stockï¿½s les ï¿½lï¿½ments
 	 */
 	@FXML
 	private Button boutonImportElems;
 	
 	/**
-	 * Bouton permettant d'importer le fichier CSV où sont stockés les chaines
+	 * Bouton permettant d'importer le fichier CSV oï¿½ sont stockï¿½s les chaines
 	 */
 	@FXML
 	private Button boutonImportChaines;
 
 	/**
-	 * Bouton permettant de valider et de retourner à l'acceuil
+	 * Bouton permettant de valider et de retourner ï¿½ l'acceuil
 	 */
 	@FXML
 	private Button boutonOk;
 	
 	/**
-	 * Champ de texte indiquant le chemin vers le fichier CSV où sont stockés les éléments
+	 * Champ de texte indiquant le chemin vers le fichier CSV oï¿½ sont stockï¿½s les ï¿½lï¿½ments
 	 */
 	@FXML
 	private Label pathElement;
 	
 	/**
-	 * Champ de texte indiquant le chemin vers le fichier CSV où sont stockés les chaines
+	 * Champ de texte indiquant le chemin vers le fichier CSV oï¿½ sont stockï¿½s les chaines
 	 */
 	@FXML
 	private Label pathChaine;
@@ -62,22 +62,33 @@ public class ControleurParams {
 	private File fichier;
 	
 	/**
-	 * Constante ou est stockée le chemin vers le fichier CSV des éléments
+	 * Constante ou est stockï¿½e le chemin vers le fichier CSV des ï¿½lï¿½ments
 	 */
 	public static String pathElem;
 	/**
-	 * Constante ou est stockée le chemin vers le fichier CSV des chaines
+	 * Constante ou est stockï¿½e le chemin vers le fichier CSV des chaines
 	 */
 	public static String pathCh;
 
 	/**
-	 * Le fichier correspondant au chemin stocké pour les éléments par l'utilisateur
+	 * Le fichier correspondant au chemin stockÃ© pour les Ã©lÃ©ments par l'utilisateur
 	 */
-	private static File loadCsvElem = new File("./src/utils/loadCsvElem.txt");
+	private static File loadCsvElem;
+	
 	/**
-	 * Le fichier correspondant au chemin stocké pour les chaines par l'utilisateur
+	 * Le fichier correspondant au chemin stockÃ© pour les chaines par l'utilisateur
 	 */
-	private static File loadCsvCh = new File("./src/utils/loadCsvCh.txt");
+	private static File loadCsvCh;
+	
+	/**
+	 * Le dossier d'installation des ressources de l'application
+	 */
+	private static File gestionProduction;
+	
+	/**
+	 * Le fichier de compte-rendu de la production
+	 */
+	private static File crProd;
 
 	/**
 	 * @param main
@@ -86,11 +97,36 @@ public class ControleurParams {
 		this.mainApp = main;
 	}
 	
+	public static void install() throws IOException {
+		System.out.println(System.getProperty("user.home"));
+		gestionProduction = new File(System.getProperty("user.home") +"/Gestion production");
+		if (!gestionProduction.exists() && !gestionProduction.isDirectory()) {
+			gestionProduction.mkdirs();
+			System.out.println("Dossier crÃ©e sur l'ordinateur : " + gestionProduction.getPath());
+		}
+		loadCsvElem = new File(System.getProperty("user.home") +"/Gestion production/loadCsvElem.txt");
+		if (!loadCsvElem.isFile() && !loadCsvElem.isDirectory()) {
+			loadCsvElem.createNewFile();
+			System.out.println("Fichier crÃ©e sur l'ordinateur : " + loadCsvElem.getPath());
+		}
+		loadCsvCh = new File(System.getProperty("user.home") +"/Gestion production/loadCsvCh.txt");
+		if (!loadCsvCh.isFile() && !loadCsvCh.isDirectory()) {
+			loadCsvCh.createNewFile();
+			System.out.println("Fichier crÃ©e sur l'ordinateur : " + loadCsvCh.getPath());
+		}
+		crProd = new File(System.getProperty("user.home") +"/Gestion production/crProd.csv");
+		if (!crProd.isFile() && !crProd.isDirectory()) {
+			loadCsvCh.createNewFile();
+			System.out.println("Fichier crÃ©e sur l'ordinateur : " + crProd.getPath());
+		}
+	}
+	
 	/**
-	 * Méthode permettant d'importer le fichier CSV où sont stockés les éléments
+	 * MÃ©thode permettant d'importer le fichier CSV ou sont stockÃ©s les Ã©lÃ©ments
+	 * @throws IOException 
 	 */
 	@FXML
-	private void clicBoutonImportElem() {
+	private void clicBoutonImportElem() throws IOException {
 		Stage fenetre = new Stage();
 		FileChooser explorateur = new FileChooser();
 		explorateur.setTitle("Explorateur");
@@ -99,6 +135,8 @@ public class ControleurParams {
 		System.out.println(filePathElement);
 		this.pathElement.setText(filePathElement);
 		ControleurParams.pathElem = filePathElement;
+		
+
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(loadCsvElem));				
 			bw.write(filePathElement + "\n");
@@ -111,7 +149,7 @@ public class ControleurParams {
 	}
 	
 	/**
-	 * Méthode permettant d'importer le fichier CSV où sont stockés les chaines
+	 * Mï¿½thode permettant d'importer le fichier CSV oï¿½ sont stockï¿½s les chaines
 	 */
 	@FXML
 	private void clicBoutonImportChaine() {
@@ -137,7 +175,7 @@ public class ControleurParams {
 	/**
 	 * @param event
 	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "OK" permettant de retourner à l'acceuil
+	 * Mï¿½thode dï¿½clenchï¿½e lors du clic sur le bouton "OK" permettant de retourner ï¿½ l'acceuil
 	 */
 	@FXML
 	private void clicBoutonOk(ActionEvent event) throws IOException {
@@ -147,7 +185,7 @@ public class ControleurParams {
 	
 	/**
 	 * @return
-	 * Renvoie le fichier ou est stocké le chemin vers le fichier CSV des éléments
+	 * Renvoie le fichier ou est stockï¿½ le chemin vers le fichier CSV des ï¿½lï¿½ments
 	 */
 	public static File getLoadCsvElem() {
 		return loadCsvElem;
@@ -155,10 +193,18 @@ public class ControleurParams {
 
 	/**
 	 * @return
-	 * Renvoie le fichier ou est stocké le chemin vers le fichier CSV des chaines
+	 * Renvoie le fichier ou est stockï¿½ le chemin vers le fichier CSV des chaines
 	 */
 	public static File getLoadCsvCh() {
 		return loadCsvCh;
+	}
+	
+	/**
+	 * @return
+	 * Renvoie le fichier ou est stockï¿½ le chemin vers le fichier du CR de production
+	 */
+	public static File getCrProd() {
+		return crProd;
 	}
 }
 

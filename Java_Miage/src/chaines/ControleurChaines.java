@@ -44,9 +44,8 @@ import utils.Path.Way;
  */
 public class ControleurChaines implements Initializable{
 	    
-	//private static File listeAchats = new File("./src/utils/listeAchats.csv");
-	private static File crProd = new File("./src/utils/crProd.csv");
-	private final String CHEMIN_SEMAINE = "./src/utils/chaineSemaine_";
+	private static File crProd = ControleurParams.getCrProd();
+	private final String CHEMIN_SEMAINE = System.getProperty("user.home")+"/Gestion production/chaineSemaine_";
 
 	@FXML
 	private Button retour;
@@ -385,6 +384,7 @@ public class ControleurChaines implements Initializable{
 					+ "Voulez vous mettre à jour les stocks ?"					
 					, ButtonType.YES, ButtonType.NO);
 			
+			//méthode de getPath, vérif fichier, si pas là, créer
 			// Génération du compte-rendu de production
 			OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(crProd),"UTF-8");
 			BufferedWriter writerCr = new BufferedWriter(out);
@@ -544,7 +544,12 @@ public class ControleurChaines implements Initializable{
 		i++;
 		semaineAct.setText(Integer.toString(i));
 		this.semainePrec.setDisable(false);
-		daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE +i +".csv");
+		File chSemaine = new File(CHEMIN_SEMAINE +i +".csv");
+		if (!chSemaine.isFile() && !chSemaine.isDirectory()) {
+			chSemaine.createNewFile();
+			System.out.println("Fichier crée sur l'ordinateur : " + chSemaine.getPath());
+		}
+		daoC.setCSV_FILE_PATH_CHAINE(chSemaine.getPath());
 		this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
 		tabChaines.setItems(chaines);
 		tabChaines.refresh();
@@ -564,7 +569,12 @@ public class ControleurChaines implements Initializable{
 		if(i>1) {			
 			semaineAct.setText(Integer.toString(i));
 			this.semaineSuiv.setDisable(false);
-			daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE +i +".csv");
+			File chSemaine = new File(CHEMIN_SEMAINE +i +".csv");
+			if (!chSemaine.isFile() && !chSemaine.isDirectory()) {
+				chSemaine.createNewFile();
+				System.out.println("Fichier crée sur l'ordinateur : " + chSemaine.getPath());
+			}
+			daoC.setCSV_FILE_PATH_CHAINE(chSemaine.getPath());
 			this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
 			tabChaines.setItems(chaines);
 			tabChaines.refresh();
@@ -586,7 +596,10 @@ public class ControleurChaines implements Initializable{
 		daoC.setCSV_FILE_PATH_CHAINE(ControleurParams.pathCh);
 		this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
 		for(int i = 2;i<9;i++) {
-			daoC.setCSV_FILE_PATH_CHAINE(CHEMIN_SEMAINE +i +".csv");
+			File semaine = new File(CHEMIN_SEMAINE +i +".csv");
+			if(semaine.exists()) {
+				daoC.setCSV_FILE_PATH_CHAINE(semaine.getPath());
+			}
 			System.out.println(i);
 			this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
 		}
