@@ -97,6 +97,10 @@ public class ControleurParams {
 		this.mainApp = main;
 	}
 	
+	/**
+	 * Méthode permettant l'installation des fichiers de ressource nécessaires au bon fonctionnement de l'application
+	 * @throws IOException
+	 */
 	public static void install() throws IOException {
 		System.out.println(System.getProperty("user.home"));
 		gestionProduction = new File(System.getProperty("user.home") +"/Gestion production");
@@ -116,7 +120,7 @@ public class ControleurParams {
 		}
 		crProd = new File(System.getProperty("user.home") +"/Gestion production/crProd.csv");
 		if (!crProd.isFile() && !crProd.isDirectory()) {
-			loadCsvCh.createNewFile();
+			crProd.createNewFile();
 			System.out.println("Fichier crée sur l'ordinateur : " + crProd.getPath());
 		}
 	}
