@@ -22,34 +22,46 @@ import utils.Path.Way;
 public class ControleurParams {
 
 	/**
-	 * Bouton permettant d'importer le fichier CSV o� sont stock�s les �l�ments
+	 * Bouton permettant d'importer le fichier CSV où sont stockés les éléments
 	 */
 	@FXML
 	private Button boutonImportElems;
 	
 	/**
-	 * Bouton permettant d'importer le fichier CSV o� sont stock�s les chaines
+	 * Bouton permettant d'importer le fichier CSV où sont stockés les chaines
 	 */
 	@FXML
 	private Button boutonImportChaines;
+	
+	/**
+	 * Bouton permettant d'importer le fichier CSV où sont stockés les membres du personnel
+	 */
+	@FXML
+	private Button boutonImportPersonnel;
 
 	/**
-	 * Bouton permettant de valider et de retourner � l'acceuil
+	 * Bouton permettant de valider et de retourner à l'acceuil
 	 */
 	@FXML
 	private Button boutonOk;
 	
 	/**
-	 * Champ de texte indiquant le chemin vers le fichier CSV o� sont stock�s les �l�ments
+	 * Champ de texte indiquant le chemin vers le fichier CSV où sont stockés les éléments
 	 */
 	@FXML
 	private Label pathElement;
 	
 	/**
-	 * Champ de texte indiquant le chemin vers le fichier CSV o� sont stock�s les chaines
+	 * Champ de texte indiquant le chemin vers le fichier CSV où sont stockés les chaines
 	 */
 	@FXML
 	private Label pathChaine;
+	
+	/**
+	 * Champ de texte indiquant le chemin vers le fichier CSV où sont stockés les membres du personnel
+	 */
+	@FXML
+	private Label pathPersonnel;
 
 	/**
 	 * Instance de l'application
@@ -62,13 +74,19 @@ public class ControleurParams {
 	private File fichier;
 	
 	/**
-	 * Constante ou est stock�e le chemin vers le fichier CSV des �l�ments
+	 * Constante ou est stockée le chemin vers le fichier CSV des éléments
 	 */
 	public static String pathElem;
+	
 	/**
-	 * Constante ou est stock�e le chemin vers le fichier CSV des chaines
+	 * Constante ou est stockée le chemin vers le fichier CSV des chaines
 	 */
 	public static String pathCh;
+	
+	/**
+	 * Constante ou est stockée le chemin vers le fichier CSV des membres du personnel
+	 */
+	public static String pathPers;
 
 	/**
 	 * Le fichier correspondant au chemin stocké pour les éléments par l'utilisateur
@@ -79,6 +97,11 @@ public class ControleurParams {
 	 * Le fichier correspondant au chemin stocké pour les chaines par l'utilisateur
 	 */
 	private static File loadCsvCh;
+	
+	/**
+	 * Le fichier correspondant au chemin stocké pour les membres du personnel par l'utilisateur
+	 */
+	private static File loadCsvPers;
 	
 	/**
 	 * Le dossier d'installation des ressources de l'application
@@ -118,6 +141,11 @@ public class ControleurParams {
 			loadCsvCh.createNewFile();
 			System.out.println("Fichier crée sur l'ordinateur : " + loadCsvCh.getPath());
 		}
+		loadCsvPers = new File(System.getProperty("user.home") +"/Gestion production/loadCsvPers.txt");
+		if (!loadCsvPers.isFile() && !loadCsvPers.isDirectory()) {
+			loadCsvPers.createNewFile();
+			System.out.println("Fichier crée sur l'ordinateur : " + loadCsvPers.getPath());
+		}
 		crProd = new File(System.getProperty("user.home") +"/Gestion production/crProd.csv");
 		if (!crProd.isFile() && !crProd.isDirectory()) {
 			crProd.createNewFile();
@@ -153,7 +181,7 @@ public class ControleurParams {
 	}
 	
 	/**
-	 * M�thode permettant d'importer le fichier CSV o� sont stock�s les chaines
+	 * Méthode permettant d'importer le fichier CSV où sont stockés les chaines
 	 */
 	@FXML
 	private void clicBoutonImportChaine() {
@@ -173,6 +201,30 @@ public class ControleurParams {
 		catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Erreur d'inscription dans le fichier de sauvegarde des chemins (Chaines)");
+		}
+	}
+	
+	/**
+	 * Méthode permettant d'importer le fichier CSV où sont stockés les membres du personnel
+	 */
+	@FXML
+	private void clicBoutonImportPersonnel() {
+		Stage fenetre = new Stage();
+		FileChooser explorateur = new FileChooser();
+		explorateur.setTitle("Explorateur");
+		this.fichier = explorateur.showOpenDialog(fenetre);
+		String filePathPersonnel = this.fichier.getAbsolutePath();
+		System.out.println(filePathPersonnel);
+		this.pathPersonnel.setText(filePathPersonnel);
+		ControleurParams.pathCh = filePathPersonnel;
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(loadCsvPers));				
+			bw.write(filePathPersonnel + "\n");
+			bw.close();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Erreur d'inscription dans le fichier de sauvegarde des chemins (Personnel)");
 		}
 	}
 	
