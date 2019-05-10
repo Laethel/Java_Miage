@@ -137,9 +137,13 @@ public class ChaineDAO extends Dao<Chaine> {
 		            String entree = csvRecord.get(2);
 		            String sortie = csvRecord.get(3);
 		            
-		            int nivAct = Integer.parseInt(csvRecord.get(4));
+		            int tempsProd = Integer.parseInt(csvRecord.get(4));
+		            int nbQualif = Integer.parseInt(csvRecord.get(5));
+		            int nbNonQualif = Integer.parseInt(csvRecord.get(6));
+		            
+		            int nivAct = Integer.parseInt(csvRecord.get(7));
 		            		            
-		            Chaine chaine = new Chaine(code, nom, entree, sortie, nivAct);
+		            Chaine chaine = new Chaine(code, nom, entree, sortie, tempsProd, nbQualif, nbNonQualif, nivAct);
 		            chaines.add(chaine);
 		        }
 				csvParser.close();

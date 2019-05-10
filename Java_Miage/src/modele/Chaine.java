@@ -13,13 +13,19 @@ public class Chaine {
 	private SimpleStringProperty sSortie;
 	private ArrayList<Element> lEntree;
 	private ArrayList<Element> lSortie;
+	private SimpleIntegerProperty tempsProd;
+	private SimpleIntegerProperty nbQualif;
+	private SimpleIntegerProperty nbNonQualif;
 	private SimpleIntegerProperty nivAct;
 	
-	public Chaine (String code, String nom, String sEntree, String sSortie, int nivAct) {
+	public Chaine (String code, String nom, String sEntree, String sSortie,int tempsProd, int nbQualif, int nbNonQualif, int nivAct) {
 		this.code = new SimpleStringProperty(code);
 		this.nom = new SimpleStringProperty(nom);
 		this.sEntree = new SimpleStringProperty(sEntree);
 		this.sSortie = new SimpleStringProperty(sSortie);
+		this.tempsProd = new SimpleIntegerProperty(tempsProd);
+		this.nbQualif = new SimpleIntegerProperty(nbQualif);
+		this.nbNonQualif = new SimpleIntegerProperty(nbNonQualif);
 		this.nivAct = new SimpleIntegerProperty(nivAct);
 		
 		lEntree = new ArrayList<Element>();
@@ -49,6 +55,16 @@ public class Chaine {
 	public ArrayList<Element> getlSortie() { return this.lSortie; };
 	public void clearLSortie() { this.lSortie.clear(); }
 	
+
+	public int getTempsProd() {	return this.tempsProd.get(); }
+	public void setTempsProd(int tempsProd) { this.tempsProd.set(tempsProd); }
+	
+	public int getNbQualif() {	return this.nbQualif.get(); }
+	public void setNbQualif(int nbQualif) { this.nbQualif.set(nbQualif); }
+	
+	public int getNbNonQualif() {	return this.nbNonQualif.get(); }
+	public void setNbNonQualif(int nbNonQualif) { this.nbQualif.set(nbNonQualif); }
+
 	@Override
     public boolean equals(Object o) { 
   
@@ -67,7 +83,9 @@ public class Chaine {
 	
 	public String toString() {
 		return "Code : " + this.code + " Nom : " + this.nom + " Elements en entrée : " + this.sEntree + 
-				" Elements en sortie : " + this.sSortie + " Niveau d'activation : " + this.nivAct;
+				" Elements en sortie : " + this.sSortie + "Temps de production : " + this.tempsProd + 
+				"Personnel qualifié requis : " +nbQualif +"Personnel non qualifié requis : " + nbNonQualif +
+				" Niveau d'activation : " + this.nivAct;
 	}
 
 }

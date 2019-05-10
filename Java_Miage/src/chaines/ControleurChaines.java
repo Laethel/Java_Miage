@@ -81,10 +81,28 @@ public class ControleurChaines implements Initializable{
 	private TableColumn<Chaine, String> entreeTC;
 	
 	/**
-	 * La colonne indiquant les �l�ments en sortie de la chaine
+	 * La colonne indiquant les éléments en sortie de la chaine
 	 */
 	@FXML
 	private TableColumn<Chaine, String> sortieTC;
+	
+	/**
+	 * La colonne indiquant le temps de production de la chaine
+	 */
+	@FXML
+	private TableColumn<Chaine, String> tempsProdTC;
+	
+	/**
+	 * La colonne indiquant le nombre d'ouvrier qualifiés requis pour la chaine
+	 */
+	@FXML
+	private TableColumn<Chaine, String> nbQualifTC;
+	
+	/**
+	 * La colonne indiquant le le nombre d'ouvrier non qualifiés requis pour la chaine
+	 */
+	@FXML
+	private TableColumn<Chaine, String> nbNonQualifTC;
 	
 	/**
 	 * La colonne indiquant le niveau d'activit� de la chaine
@@ -93,13 +111,13 @@ public class ControleurChaines implements Initializable{
 	private TableColumn<Chaine, String> nivActTC;
 	
 	/**
-	 * La colonne indiquant le niveau d'activit� de la chaine
+	 * Le champ de texte du code de la chaine
 	 */
 	@FXML
 	private TextField codeTF;
 	
 	/**
-	 * La colonne indiquant le resultat de la chaine
+	 * Le champ de texte du nom de la chaine
 	 */
 	@FXML
 	private TextField nomTF;
@@ -115,6 +133,15 @@ public class ControleurChaines implements Initializable{
 	
 	@FXML
 	private TextField elemSortieTF;
+	
+	@FXML
+	private TextField tempsProdTF;
+	
+	@FXML
+	private TextField nbQualifTF;
+	
+	@FXML
+	private TextField nbNonQualifTF;
 	
 	@FXML
 	private TextField nivActiviteTF;
@@ -189,6 +216,9 @@ public class ControleurChaines implements Initializable{
 		nomTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("Nom"));
 		entreeTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("sEntree"));
 		sortieTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("sSortie"));
+		tempsProdTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("tempsProd"));
+		nbQualifTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("nbQualif"));
+		nbNonQualifTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("nbNonQualif"));
 		nivActTC.setCellValueFactory(new PropertyValueFactory<Chaine, String>("nivAct"));
 		tabChaines.setItems(chaines);
 		
@@ -198,7 +228,8 @@ public class ControleurChaines implements Initializable{
 		formatCB();
 		
 		this.bbForm = codeTF.textProperty().isEmpty().or(nomTF.textProperty().isEmpty().or(elemEntreeTF.textProperty().isEmpty())
-				.or(elemSortieTF.textProperty().isEmpty().or(nivActiviteTF.textProperty().isEmpty())));		
+				.or(elemSortieTF.textProperty().isEmpty().or(tempsProdTF.textProperty().isEmpty().or(nbQualifTF.textProperty().isEmpty()
+						.or(nbNonQualifTF.textProperty().isEmpty().or(nivActiviteTF.textProperty().isEmpty()))))));		
 		this.bbElemEntree = entreeCB.getSelectionModel().selectedItemProperty().isNull().or(elemEntreeQteTF.textProperty().isEmpty());
 		this.bbElemSortie = sortieCB.getSelectionModel().selectedItemProperty().isNull().or(elemSortieQteTF.textProperty().isEmpty());
 		
@@ -234,6 +265,9 @@ public class ControleurChaines implements Initializable{
 	        nomTF.setText(oldChaine.getNom());
 	        elemEntreeTF.setText(oldChaine.getSEntree());
 	        elemSortieTF.setText(oldChaine.getSSortie());
+	        tempsProdTF.setText(Integer.toString(oldChaine.getTempsProd())); 
+	        nbQualifTF.setText(Integer.toString(oldChaine.getNbQualif())); 
+	        nbNonQualifTF.setText(Integer.toString(oldChaine.getNbNonQualif())); 
 	        nivActiviteTF.setText(Integer.toString(oldChaine.getNivAct()));          
 	     }
 	    
@@ -271,7 +305,8 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonAjoutChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
-				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()));
+				elemSortieTF.getText(),Integer.parseInt(tempsProdTF.getText()), Integer.parseInt(nbQualifTF.getText()), 
+						Integer.parseInt(nbNonQualifTF.getText()),Integer.parseInt(nivActiviteTF.getText()));
 		if(daoC.create(ch)) {
 			chaines.add(ch);
 			clearTextField();
@@ -283,7 +318,8 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonModifierChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
-				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()));
+				elemSortieTF.getText(),Integer.parseInt(tempsProdTF.getText()), Integer.parseInt(nbQualifTF.getText()), 
+				Integer.parseInt(nbNonQualifTF.getText()),Integer.parseInt(nivActiviteTF.getText()));
 		if(daoC.update(oldChaine,ch)) {
 			chaines.set(chaines.indexOf(oldChaine), ch);
 			clearTextField();
@@ -325,7 +361,8 @@ public class ControleurChaines implements Initializable{
 	@FXML 
 	private void clicBoutonSupprimerChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
-				elemSortieTF.getText(), Integer.parseInt(nivActiviteTF.getText()));
+				elemSortieTF.getText(),Integer.parseInt(tempsProdTF.getText()), Integer.parseInt(nbQualifTF.getText()), 
+				Integer.parseInt(nbNonQualifTF.getText()),Integer.parseInt(nivActiviteTF.getText()));
 		if(daoC.delete(ch)) {
 			chaines.remove(ch);
 			clearTextField();
@@ -501,6 +538,9 @@ public class ControleurChaines implements Initializable{
     	sortieCB.getSelectionModel().select(-1);
     	elemSortieQteTF.clear();
     	elemSortieTF.clear();
+    	tempsProdTF.clear();
+    	nbQualifTF.clear();
+    	nbNonQualifTF.clear();
     	nivActiviteTF.clear();
 	}
 	

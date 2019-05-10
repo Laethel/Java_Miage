@@ -66,6 +66,7 @@ public class ControleurParams {
 	/**
 	 * Instance de l'application
 	 */
+	@SuppressWarnings("unused")
 	private MainApp mainApp;
 	
 	/**
