@@ -125,6 +125,7 @@ public class ChaineDAO extends Dao<Chaine> {
 	public ArrayList<Chaine> findAll() {
 
 		ArrayList<Chaine> chaines = new ArrayList<Chaine>();
+		System.out.println(CSV_FILE_PATH_CHAINE);
 		
 		if(CSV_FILE_PATH_CHAINE != null) {
 			try {
@@ -136,7 +137,7 @@ public class ChaineDAO extends Dao<Chaine> {
 		            String nom = csvRecord.get(1);
 		            String entree = csvRecord.get(2);
 		            String sortie = csvRecord.get(3);
-		            
+
 		            int tempsProd = Integer.parseInt(csvRecord.get(4));
 		            int nbQualif = Integer.parseInt(csvRecord.get(5));
 		            int nbNonQualif = Integer.parseInt(csvRecord.get(6));

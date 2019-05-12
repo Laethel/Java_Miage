@@ -43,6 +43,12 @@ public class MainApp extends Application {
         ControleurParams.pathCh = prevCh;
         brCh.close();
         
+        BufferedReader brPers = new BufferedReader(new FileReader(ControleurParams.getLoadCsvPers()));
+        String prevPers = brPers.readLine();
+        System.out.println(prevPers);
+        ControleurParams.pathPers = prevPers;
+        brPers.close();
+        
 	}
 
 	/**

@@ -9,12 +9,13 @@
    <children>
       <Label layoutY="-2.0" prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #587C73;" text="     GESTION DE LA PRODUCTION" textFill="WHITE" />
       <Button fx:id="params" layoutX="436.0" layoutY="9.0" mnemonicParsing="false" onAction="#clicBoutonParams" text="Importer des fichiers CSV" />
-      <Button fx:id="voirStocks" layoutX="190.0" layoutY="169.0" mnemonicParsing="false" onAction="#clicBoutonStocks" prefHeight="63.0" prefWidth="221.0" text="Voir les stocks" />
-      <Button fx:id="voirChaines" layoutX="190.0" layoutY="263.0" mnemonicParsing="false" onAction="#clicBoutonChaines" prefHeight="63.0" prefWidth="221.0" text="Voir les chaînes de production" />
+      <Button fx:id="voirStocks" layoutX="35.0" layoutY="169.0" mnemonicParsing="false" onAction="#clicBoutonStocks" prefHeight="63.0" prefWidth="221.0" text="Voir les stocks" />
+      <Button fx:id="voirChaines" layoutX="345.0" layoutY="169.0" mnemonicParsing="false" onAction="#clicBoutonChaines" prefHeight="63.0" prefWidth="221.0" text="Voir les chaînes de production" />
       <Label layoutX="56.0" layoutY="91.0" text="Bienvenue dans votre application de gestion de la production">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="voirPersonnel" layoutX="190.0" layoutY="295.0" mnemonicParsing="false" onAction="#clicBoutonPersonnel" prefHeight="63.0" prefWidth="221.0" text="Voir les membres du personnel" />
    </children>
 </AnchorPane>

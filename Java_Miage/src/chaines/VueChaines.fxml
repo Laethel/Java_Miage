@@ -18,10 +18,10 @@
           <TableColumn fx:id="nomTC" prefWidth="100.0" text="Nom" />
           <TableColumn fx:id="entreeTC" minWidth="0.0" prefWidth="146.00001525878906" text="Entrée (Code, Qte)" />
           <TableColumn fx:id="sortieTC" minWidth="0.0" prefWidth="149.33331298828125" text="Sortie (Code, Qte)" />
-            <TableColumn fx:id="tempsProdTC" prefWidth="63.333343505859375" text="Tps Prod" />
-            <TableColumn fx:id="nbQualifTC" prefWidth="70.0" text="Qualifs" />
-            <TableColumn fx:id="nbNonQualifTC" prefWidth="76.6666259765625" text="Non qualifs" />
-            <TableColumn fx:id="nivActTC" prefWidth="48.0" text="Activité" />
+          <TableColumn fx:id="tempsProdTC" prefWidth="63.333343505859375" text="Tps Prod" />
+          <TableColumn fx:id="nbQualifTC" prefWidth="70.0" text="Qualifs" />
+          <TableColumn fx:id="nbNonQualifTC" prefWidth="76.6666259765625" text="Non qualifs" />
+          <TableColumn fx:id="nivActTC" prefWidth="48.0" text="Activité" />
         </columns>
       </TableView>
       <Label layoutX="758.0" layoutY="72.0" text="Code :" />

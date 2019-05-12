@@ -15,7 +15,7 @@ import utils.Path.Way;
 public class ControleurAccueil {
 
 	/**
-	 * Le bouton menant aux Paramètres
+	 * Le bouton menant aux Paramï¿½tres
 	 */
 	@FXML
 	private Button params;
@@ -33,9 +33,15 @@ public class ControleurAccueil {
 	private Button voirChaines;
 	
 	/**
+	 * Le bouton menant au Personnel
+	 */
+	@FXML
+	private Button voirPersonnel;
+	
+	/**
 	 * @param event
 	 * @throws IOException
-	 * Cette méthode permet de diriger l'utilisateur vers l'écran de Paramètres, lorsqu'il clique sur le bouton
+	 * Cette mï¿½thode permet de diriger l'utilisateur vers l'ï¿½cran de Paramï¿½tres, lorsqu'il clique sur le bouton
 	 */
 	@FXML
 	private void clicBoutonParams(ActionEvent event) throws IOException {
@@ -45,7 +51,7 @@ public class ControleurAccueil {
 	/**
 	 * @param event
 	 * @throws IOException
-	 * Cette méthode permet de diriger l'utilisateur vers l'écran de Stocks, lorsqu'il clique sur le bouton
+	 * Cette mï¿½thode permet de diriger l'utilisateur vers l'ï¿½cran de Stocks, lorsqu'il clique sur le bouton
 	 */
 	@FXML
 	private void clicBoutonStocks(ActionEvent event) throws IOException {
@@ -55,10 +61,20 @@ public class ControleurAccueil {
 	/**
 	 * @param event
 	 * @throws IOException
-	 * Cette méthode permet de diriger l'utilisateur vers l'écran de Chaines, lorsqu'il clique sur le bouton
+	 * Cette mï¿½thode permet de diriger l'utilisateur vers l'ï¿½cran de Chaines, lorsqu'il clique sur le bouton
 	 */
 	@FXML
 	private void clicBoutonChaines(ActionEvent event) throws IOException {
 		Path.goTo(event, Way.CHAINES);
+	}
+	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Cette mï¿½thode permet de diriger l'utilisateur vers l'ï¿½cran du Personnel, lorsqu'il clique sur le bouton
+	 */
+	@FXML
+	private void clicBoutonPersonnel(ActionEvent event) throws IOException {
+		Path.goTo(event, Way.PERSONNEL);
 	}
 }

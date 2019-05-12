@@ -217,7 +217,7 @@ public class ControleurParams {
 		String filePathPersonnel = this.fichier.getAbsolutePath();
 		System.out.println(filePathPersonnel);
 		this.pathPersonnel.setText(filePathPersonnel);
-		ControleurParams.pathCh = filePathPersonnel;
+		ControleurParams.pathPers = filePathPersonnel;
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(loadCsvPers));				
 			bw.write(filePathPersonnel + "\n");
@@ -262,6 +262,14 @@ public class ControleurParams {
 	 */
 	public static File getCrProd() {
 		return crProd;
+	}
+	
+	/**
+	 * @return
+	 * Renvoie le fichier ou est stock� le chemin vers le fichier CSV du personnel
+	 */
+	public static File getLoadCsvPers() {
+		return loadCsvPers;
 	}
 }
 

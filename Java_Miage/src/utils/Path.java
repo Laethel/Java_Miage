@@ -26,7 +26,8 @@ public class Path {
 		CHAINES("/chaines/VueChaines.fxml"),
 		PARAMS("/params/VueParams.fxml"),
 		STOCKS("/stocks/VueStocks.fxml"),
-		TEST_PROD("/testProd/VueTestProd.fxml");
+		TEST_PROD("/testProd/VueTestProd.fxml"),
+		PERSONNEL("/personnel/VuePersonnel.fxml");
 	    
 	    private String chemin;
 	     
@@ -43,7 +44,7 @@ public class Path {
 	/**
 	 * @param actionEvent
 	 * @param way
-	 * Méthode prenant en paramètres un des éléments de l'enum "Way", permettant d'accèder à une des pages de l'application
+	 * Mï¿½thode prenant en paramï¿½tres un des ï¿½lï¿½ments de l'enum "Way", permettant d'accï¿½der ï¿½ une des pages de l'application
 	 */
 	public static void goTo(ActionEvent actionEvent, Way way) {
 		try {
