@@ -74,11 +74,20 @@ public class ControleurPersonnel implements Initializable{
 	 */
 	private ObservableList<Personnel> personnel;
 	
+	double heuresQualif = 0;
+	double heuresNonQualif = 0;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		this.personnel = FXCollections.observableArrayList(dao.findAll());	
-		
+		this.personnel = FXCollections.observableArrayList(dao.findAll());
+		for(Personnel p : personnel) {
+			if(p.getQualif().equals("Oui")) {
+				this.heuresQualif += p.getHeuresSemaine();
+			}else {
+				this.heuresNonQualif += p.getHeuresSemaine();
+			}
+		}
 		prenomTC.setCellValueFactory(new PropertyValueFactory<Personnel, String>("Prenom"));
 		nomTC.setCellValueFactory(new PropertyValueFactory<Personnel, String>("Nom"));
 		qualifTC.setCellValueFactory(new PropertyValueFactory<Personnel, String>("Qualif"));
@@ -100,20 +109,21 @@ public class ControleurPersonnel implements Initializable{
 	
 	@FXML
 	private void clicBoutonMainOeuvre() {
-		double heuresQualif = 0;
-		double heuresNonQualif = 0;
-		for(Personnel p : personnel) {
-			if(p.getQualif().equals("Oui")) {
-				heuresQualif += p.getHeuresSemaine();
-			}else {
-				heuresNonQualif += p.getHeuresSemaine();
-			}
-		}
-		Alert alert = new Alert(AlertType.INFORMATION,"Heures de main d'oeuvre disponibles : \n \n"
+		Alert alert = new Alert(AlertType.INFORMATION,"Heures de main d'oeuvre disponibles par semaine : \n \n"
 				+ "Heures totales (Personnel qualifié) : "+heuresQualif +" heures. \n"
 				+ "Heures totales (Personnel non qualifié) : "+heuresNonQualif+" heures."			
 				, ButtonType.OK);
 		alert.showAndWait();
+	}
+
+
+	public double getHeuresQualif() {
+		return heuresQualif;
+	}
+
+
+	public double getHeuresNonQualif() {
+		return heuresNonQualif;
 	}
 	
 }

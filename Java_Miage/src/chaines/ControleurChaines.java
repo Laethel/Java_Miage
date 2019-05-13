@@ -15,6 +15,7 @@ import org.apache.commons.csv.CSVPrinter;
 
 import dao.ChaineDAO;
 import dao.ElementDAO;
+import dao.PersonnelDAO;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,13 +54,13 @@ public class ControleurChaines implements Initializable{
 	private Button retour;
 	
 	/**
-	 * Le bouton permettant d'ajouter une chaine de production ou d'en modifier les param�tres
+	 * Le bouton permettant d'ajouter une chaine de production ou d'en modifier les parametres
 	 */
 	@FXML
 	private Button testProd;
 	
 	/**
-	 * Le tableau contenant les diff�rentes colonnes d'information des chaines
+	 * Le tableau contenant les differentes colonnes d'information des chaines
 	 */
 	@FXML
 	TableView<Chaine> tabChaines;
@@ -77,7 +78,7 @@ public class ControleurChaines implements Initializable{
 	private TableColumn<Chaine, String> nomTC;
 	
 	/**
-	 * La colonne indiquant les �l�ments en entr�e de la chaine
+	 * La colonne indiquant les elements en entree de la chaine
 	 */
 	@FXML
 	private TableColumn<Chaine, String> entreeTC;
@@ -198,6 +199,7 @@ public class ControleurChaines implements Initializable{
 			
 	private ChaineDAO daoC = new ChaineDAO();
 	private ElementDAO daoE = new ElementDAO();
+	private PersonnelDAO daoP = new PersonnelDAO();
 	
 	private ObservableList<Chaine> chaines;
 	private Chaine oldChaine;
@@ -210,6 +212,8 @@ public class ControleurChaines implements Initializable{
 
 	ArrayList<Element> elementsSave = new ArrayList<Element>();
 	
+	double heuresNonQualifDispo;
+	double heuresQualifDispo;
 		
 	public void initialize(URL url, ResourceBundle rb) {	
 		this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
@@ -246,6 +250,11 @@ public class ControleurChaines implements Initializable{
 		
 		setDisableButtons(true);
 		this.semainePrec.setDisable(true);
+		
+		this.heuresQualifDispo = daoP.heuresQualifDispo();
+		this.heuresNonQualifDispo = daoP.heuresNonQualifDispo();
+		System.out.println("Temps qualifié disponible par semaine : "+heuresQualifDispo);
+		System.out.println("Temps non qualifié disponible par semaine : "+heuresNonQualifDispo);
 	}
 	
 	/**
@@ -382,10 +391,15 @@ public class ControleurChaines implements Initializable{
 		
 		int resultat = 0;
 		boolean productionPossible = true;
+		boolean heuresOk = true;
 		Element elemManquant = null;
+		double tempsQualifNecessaire = 0.0;
+		double tempsNonQualifNecessaire = 0.0;
 		
 		
 		for (Chaine ch : chaines) {
+			tempsQualifNecessaire += ch.getTempsProd()*ch.getNbQualif();
+			tempsNonQualifNecessaire += ch.getTempsProd()*ch.getNbNonQualif();
 			for (Element el : ch.getlEntree()) {
 				double qteASoustraire = el.getQte() * ch.getNivAct();
 				stocktmp.get(stocktmp.indexOf(el)).soustraireStock(qteASoustraire);
@@ -415,9 +429,19 @@ public class ControleurChaines implements Initializable{
 				}
 			}
 		}
+		System.out.println("Temps qualifié nécessaire : "+tempsQualifNecessaire);
+		System.out.println("Temps qualifié disponible : "+heuresQualifDispo);
+		System.out.println("Temps non qualifié nécessaire : "+tempsNonQualifNecessaire);
+		System.out.println("Temps non qualifié disponible : "+heuresNonQualifDispo);
 		
-		if (productionPossible) {
+		if(tempsQualifNecessaire > heuresQualifDispo || tempsNonQualifNecessaire > heuresNonQualifDispo) {
+			heuresOk = false;
+		}
+		
+		if (productionPossible && heuresOk) {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Essai de production terminé. Résultat obtenu : " + resultat + ".\n \n"
+					+ "Temps de main d'oeuvre qualifiée nécessaire : " + tempsQualifNecessaire + " heures. \n"
+					+ "Temps de main d'oeuvre non qualifiée nécessaire : " + tempsNonQualifNecessaire + " heures. \n \n"
 					+ "Un compte-rendu de la production a été généré dans un fichier externe (" + crProd.getPath() + ") \n \n"
 					+ "Voulez vous mettre à jour les stocks ?"					
 					, ButtonType.YES, ButtonType.NO);
@@ -434,8 +458,6 @@ public class ControleurChaines implements Initializable{
 			writerCr.write("\n \n");
 			writerCr.write("CHAINES ACTIVES;ÉLÉMENTS CONSOMMÉS;ÉLÉMENTS PRODUITS \n");
 			for (Chaine ch : chaines) {
-				//int tempsQualifNecessaire = ch.getTempsProd()*ch.getNbQualif();
-				//int tempsNonQualifNecessaire = ch.getTempsProd()*ch.getNbNonQualif();
 				writerCr.write(ch.getNom() +"(" + ch.getCode()+") - Niveau " + ch.getNivAct() + ";");
 				String sElEntree = "";
 				for (Element el : ch.getlEntree()) {
@@ -489,7 +511,19 @@ public class ControleurChaines implements Initializable{
 					elements.set(elements.indexOf(elements.get(i)), stocktmp.get(i));
 				}			
 			}
-		} else {
+		}
+
+		if(!heuresOk) {
+			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essai de production. \n \n"
+					+ "La main d'oeuvre nécessaire n'est pas disponible pour faire fonctionner toutes les chaines : \n \n"
+					+ "Temps qualifié nécessaire : "+tempsQualifNecessaire +" heures\n"
+					+ "Temps qualifié disponible : "+heuresQualifDispo +" heures \n \n"
+					+ "Temps non qualifié nécessaire : "+tempsNonQualifNecessaire +" heures \n"
+					+ "Temps non qualifié disponible : "+heuresNonQualifDispo +" heures \n"	
+					, ButtonType.OK);
+			alert.showAndWait();
+		}
+		if(!productionPossible) {
 			Alert alert = new Alert(AlertType.WARNING, "Impossible de finaliser l'essai de production. \n"
 					+ "Le prix d'achat de certains éléments n'est pas renseigné : "	+ elemManquant.getNom()				
 					, ButtonType.OK);
@@ -644,6 +678,8 @@ public class ControleurChaines implements Initializable{
 		this.chaines.removeAll(chaines);
 		daoC.setCSV_FILE_PATH_CHAINE(ControleurParams.pathCh);
 		this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
+		this.heuresNonQualifDispo = daoP.heuresNonQualifDispo()*8;
+		this.heuresQualifDispo = daoP.heuresQualifDispo()*8;
 		for(int i = 2;i<9;i++) {
 			File semaine = new File(CHEMIN_SEMAINE +i +".csv");
 			if(semaine.exists()) {
@@ -662,6 +698,8 @@ public class ControleurChaines implements Initializable{
 		int semaineActuelle = Integer.parseInt(semaineAct.getText());
 		daoC.setCSV_FILE_PATH_CHAINE(ControleurParams.pathCh);
 		this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
+		this.heuresNonQualifDispo = daoP.heuresNonQualifDispo()*semaineActuelle;
+		this.heuresQualifDispo = daoP.heuresQualifDispo()*semaineActuelle;
 		for(int i = 2;i<=semaineActuelle;i++) {
 			File semaine = new File(CHEMIN_SEMAINE +i +".csv");
 			if(semaine.exists()) {
@@ -673,6 +711,5 @@ public class ControleurChaines implements Initializable{
 		clicBoutonSemaineSuiv(event);
 		clicBoutonSemainePrec(event);
 	}
-	
 	
 }

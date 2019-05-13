@@ -10,12 +10,15 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import modele.Personnel;
 import params.ControleurParams;
 
 public class PersonnelDAO extends Dao<Personnel>{
 	
 	private final String CSV_FILE_PATH_PERSONNEL = ControleurParams.pathPers;
+	private ObservableList<Personnel> personnel;
 	
 	/* (non-Javadoc)
 	 * @see dao.Dao#findAll()
@@ -69,5 +72,27 @@ public class PersonnelDAO extends Dao<Personnel>{
 	public Personnel find(String id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public double heuresQualifDispo() {
+		this.personnel = FXCollections.observableArrayList(findAll());
+		double heuresQualif = 0;
+		for(Personnel p : personnel) {
+			if(p.getQualif().equals("Oui")) {
+				heuresQualif += p.getHeuresSemaine();
+			}
+		}
+		return heuresQualif;		
+	}
+	
+	public double heuresNonQualifDispo() {
+		this.personnel = FXCollections.observableArrayList(findAll());
+		double heuresNonQualif = 0;
+		for(Personnel p : personnel) {
+			if(p.getQualif().equals("Non")) {
+				heuresNonQualif += p.getHeuresSemaine();
+			}
+		}
+		return heuresNonQualif;
 	}
 }
