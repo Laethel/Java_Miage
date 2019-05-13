@@ -434,6 +434,8 @@ public class ControleurChaines implements Initializable{
 			writerCr.write("\n \n");
 			writerCr.write("CHAINES ACTIVES;ÉLÉMENTS CONSOMMÉS;ÉLÉMENTS PRODUITS \n");
 			for (Chaine ch : chaines) {
+				//int tempsQualifNecessaire = ch.getTempsProd()*ch.getNbQualif();
+				//int tempsNonQualifNecessaire = ch.getTempsProd()*ch.getNbNonQualif();
 				writerCr.write(ch.getNom() +"(" + ch.getCode()+") - Niveau " + ch.getNivAct() + ";");
 				String sElEntree = "";
 				for (Element el : ch.getlEntree()) {
@@ -671,5 +673,6 @@ public class ControleurChaines implements Initializable{
 		clicBoutonSemaineSuiv(event);
 		clicBoutonSemainePrec(event);
 	}
+	
 	
 }
