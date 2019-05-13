@@ -12,7 +12,7 @@
    <children>
       <Label layoutY="-2.0" prefHeight="50.0" prefWidth="1177.0" style="-fx-background-color: #587C73;" text="     CHAINES DE PRODUCTION" textFill="WHITE" />
       <Button fx:id="retour" layoutX="1098.0" layoutY="8.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
-      <TableView fx:id="tabChaines" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleClickTableView" prefHeight="378.0" prefWidth="718.0" AnchorPane.topAnchor="70.0">
+      <TableView fx:id="tabChaines" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleClickTableView" prefHeight="378.0" prefWidth="725.0" AnchorPane.topAnchor="70.0">
         <columns>
           <TableColumn fx:id="codeTC" minWidth="0.0" prefWidth="62.0" text="Code" />
           <TableColumn fx:id="nomTC" prefWidth="100.0" text="Nom" />
@@ -21,7 +21,7 @@
           <TableColumn fx:id="tempsProdTC" prefWidth="63.333343505859375" text="Tps Prod" />
           <TableColumn fx:id="nbQualifTC" prefWidth="70.0" text="Qualifs" />
           <TableColumn fx:id="nbNonQualifTC" prefWidth="76.6666259765625" text="Non qualifs" />
-          <TableColumn fx:id="nivActTC" prefWidth="48.0" text="Activité" />
+          <TableColumn fx:id="nivActTC" prefWidth="53.0" text="Activité" />
         </columns>
       </TableView>
       <Label layoutX="758.0" layoutY="72.0" text="Code :" />
@@ -48,7 +48,7 @@
       <Button fx:id="modifierChaine" layoutX="828.0" layoutY="421.0" mnemonicParsing="false" onAction="#clicBoutonModifierChaine" prefHeight="25.0" prefWidth="65.0" text="Modifier" />
       <Button fx:id="annulerModifChaine" layoutX="903.0" layoutY="421.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationChaine" prefHeight="25.0" prefWidth="110.0" text="Annuler modif." />
       <Button fx:id="supprimerChaine" layoutX="1023.0" layoutY="421.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerChaine" prefWidth="75.0" text="Supprimer" />
-      <Button fx:id="testerChaine" layoutX="758.0" layoutY="456.0" mnemonicParsing="false" onAction="#clicBoutonTesterChaine" prefHeight="25.0" prefWidth="258.0" text="Tester la production de la semaine" />
+      <Button fx:id="testerChaine" layoutX="758.0" layoutY="456.0" mnemonicParsing="false" onAction="#clicBoutonTesterSemaine" prefHeight="25.0" prefWidth="258.0" text="Tester la production de la semaine" />
       <Button fx:id="resetTest" layoutX="1028.0" layoutY="456.0" mnemonicParsing="false" onAction="#clicBoutonResetTest" prefHeight="25.0" prefWidth="135.0" text="Réinitialiser le test" />
       <Label layoutX="360.0" layoutY="472.0" text="Semaine n°" />
       <Button fx:id="semaineSuiv" layoutX="534.0" layoutY="468.0" mnemonicParsing="false" onAction="#clicBoutonSemaineSuiv" text="Semaine suivante" />

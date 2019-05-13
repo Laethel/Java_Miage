@@ -3,6 +3,7 @@ package chaines;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URL;
@@ -46,6 +47,7 @@ public class ControleurChaines implements Initializable{
 	    
 	private static File crProd = ControleurParams.getCrProd();
 	private final String CHEMIN_SEMAINE = System.getProperty("user.home")+"/Gestion production/chaineSemaine_";
+	private final String ENTETE_CHAINE = "Code;Nom;Entree (code,qte);Sortie (code,qte);Temps;Personnels non qualifies;Personnels qualifies;NivActivite \n";
 
 	@FXML
 	private Button retour;
@@ -372,8 +374,7 @@ public class ControleurChaines implements Initializable{
 		};
 	}
 	
-	@FXML 
-	private void clicBoutonTesterChaine(ActionEvent event) throws IOException {
+	private void testerChaine(ActionEvent event) throws IOException {
 		loadElemEntreeSortie();
 		
 		ArrayList<Element> stocktmp = daoE.findAll();
@@ -587,6 +588,9 @@ public class ControleurChaines implements Initializable{
 		File chSemaine = new File(CHEMIN_SEMAINE +i +".csv");
 		if (!chSemaine.isFile() && !chSemaine.isDirectory()) {
 			chSemaine.createNewFile();
+			BufferedWriter bw = new BufferedWriter(new FileWriter(chSemaine));
+			bw.write(ENTETE_CHAINE);
+			bw.close();
 			System.out.println("Fichier crée sur l'ordinateur : " + chSemaine.getPath());
 		}
 		daoC.setCSV_FILE_PATH_CHAINE(chSemaine.getPath());
@@ -612,6 +616,9 @@ public class ControleurChaines implements Initializable{
 			File chSemaine = new File(CHEMIN_SEMAINE +i +".csv");
 			if (!chSemaine.isFile() && !chSemaine.isDirectory()) {
 				chSemaine.createNewFile();
+				BufferedWriter bw = new BufferedWriter(new FileWriter(chSemaine));
+				bw.write(ENTETE_CHAINE);
+				bw.close();
 				System.out.println("Fichier crée sur l'ordinateur : " + chSemaine.getPath());
 			}
 			daoC.setCSV_FILE_PATH_CHAINE(chSemaine.getPath());
@@ -640,10 +647,27 @@ public class ControleurChaines implements Initializable{
 			if(semaine.exists()) {
 				daoC.setCSV_FILE_PATH_CHAINE(semaine.getPath());
 			}
-			System.out.println(i);
 			this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
 		}
-		clicBoutonTesterChaine(event);	
+		testerChaine(event);	
+		clicBoutonSemaineSuiv(event);
+		clicBoutonSemainePrec(event);
+	}
+	
+	@FXML
+	private void clicBoutonTesterSemaine(ActionEvent event) throws IOException{
+		this.chaines.removeAll(chaines);
+		int semaineActuelle = Integer.parseInt(semaineAct.getText());
+		daoC.setCSV_FILE_PATH_CHAINE(ControleurParams.pathCh);
+		this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
+		for(int i = 2;i<=semaineActuelle;i++) {
+			File semaine = new File(CHEMIN_SEMAINE +i +".csv");
+			if(semaine.exists()) {
+				daoC.setCSV_FILE_PATH_CHAINE(semaine.getPath());
+			}
+			this.chaines.addAll(FXCollections.observableArrayList(daoC.findAll()));
+		}
+		testerChaine(event);	
 		clicBoutonSemaineSuiv(event);
 		clicBoutonSemainePrec(event);
 	}

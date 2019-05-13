@@ -82,7 +82,7 @@ public class ControleurPersonnel implements Initializable{
 	/**
 	 * @param event
 	 * @throws IOException
-	 * M�thode d�clench�e lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
+	 * Methode declenchee lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {

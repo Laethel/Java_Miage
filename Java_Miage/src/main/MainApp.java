@@ -28,6 +28,8 @@ public class MainApp extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setX(20.0);
+        primaryStage.setY(40.0);
         primaryStage.show();
         
         //récupère les précédents CSV utilisés automatiquement
