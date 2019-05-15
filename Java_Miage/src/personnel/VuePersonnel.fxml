@@ -19,5 +19,6 @@
         </columns>
       </TableView>
       <Button fx:id="mainOeuvreDispo" layoutX="20.0" layoutY="422.0" mnemonicParsing="false" onAction="#clicBoutonMainOeuvre" text="Main d'oeuvre disponible" />
+      <Button fx:id="ficheTemps" layoutX="502.0" layoutY="422.0" mnemonicParsing="false" onAction="#clicBoutonFicheTemps" prefHeight="25.0" prefWidth="101.0" text="Fiche de temps" />
    </children>
 </AnchorPane>

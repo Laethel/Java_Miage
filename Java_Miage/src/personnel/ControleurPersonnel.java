@@ -1,5 +1,8 @@
 package personnel;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modele.Personnel;
+import params.ControleurParams;
 import utils.Path;
 import utils.Path.Way;
 
@@ -64,6 +68,12 @@ public class ControleurPersonnel implements Initializable{
 	 */
 	@FXML
 	private Button mainOeuvreDispo;
+	
+	/**
+	 * Le bouton permettant d'afficher les fiches de temps du personnel
+	 */
+	@FXML
+	private Button ficheTemps;
 	
 	/**
 	 * Le pattern DAO pour les membres du personnel
@@ -124,6 +134,20 @@ public class ControleurPersonnel implements Initializable{
 
 	public double getHeuresNonQualif() {
 		return heuresNonQualif;
+	}
+	
+	@FXML
+	private void clicBoutonFicheTemps() throws IOException {
+        BufferedReader brPers = new BufferedReader(new FileReader(ControleurParams.getLoadCsvPers()));
+        String prevPers = brPers.readLine();
+        File ficheTemps = new File(prevPers);
+		Alert alert = new Alert(AlertType.INFORMATION,"Fiches de temps. \n \n"	
+				+"WORK IN PROGRESS"
+				, ButtonType.OK);
+		alert.showAndWait();
+		java.awt.Desktop.getDesktop().open(ficheTemps);	
+		brPers.close();
+		
 	}
 	
 }
