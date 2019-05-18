@@ -28,10 +28,10 @@ public class Personnel {
 
 	/**
 	 * Constructeur d'un objet Personnel
-	 * @param prenom
-	 * @param nom
-	 * @param qualif
-	 * @param heuresSemaine
+	 * @param prenom le prenom d'un membre du personnel
+	 * @param nom le nom d'un membre du personnel
+	 * @param qualif la qualification d'un membre du personnel
+	 * @param heuresSemaine le nombre d'heures travaillees par semaine d'un membre du personnel
 	 */
 	public Personnel(String prenom, String nom, String qualif, double heuresSemaine) {
 		this.prenom = new SimpleStringProperty(prenom);
@@ -42,49 +42,49 @@ public class Personnel {
 		
 	/**
 	 * Methode permettant de recuperer le prenom d'un membre du personnel
-	 * @return
+	 * @return le prenom d'un membre du personnel
 	 */
 	public String getPrenom() { return this.prenom.get(); }	
 	
 	/**
 	 * Methode permettant de definir le prenom d'un membre du personnel
-	 * @param prenom
+	 * @param prenom le prenom d'un membre du personnel
 	 */
 	public void setPrenom(String prenom) { this.prenom.set(prenom); }
 	
 	/**
 	 * Methode permettant de recuperer le nom d'un membre du personnel
-	 * @return
+	 * @return le nom d'un membre du personnel
 	 */
 	public String getNom() { return this.nom.get(); }
 	
 	/**
 	 * Methode permettant de definir le nom d'un membre du personnel
-	 * @param nom
+	 * @param nom le nom d'un membre du personnel
 	 */
 	public void setNom(String nom) { this.nom.set(nom); }
 
 	/**
 	 * Methode permettant de recuperer la qualification d'un membre du personnel
-	 * @return
+	 * @return la qualification d'un membre du personnel
 	 */
 	public String getQualif() { return this.qualif.get(); }
 	
 	/**
 	 * Methode permettant de definir la qualification d'un membre du personnel
-	 * @param qualif
+	 * @param qualif la qualification d'un membre du personnel
 	 */
 	public void setQualif(String qualif) { this.qualif.set(qualif);	}	
 
 	/**
 	 * Methode permettant de recuperer le nombre d'heures travaillees par semaine pour un membre du personnel
-	 * @return
+	 * @return le nombre d'heures travaillees par semaine pour un membre du personnel
 	 */
 	public double getHeuresSemaine() { return this.heuresSemaine.get(); }
 	
 	/**
 	 * Methode permettant de definir le nombre d'heures travaillees par semaine pour un membre du personnel
-	 * @param heuresSemaine
+	 * @param heuresSemaine le nombre d'heures travaillees par semaine pour un membre du personnel
 	 */
 	public void setHeuresSemaine(double heuresSemaine) { this.heuresSemaine.set(heuresSemaine);	}
 	

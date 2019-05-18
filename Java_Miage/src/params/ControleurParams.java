@@ -115,7 +115,7 @@ public class ControleurParams {
 	private static File crProd;
 
 	/**
-	 * @param main
+	 * @param main une instance de l'application
 	 */
 	public void setMainApp(MainApp main) {
 		this.mainApp = main;
@@ -123,7 +123,7 @@ public class ControleurParams {
 	
 	/**
 	 * Méthode permettant l'installation des fichiers de ressource nécessaires au bon fonctionnement de l'application
-	 * @throws IOException
+	 * @throws IOException une erreur d'installation
 	 */
 	public static void install() throws IOException {
 		System.out.println(System.getProperty("user.home"));

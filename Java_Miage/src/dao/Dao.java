@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author Quentin Beaussart et Damian Riquart
  *
- * @param <T>
+ * @param <T> l'objet associe a la DAO
  */
 public abstract class Dao<T> {
 	

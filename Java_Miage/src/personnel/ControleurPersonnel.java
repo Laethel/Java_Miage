@@ -108,9 +108,9 @@ public class ControleurPersonnel implements Initializable{
 	
 	
 	/**
+	 * Methode declenchee lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 * @param event
 	 * @throws IOException
-	 * Methode declenchee lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
@@ -132,7 +132,7 @@ public class ControleurPersonnel implements Initializable{
 
 	/**
 	 * Methode retournant le nombres d'heures qualifiees disponibles
-	 * @return
+	 * @return le nombres d'heures qualifiees disponibles
 	 */
 	public double getHeuresQualif() {
 		return heuresQualif;
@@ -140,8 +140,8 @@ public class ControleurPersonnel implements Initializable{
 
 
 	/**
-	 * Methode retournant le nombres d'heures qualifiees disponibles
-	 * @return
+	 * Methode retournant le nombres d'heures non qualifiees disponibles
+	 * @return le nombres d'heures non qualifiees disponibles
 	 */
 	public double getHeuresNonQualif() {
 		return heuresNonQualif;

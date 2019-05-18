@@ -60,14 +60,14 @@ public class Chaine {
 	
 	/**
 	 * Constructeur d'un objet Chaine
-	 * @param code
-	 * @param nom
-	 * @param sEntree
-	 * @param sSortie
-	 * @param tempsProd
-	 * @param nbQualif
-	 * @param nbNonQualif
-	 * @param nivAct
+	 * @param code le code d'une chaine
+	 * @param nom le nom d'une chaine
+	 * @param sEntree les elements en entree d'une chaine
+	 * @param sSortie les elements en sortie d'une chaine
+	 * @param tempsProd le temps de production d'une chaine
+	 * @param nbQualif le nombre d'ouvriers qualifies requis pour une chaine
+	 * @param nbNonQualif le nombre d'ouvriers qualifies requis pour une chaine
+	 * @param nivAct le niveau d'activite d'une chaine
 	 */
 	public Chaine (String code, String nom, String sEntree, String sSortie,int tempsProd, int nbQualif, int nbNonQualif, int nivAct) {
 		this.code = new SimpleStringProperty(code);
@@ -85,73 +85,73 @@ public class Chaine {
 		
 	/**
 	 * Methode permettant de recuperer le code d'une chaine
-	 * @return
+	 * @return le code d'une chaine
 	 */
 	public String getCode() { return this.code.get(); }
 	
 	/**
 	 * Methode permettant de definir le code d'une chaine
-	 * @param code
+	 * @param code le code d'une chaine
 	 */
 	public void setCode(String code) { this.code.set(code); }
 	
 	/**
 	 * Methode permettant de recuperer le nom d'une chaine
-	 * @return
+	 * @return le nom d'une chaine
 	 */
 	public String getNom() { return this.nom.get(); }
 	
 	/**
 	 * Methode permettant de definir le nom d'une chaine
-	 * @param nom
+	 * @param nom le nom d'une chaine
 	 */
 	public void setNom(String nom) { this.nom.set(nom); }
 	
 	/**
 	 * Methode permettant de recuperer les elements en entree d'une chaine
-	 * @return
+	 * @return les elements en entree d'une chaine
 	 */
 	public String getSEntree() { return this.sEntree.get(); }
 	
 	/**
 	 * Methode permettant de definir les elements en entree d'une chaine
-	 * @param sEntree
+	 * @param sEntree les elements en entree d'une chaine
 	 */
 	public void setSEntree(String sEntree) { this.sEntree.set(sEntree); }
 	
 	/**
 	 * Methode permettant de recuperer les elements en sortie d'une chaine
-	 * @return
+	 * @return les elements en sortie d'une chaine
 	 */
 	public String getSSortie() { return this.sSortie.get(); }
 	
 	/**
 	 * Methode permettant de definir les elements en sortie d'une chaine
-	 * @param sSortie
+	 * @param sSortie les elements en sortie d'une chaine
 	 */
 	public void setSSortie(String sSortie) { this.sSortie.set(sSortie); }
 	
 	/**
 	 * Methode permettant de recuperer le niveau d'activite d'une chaine
-	 * @return
+	 * @return le niveau d'activite d'une chaine
 	 */
 	public int getNivAct() {	return this.nivAct.get(); }
 	
 	/**
 	 * Methode permettant de definir le niveau d'activite d'une chaine
-	 * @param nivAct
+	 * @param nivAct le niveau d'activite d'une chaine
 	 */
 	public void setNivAct(int nivAct) { this.nivAct.set(nivAct); }
 		
 	/**
 	 * Methode permettant d'ajouter un element en entree dans une chaine
-	 * @param elem
+	 * @param elem un element en entree dans une chaine
 	 */
 	public void addlEntree(Element elem) { this.lEntree.add(elem); }
 	
 	/**
 	 * Methode permettant de recuperer les elements en entree dans une chaine
-	 * @return
+	 * @return les elements en entree dans une chaine
 	 */
 	public ArrayList<Element> getlEntree() { return this.lEntree; };
 	
@@ -162,13 +162,13 @@ public class Chaine {
 	
 	/**
 	 * Methode permettant d'ajouter un element en sortie dans une chaine
-	 * @param elem
+	 * @param elem un element en sortie dans une chaine
 	 */
 	public void addlSortie(Element elem) { this.lSortie.add(elem); }
 	
 	/**
 	 * Methode permettant de recuperer les elements en sortie dans une chaine
-	 * @return
+	 * @return les elements en sortie dans une chaine
 	 */
 	public ArrayList<Element> getlSortie() { return this.lSortie; };
 	
@@ -179,37 +179,37 @@ public class Chaine {
 	
 	/**
 	 * Methode permettant de recuperer le temps de production d'une chaine
-	 * @return
+	 * @return le temps de production d'une chaine
 	 */
 	public int getTempsProd() {	return this.tempsProd.get(); }
 	
 	/**
 	 * Methode permettant de definir le temps de production d'une chaine
-	 * @param tempsProd
+	 * @param tempsProd le temps de production d'une chaine
 	 */
 	public void setTempsProd(int tempsProd) { this.tempsProd.set(tempsProd); }
 	
 	/**
 	 * Methode permettant de recuperer le nombre de personnels qualifies necessaires d'une chaine
-	 * @return
+	 * @return le nombre de personnels qualifies necessaires d'une chaine
 	 */
 	public int getNbQualif() {	return this.nbQualif.get(); }
 	
 	/**
 	 * Methode permettant de definir le nombre de personnels qualifies necessaires d'une chaine
-	 * @param nbQualif
+	 * @param nbQualif le nombre de personnels qualifies necessaires d'une chaine
 	 */
 	public void setNbQualif(int nbQualif) { this.nbQualif.set(nbQualif); }
 	
 	/**
 	 * Methode permettant de recuperer le nombre de personnels non qualifies necessaires d'une chaine
-	 * @return
+	 * @return le nombre de personnels non qualifies necessaires d'une chaine
 	 */
 	public int getNbNonQualif() {	return this.nbNonQualif.get(); }
 	
 	/**
 	 * Methode permettant de definir le nombre de personnels non qualifies necessaires d'une chaine
-	 * @param nbNonQualif
+	 * @param nbNonQualif le nombre de personnels non qualifies necessaires d'une chaine
 	 */
 	public void setNbNonQualif(int nbNonQualif) { this.nbQualif.set(nbNonQualif); }
 

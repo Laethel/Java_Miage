@@ -20,7 +20,7 @@ public class Element {
 	private SimpleStringProperty nom;
 	
 	/**
-	 * La quantit� d'un element
+	 * La quantite d'un element
 	 */
 	private SimpleDoubleProperty qte;
 	
@@ -45,19 +45,24 @@ public class Element {
 	private SimpleDoubleProperty demande;
 	
 	/**
-	 * Variable de calcul pour le compte rendu
+	 * Variable de calcul de la quantite d'element consommee pour le compte rendu
 	 */
 	private double qteConsommee;
+		
+	/**
+	 * Variable de calcul de la quantite d'element produite pour le compte rendu
+	 */
 	private double qteProduite;
 	
 	/**
 	 * Constructeur d'un objet Element
-	 * @param code
-	 * @param nom
-	 * @param qte
-	 * @param unite
-	 * @param prixAchat
-	 * @param prixVente
+	 * @param code le code d'un element
+	 * @param nom le nom d'un element
+	 * @param qte le quantite d'un element
+	 * @param unite l'unite d'un element
+	 * @param prixAchat le prix d'achat d'un element
+	 * @param prixVente le prix de vente d'un element
+	 * @param demande la quantite a produire demandee pour un element
 	 */
 	public Element (String code, String nom, double qte, String unite, String prixAchat, String prixVente, double demande) {
 		this.code = new SimpleStringProperty(code);
@@ -73,91 +78,91 @@ public class Element {
 	
 	/**
 	 * Methode permettant de recuperer le code d'un element
-	 * @return
+	 * @return le code d'un element
 	 */
 	public String getCode() { return this.code.get(); }	
 	
 	/**
 	 * Methode permettant de definir le code d'un element
-	 * @param code
+	 * @param code le code d'un element
 	 */
 	public void setCode(String code) { this.code.set(code); }
 	
 	/**
 	 * Methode permettant de recuperer le nom d'un element
-	 * @return
+	 * @return le nom d'un element
 	 */
 	public String getNom() { return this.nom.get(); }
 	
 	/**
 	 * Methode permettant de definir le nom d'un element
-	 * @param nom
+	 * @param nom le nom d'un element
 	 */
 	public void setNom(String nom) { this.nom.set(nom); }
 
 	/**
 	 * Methode permettant de recuperer la quantite d'un element
-	 * @return
+	 * @return la quantite d'un element
 	 */
 	public double getQte() { return this.qte.get(); }
 	
 	/**
 	 * Methode permettant de definir la quantite d'un element
-	 * @param qte
+	 * @param qte la quantite d'un element
 	 */
 	public void setQte(double qte) { this.qte.set(qte);	}	
 
 	/**
 	 * Methode permettant de recuperer l'unite d'un element
-	 * @return
+	 * @return l'unite d'un element
 	 */
 	public String getUnite() { return this.unite.get(); }
 	
 	/**
 	 * Methode permettant de definir l'unite d'un element
-	 * @param unite
+	 * @param unite l'unite d'un element
 	 */
 	public void setUnite(String unite) { this.unite.set(unite);	}
 
 	/**
 	 * Methode permettant de recuperer le prix d'achat d'un element
-	 * @return
+	 * @return le prix d'achat d'un element
 	 */
 	public String getPrixAchat() { return this.prixAchat.get(); }
 	
 	/**
 	 * Methode permettant de definir le prix d'achat d'un element
-	 * @param prixAchat
+	 * @param prixAchat le prix d'achat d'un element
 	 */
 	public void setPrixAchat(String prixAchat) { this.prixAchat.set(prixAchat); }
 
 	/**
 	 * Methode permettant de recuperer le prix de vente d'un element
-	 * @return
+	 * @return le prix de vente d'un element
 	 */
 	public String getPrixVente() { return this.prixVente.get(); }
 	
 	/**
 	 * Methode permettant de definir le prix de vente d'un element
-	 * @param prixVente
+	 * @param prixVente le prix de vente d'un element
 	 */
 	public void setPrixVente(String prixVente) { this.prixVente.set(prixVente); }
 	
 	/**
 	 * Methode permettant de recuperer la demande d'un element
-	 * @return
+	 * @return la demande d'un element
 	 */
 	public double getDemande() { return this.demande.get(); }
 	
 	/**
 	 * Methode permettant de definir la demande d'un element
-	 * @param demande
+	 * @param demande la demande d'un element
 	 */
 	public void setDemande(double demande) { this.demande.set(demande); }
 		
 	/**
 	 * Methode permettant de recuperer la quantite consommee d'un element
-	 * @return
+	 * @return la quantite consommee d'un element
 	 */
 	public double getQteConsommee() {
 		return qteConsommee;
@@ -165,7 +170,7 @@ public class Element {
 
 	/**
 	 * Methode permettant de definir la quantite consommee d'un element
-	 * @param qteConsommee
+	 * @param qteConsommee la quantite consommee d'un element
 	 */
 	public void setQteConsommee(double qteConsommee) {
 		this.qteConsommee = qteConsommee;
@@ -173,7 +178,7 @@ public class Element {
 
 	/**
 	 * Methode permettant de recuperer la quantite produite d'un element
-	 * @return
+	 * @return la quantite produite d'un element
 	 */
 	public double getQteProduite() {
 		return qteProduite;
@@ -181,7 +186,7 @@ public class Element {
 
 	/**
 	 * Methode permettant de definir la quantite produite d'un element
-	 * @param qteProduite
+	 * @param qteProduite la quantite produite d'un element
 	 */
 	public void setQteProduite(double qteProduite) {
 		this.qteProduite = qteProduite;
@@ -189,25 +194,25 @@ public class Element {
 
 	/**
 	 * Methode permettant de soustraire du stock une quantite d'un element
-	 * @param qte
+	 * @param qte une quantite d'un element
 	 */
 	public void soustraireStock(double qte) { this.qte.set(this.getQte() - qte); }
 	
 	/**
 	 * Methode permettant d'ajouter au stock une quantite d'un element
-	 * @param qte
+	 * @param qte une quantite d'un element
 	 */
 	public void ajouterStock(double qte) { this.qte.set(this.getQte() + qte); }
 	
 	/**
 	 * Methode permettant d'ajouter la quantite consommee d'un element lors de la production
-	 * @param qte
+	 * @param qte la quantite consommee d'un element lors de la production
 	 */
 	public void ajouterQteConsommee(double qte) { this.qteConsommee = this.getQteConsommee() + qte; }
 	
 	/**
 	 * Methode permettant d'ajouter la quantite produite d'un element lors de la production
-	 * @param qte
+	 * @param qte la quantite produite d'un element lors de la production
 	 */
 	public void ajouterQteProduite(double qte) { this.qteProduite = this.getQteProduite() + qte; }
 	

@@ -43,9 +43,9 @@ public class Path {
 	}
 
 	/**
-	 * @param actionEvent
-	 * @param way
-	 * Methode prenant en param�tres un des �l�ments de l'enum "Way", permettant d'acceder a une des pages de l'application
+	 * @param actionEvent une action utilisateur
+	 * @param way Un chemin vers une autre page
+	 * Methode prenant en parametres un des elements de l'enum "Way", permettant d'acceder a une des pages de l'application
 	 */
 	public static void goTo(ActionEvent actionEvent, Way way) {
 		try {

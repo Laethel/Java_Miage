@@ -56,7 +56,7 @@ public class MainApp extends Application {
 	/**
 	 * @param args Les arguments
 	 * Cette méthode permet le lancement de l'application
-	 * @throws IOException
+	 * @throws IOException une erreur de lancement de l'application
 	 */
 	public static void main(String[] args) throws IOException {
 		ControleurParams.install();
