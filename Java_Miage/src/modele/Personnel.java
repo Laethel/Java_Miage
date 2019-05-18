@@ -26,46 +26,65 @@ public class Personnel {
 	private SimpleDoubleProperty heuresSemaine;
 	
 
+	/**
+	 * Constructeur d'un objet Personnel
+	 * @param prenom
+	 * @param nom
+	 * @param qualif
+	 * @param heuresSemaine
+	 */
 	public Personnel(String prenom, String nom, String qualif, double heuresSemaine) {
 		this.prenom = new SimpleStringProperty(prenom);
 		this.nom = new SimpleStringProperty(nom);
 		this.qualif = new SimpleStringProperty(qualif);
 		this.heuresSemaine = new SimpleDoubleProperty(heuresSemaine);
 	}
-	
+		
 	/**
+	 * Methode permettant de recuperer le prenom d'un membre du personnel
 	 * @return
 	 */
 	public String getPrenom() { return this.prenom.get(); }	
+	
 	/**
-	 * @param code
+	 * Methode permettant de definir le prenom d'un membre du personnel
+	 * @param prenom
 	 */
 	public void setPrenom(String prenom) { this.prenom.set(prenom); }
 	
 	/**
+	 * Methode permettant de recuperer le nom d'un membre du personnel
 	 * @return
 	 */
 	public String getNom() { return this.nom.get(); }
+	
 	/**
+	 * Methode permettant de definir le nom d'un membre du personnel
 	 * @param nom
 	 */
 	public void setNom(String nom) { this.nom.set(nom); }
 
 	/**
+	 * Methode permettant de recuperer la qualification d'un membre du personnel
 	 * @return
 	 */
 	public String getQualif() { return this.qualif.get(); }
+	
 	/**
-	 * @param qte
+	 * Methode permettant de definir la qualification d'un membre du personnel
+	 * @param qualif
 	 */
 	public void setQualif(String qualif) { this.qualif.set(qualif);	}	
 
 	/**
+	 * Methode permettant de recuperer le nombre d'heures travaillees par semaine pour un membre du personnel
 	 * @return
 	 */
 	public double getHeuresSemaine() { return this.heuresSemaine.get(); }
+	
 	/**
-	 * @param unite
+	 * Methode permettant de definir le nombre d'heures travaillees par semaine pour un membre du personnel
+	 * @param heuresSemaine
 	 */
 	public void setHeuresSemaine(double heuresSemaine) { this.heuresSemaine.set(heuresSemaine);	}
 	

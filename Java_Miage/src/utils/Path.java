@@ -14,13 +14,14 @@ import javafx.stage.Stage;
  * 
  */
 public class Path {
+
+	
 	
 	/**
-	 * @author Quentin Beaussart et Damian Riquart
+	 * Enumeration listant les chemins vers les differentes pages de l'application
 	 *
 	 */
-	public enum Way {
-		
+	public enum Way {	
 		ACCUEIL("/accueil/VueAccueil.fxml"), 
 		AJOUT_ELEM("/ajoutElem/VueAjoutElem.fxml"),
 		CHAINES("/chaines/VueChaines.fxml"),
@@ -44,7 +45,7 @@ public class Path {
 	/**
 	 * @param actionEvent
 	 * @param way
-	 * M�thode prenant en param�tres un des �l�ments de l'enum "Way", permettant d'acc�der � une des pages de l'application
+	 * Methode prenant en param�tres un des �l�ments de l'enum "Way", permettant d'acceder a une des pages de l'application
 	 */
 	public static void goTo(ActionEvent actionEvent, Way way) {
 		try {

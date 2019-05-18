@@ -26,12 +26,17 @@ public class ChaineDAO extends Dao<Chaine> {
 	private String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
 
 	/**
-	 * Getter et setter des fichiers des chaines de chaque semaine
+	 * Methode permettant de definir le chemin du fichier csv des chaines
+	 * @return
 	 */
 	public String getCSV_FILE_PATH_CHAINE() {
 		return CSV_FILE_PATH_CHAINE;
 	}
 
+	/**
+	 * Methode permettant de definir le chemin du fichier csv des chaines
+	 * @param cSV_FILE_PATH_CHAINE
+	 */
 	public void setCSV_FILE_PATH_CHAINE(String cSV_FILE_PATH_CHAINE) {
 		CSV_FILE_PATH_CHAINE = cSV_FILE_PATH_CHAINE;
 	}

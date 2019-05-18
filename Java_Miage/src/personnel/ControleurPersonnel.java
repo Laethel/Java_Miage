@@ -117,6 +117,9 @@ public class ControleurPersonnel implements Initializable{
 		Path.goTo(event, Way.ACCUEIL);
 	}
 	
+	/**
+	 * Methode declenchee lors du clic sur le bouton "Main d'oeuvre disponible", qui affiche des informations relatives au personnel disponible
+	 */
 	@FXML
 	private void clicBoutonMainOeuvre() {
 		Alert alert = new Alert(AlertType.INFORMATION,"Heures de main d'oeuvre disponibles par semaine : \n \n"
@@ -127,15 +130,27 @@ public class ControleurPersonnel implements Initializable{
 	}
 
 
+	/**
+	 * Methode retournant le nombres d'heures qualifiees disponibles
+	 * @return
+	 */
 	public double getHeuresQualif() {
 		return heuresQualif;
 	}
 
 
+	/**
+	 * Methode retournant le nombres d'heures qualifiees disponibles
+	 * @return
+	 */
 	public double getHeuresNonQualif() {
 		return heuresNonQualif;
 	}
 	
+	/**
+	 * Methode declenchee lors du clic sur le bouton "Fiches de temps", qui ouvre les fiches de temps du personnel
+	 * @throws IOException
+	 */
 	@FXML
 	private void clicBoutonFicheTemps() throws IOException {
         BufferedReader brPers = new BufferedReader(new FileReader(ControleurParams.getLoadCsvPers()));
