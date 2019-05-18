@@ -27,7 +27,7 @@ public class ChaineDAO extends Dao<Chaine> {
 
 	/**
 	 * Methode permettant de definir le chemin du fichier csv des chaines
-	 * @return
+	 * @return Le chemin d'accès au fichier chaine
 	 */
 	public String getCSV_FILE_PATH_CHAINE() {
 		return CSV_FILE_PATH_CHAINE;
@@ -35,7 +35,7 @@ public class ChaineDAO extends Dao<Chaine> {
 
 	/**
 	 * Methode permettant de definir le chemin du fichier csv des chaines
-	 * @param cSV_FILE_PATH_CHAINE
+	 * @param cSV_FILE_PATH_CHAINE Le chemin d'accès au fichier chaine
 	 */
 	public void setCSV_FILE_PATH_CHAINE(String cSV_FILE_PATH_CHAINE) {
 		CSV_FILE_PATH_CHAINE = cSV_FILE_PATH_CHAINE;

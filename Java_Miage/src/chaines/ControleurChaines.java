@@ -370,8 +370,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
@@ -380,7 +380,7 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param click
+	 * @param click Un clic de l'utilisateur
 	 * Méthode déclenchée lors du clic sur une ligne du table, charge le formulaire d'une chaine
 	 */
 	@FXML
@@ -402,8 +402,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Réinitialiser" des éléments en entrée, remet à zéro le champ des éléments en entrée 
 	 */
 	@FXML 
@@ -412,8 +412,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Réinitialiser" des éléments en sortie, remet à zéro le champ des éléments en sortie 
 	 */
 	@FXML 
@@ -422,8 +422,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Ajouter" des éléments en entrée, ajoute un élément dans la liste des éléments en entrée
 	 */
 	@FXML 
@@ -436,8 +436,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Ajouter" des éléments en sortie, ajoute un élément dans la liste des éléments en sortie
 	 */
 	@FXML 
@@ -450,8 +450,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Ajouter", permet de créer une nouvelle chaine
 	 */
 	@FXML 
@@ -468,8 +468,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Modifier", permet de modifier une chaine
 	 */
 	@FXML 
@@ -487,8 +487,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Annuler modif.", permet d'annuler les modifications d'une chaine
 	 */
 	@FXML 
@@ -498,8 +498,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Réinitialiser le test", permet de réinitialiser les stocks 
 	 * après un test de production
 	 */
@@ -527,8 +527,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Supprimer.", permet de supprimer une chaine
 	 */
 	@FXML 
@@ -546,8 +546,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Permet de calculer le résultat d'une production et de générer son compte rendu
 	 */
 	private void testerChaine(ActionEvent event) throws IOException {
@@ -755,6 +755,7 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
+	 * @param Booléen qui définit l'état des boutons (accessible ou non)
 	 * Désactive les boutons de modification, annul modif et de suppression en fonction du contenu du formulaire
 	 */
 	private void setDisableButtons(boolean pDisable) {
@@ -795,8 +796,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Semaine suivante.", permet de charger le fichier des chaines de la semaine suivante
 	 */
 	@FXML
@@ -827,8 +828,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Semaine précédente.", permet de charger le fichier des chaines de la semaine précédente
 	 */
 	@FXML
@@ -863,8 +864,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Tester la production de toutes les semaines", 
 	 * permet de calculer le résultat et le compte rendu d'une production de toutes les semaines
 	 */
@@ -888,8 +889,8 @@ public class ControleurChaines implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action de l'utilisateur
+	 * @throws IOException Une exception IO
 	 * Méthode déclenchée lors du clic sur le bouton "Tester la production de la semaine", 
 	 * permet de calculer le résultat et le compte rendu d'une production jusqu'à la semaine sélectionnée 
 	 */

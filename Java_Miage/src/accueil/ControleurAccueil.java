@@ -39,8 +39,8 @@ public class ControleurAccueil {
 	private Button voirPersonnel;
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action utilisateur
+	 * @throws IOException Une exception IO
 	 * Cette m�thode permet de diriger l'utilisateur vers l'�cran de Param�tres, lorsqu'il clique sur le bouton
 	 */
 	@FXML
@@ -49,8 +49,8 @@ public class ControleurAccueil {
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action utilisateur
+	 * @throws IOException Une exception IO
 	 * Cette m�thode permet de diriger l'utilisateur vers l'�cran de Stocks, lorsqu'il clique sur le bouton
 	 */
 	@FXML
@@ -59,8 +59,8 @@ public class ControleurAccueil {
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event Une action utilisateur
+	 * @throws IOException Une exception IO
 	 * Cette m�thode permet de diriger l'utilisateur vers l'�cran de Chaines, lorsqu'il clique sur le bouton
 	 */
 	@FXML
@@ -69,8 +69,8 @@ public class ControleurAccueil {
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
+	 * @param event  Une action utilisateur
+	 * @throws IOException Une exception IO
 	 * Cette m�thode permet de diriger l'utilisateur vers l'�cran du Personnel, lorsqu'il clique sur le bouton
 	 */
 	@FXML

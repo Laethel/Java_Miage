@@ -57,24 +57,36 @@ public class PersonnelDAO extends Dao<Personnel>{
 		return personnel;
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#create(java.lang.Object)
+	 */
 	@Override
 	public boolean create(Personnel obj) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#delete(java.lang.Object)
+	 */
 	@Override
 	public boolean delete(Personnel obj) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#update(java.lang.Object)
+	 */
 	@Override
 	public boolean update(Personnel oldObj, Personnel newObj) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#find(java.lang.Object)
+	 */
 	@Override
 	public Personnel find(String id) {
 		// TODO Auto-generated method stub
@@ -83,6 +95,7 @@ public class PersonnelDAO extends Dao<Personnel>{
 	
 	/**
 	 * Méthode qui permet de calculer le total des heures disponibles du personnel qualifié
+	 * @return Retourne le total des heures disponibles du personnel qualifié
 	 */
 	public double heuresQualifDispo() {
 		this.personnel = FXCollections.observableArrayList(findAll());
@@ -97,6 +110,7 @@ public class PersonnelDAO extends Dao<Personnel>{
 	
 	/**
 	 * Méthode qui permet de calculer le total des heures disponibles du personnel non qualifié
+	 * @return Retourne le total des heures disponibles du personnel non qualifié
 	 */
 	public double heuresNonQualifDispo() {
 		this.personnel = FXCollections.observableArrayList(findAll());

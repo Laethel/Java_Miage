@@ -29,6 +29,9 @@ public class ElementDAO extends Dao<Element> {
 	 */
 	private final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
 	
+	/* (non-Javadoc)
+	 * @see dao.Dao#Create(java.lang.Object)
+	 */
 	@Override
 	public boolean create(Element obj) {
 		try {			
