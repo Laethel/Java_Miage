@@ -45,12 +45,26 @@ import utils.Path.Way;
  *
  */
 public class ControleurChaines implements Initializable{
-	    
+	
+	/**
+	 * Le fichier de compte-rendu de la production
+	 */
 	private static File crProd = ControleurParams.getCrProd();
+	
+	/**
+	 * Le chemin du dossier qui contient les fichiers de chaine par semaine
+	 */
 	private final String CHEMIN_SEMAINE = System.getProperty("user.home")+"/Gestion production/chaineSemaine_";
+	
+	/**
+	 * Entête des fichiers chaines
+	 */
 	private final String ENTETE_CHAINE = "Code;Nom;Entree (code,qte);Sortie (code,qte);Temps;Personnels non qualifies;Personnels qualifies;NivActivite \n";
 
 	@FXML
+	/**
+	 * Bouton de retour à l'accueil
+	 */
 	private Button retour;
 	
 	/**
@@ -125,96 +139,194 @@ public class ControleurChaines implements Initializable{
 	@FXML
 	private TextField nomTF;
 	
+	/**
+	 * Le champ de texte de la quantité d'un élèment en entrée
+	 */
 	@FXML
 	private TextField elemEntreeQteTF;
 	
+	/**
+	 * Le champ de texte des elements en entrée de la chaine
+	 */
 	@FXML
 	private TextField elemEntreeTF;
 	
+	/**
+	 * Le champ de texte de la quantité d'un élèment en sortie
+	 */
 	@FXML
 	private TextField elemSortieQteTF;
 	
+	/**
+	 * Le champ de texte des elements en sortie de la chaine
+	 */
 	@FXML
 	private TextField elemSortieTF;
 	
+	/**
+	 * Le champ de text de temps de production
+	 */
 	@FXML
 	private TextField tempsProdTF;
 	
+	/**
+	 * Le champ de texte du nombre de personnes qualifiées nécessaires
+	 */
 	@FXML
 	private TextField nbQualifTF;
 	
+	/**
+	 * Le champ de texte du nombre de personnes non qualifiées nécessaires
+	 */
 	@FXML
 	private TextField nbNonQualifTF;
 	
+	/**
+	 * Le champ de texte du niveau d'activité de la chaine
+	 */
 	@FXML
 	private TextField nivActiviteTF;
-		
+	
+	/**
+	 * La liste déroulante des éléments en entrée de la chaine
+	 */
 	@FXML
 	private ChoiceBox<Element> entreeCB;
 	
+	/**
+	 * La liste déroulante des éléments en sortie de la chaine
+	 */
 	@FXML
 	private ChoiceBox<Element> sortieCB;
 	
+	/**
+	 * Bouton pour ajouter un élèment en entrée
+	 */
 	@FXML
 	private Button ajouterElemEntree;
 	
+	/**
+	 * Bouton pour ajouter un élèment en entrée
+	 */
 	@FXML
 	private Button ajouterElemSortie;
 	
+	/**
+	 * Bouton pour réinitialiser la liste des éléments en entrée
+	 */
 	@FXML
 	private Button reinitElemEntree;
 	
+	/**
+	 * Bouton pour réinitialiser la liste des éléments en entrée
+	 */
 	@FXML
 	private Button reinitElemSortie;
 	
+	/**
+	 * Bouton pour ajouter une nouvelle chaîne
+	 */
 	@FXML
 	private Button ajouterChaine;
 	
+	/**
+	 * Bouton pour modifier une chaîne
+	 */
 	@FXML
 	private Button modifierChaine;
 	
+	/**
+	 * Bouton pour annuler une modification sur une chaîne
+	 */
 	@FXML
 	private Button annulerModifChaine;
 	
+	/**
+	 * Bouton pour supprimer une chaîne
+	 */
 	@FXML
 	private Button supprimerChaine;
 	
+	/**
+	 * Bouton pour tester une production jusqu'à la semaine selectionnée
+	 */
 	@FXML
 	private Button testerChaine;
 	
+	/**
+	 * Bouton pour tester une production pour toutes les semaines
+	 */
 	@FXML
 	private Button testerSemainesAll;
 	
+	/**
+	 * Bouton pour réinitialiser un test de production
+	 */
 	@FXML
 	private Button resetTest;
 	
+	/**
+	 * Bouton pour charger le fichier de la semaine précédente
+	 */
 	@FXML
 	private Button semainePrec;
 	
+	/**
+	 * Bouton pour charger le fichier de la semaine suivante
+	 */
 	@FXML
 	private Button semaineSuiv;
 	
+	/**
+	 * Label qui affiche la semaine selectionnée
+	 */
 	@FXML
 	private Label semaineAct;
-			
+		
+	/**
+	 * Objet DAO pour communiquer avec les fichiers csv
+	 */
 	private ChaineDAO daoC = new ChaineDAO();
 	private ElementDAO daoE = new ElementDAO();
 	private PersonnelDAO daoP = new PersonnelDAO();
 	
+	/**
+	 * ObservableListe qui contient les chaines d'une semaine
+	 */
 	private ObservableList<Chaine> chaines;
+	
+	/**
+	 * Variable qui stock l'ancienne valeur d'une chaine en cas de modification
+	 */
 	private Chaine oldChaine;
 	
+	/**
+	 * ArrayList qui contient tous les éléments du stock
+	 */
 	ArrayList<Element> elements;
 	
+	/**
+	 * Permet de rendre accessible les boutons du formulaire en fon
+	 */
 	private BooleanBinding bbForm;
 	private BooleanBinding bbElemEntree;
 	private BooleanBinding bbElemSortie;
 
+	/**
+	 * Permet de réinitialiser le stock des éléments après un test de production
+	 */
 	ArrayList<Element> elementsSave = new ArrayList<Element>();
 	
+	/**
+	 * Variable qui stock le total des heures des ouvriers non qualifiés et qualifiés disponible
+	 */
 	double heuresNonQualifDispo;
 	double heuresQualifDispo;
-		
+	
+
+	/**
+	 * Initialiser les données à afficher sur l'écran des chaines
+	 */
 	public void initialize(URL url, ResourceBundle rb) {	
 		this.chaines = FXCollections.observableArrayList(daoC.findAll()); // chargement
 		
@@ -267,6 +379,10 @@ public class ControleurChaines implements Initializable{
 		Path.goTo(event, Way.ACCUEIL);
 	}
 	
+	/**
+	 * @param click
+	 * Méthode déclenchée lors du clic sur une ligne du table, charge le formulaire d'une chaine
+	 */
 	@FXML
 	private void handleClickTableView(MouseEvent click) {
 		
@@ -285,16 +401,31 @@ public class ControleurChaines implements Initializable{
 	    setDisableButtons(false);
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Réinitialiser" des éléments en entrée, remet à zéro le champ des éléments en entrée 
+	 */
 	@FXML 
 	private void clicBoutonReinitElemEntree(ActionEvent event) throws IOException {
 		elemEntreeTF.clear();
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Réinitialiser" des éléments en sortie, remet à zéro le champ des éléments en sortie 
+	 */
 	@FXML 
 	private void clicBoutonReinitElemSortie(ActionEvent event) throws IOException {
 		elemSortieTF.clear();
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Ajouter" des éléments en entrée, ajoute un élément dans la liste des éléments en entrée
+	 */
 	@FXML 
 	private void clicBoutonAjouterElemEntree(ActionEvent event) throws IOException {
 		if (elemEntreeTF.getText().isEmpty()) {
@@ -304,6 +435,11 @@ public class ControleurChaines implements Initializable{
 		}
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Ajouter" des éléments en sortie, ajoute un élément dans la liste des éléments en sortie
+	 */
 	@FXML 
 	private void clicBoutonAjouterElemSortie(ActionEvent event) throws IOException {
 		if (elemSortieTF.getText().isEmpty()) {
@@ -313,6 +449,11 @@ public class ControleurChaines implements Initializable{
 		}
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Ajouter", permet de créer une nouvelle chaine
+	 */
 	@FXML 
 	private void clicBoutonAjoutChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
@@ -326,6 +467,11 @@ public class ControleurChaines implements Initializable{
 		};
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Modifier", permet de modifier une chaine
+	 */
 	@FXML 
 	private void clicBoutonModifierChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
@@ -340,12 +486,23 @@ public class ControleurChaines implements Initializable{
 		};
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Annuler modif.", permet d'annuler les modifications d'une chaine
+	 */
 	@FXML 
 	private void clicBoutonAnnulerModificationChaine(ActionEvent event) throws IOException {
 		clearTextField();
 		setDisableButtons(true);
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Réinitialiser le test", permet de réinitialiser les stocks 
+	 * après un test de production
+	 */
 	@FXML 
 	private void clicBoutonResetTest(ActionEvent event) throws IOException {
 		//Réinitialise les stocks à leur état pré-test 
@@ -369,6 +526,11 @@ public class ControleurChaines implements Initializable{
 		alert.showAndWait();
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Supprimer.", permet de supprimer une chaine
+	 */
 	@FXML 
 	private void clicBoutonSupprimerChaine(ActionEvent event) throws IOException {
 		Chaine ch = new Chaine(codeTF.getText(), nomTF.getText(), elemEntreeTF.getText(), 
@@ -383,6 +545,11 @@ public class ControleurChaines implements Initializable{
 		};
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Permet de calculer le résultat d'une production et de générer son compte rendu
+	 */
 	private void testerChaine(ActionEvent event) throws IOException {
 		loadElemEntreeSortie();
 		
@@ -532,6 +699,9 @@ public class ControleurChaines implements Initializable{
 		
 	}
 	
+	/**
+	 * Méthode qui permet de charger les éléments en entrée / sortie de chaque chaine
+	 */
 	private void loadElemEntreeSortie() {
 		for (Chaine ch : chaines) {
 			
@@ -566,6 +736,9 @@ public class ControleurChaines implements Initializable{
 		}	
 	}
 	
+	/**
+	 * Méthode qui permet de réinitialiser les champs du formulaire
+	 */
 	private void clearTextField() {
     	codeTF.clear();
     	nomTF.clear();
@@ -581,12 +754,18 @@ public class ControleurChaines implements Initializable{
     	nivActiviteTF.clear();
 	}
 	
+	/**
+	 * Désactive les boutons de modification, annul modif et de suppression en fonction du contenu du formulaire
+	 */
 	private void setDisableButtons(boolean pDisable) {
 		this.modifierChaine.setDisable(pDisable);
 		this.annulerModifChaine.setDisable(pDisable);
 		this.supprimerChaine.setDisable(pDisable);
 	}
 		
+	/**
+	 * Permet de formater le contenu des listes déroulantes
+	 */
 	private void formatCB() {
 		entreeCB.setConverter(new StringConverter<Element>() {
 		    @Override
@@ -615,6 +794,11 @@ public class ControleurChaines implements Initializable{
 		});
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Semaine suivante.", permet de charger le fichier des chaines de la semaine suivante
+	 */
 	@FXML
 	private void clicBoutonSemaineSuiv(ActionEvent event) throws IOException {
 		int i = Integer.parseInt(semaineAct.getText());
@@ -642,6 +826,11 @@ public class ControleurChaines implements Initializable{
 		}
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Semaine précédente.", permet de charger le fichier des chaines de la semaine précédente
+	 */
 	@FXML
 	private void clicBoutonSemainePrec(ActionEvent event) throws IOException {
 		int i = Integer.parseInt(semaineAct.getText());
@@ -673,6 +862,12 @@ public class ControleurChaines implements Initializable{
 		}
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Tester la production de toutes les semaines", 
+	 * permet de calculer le résultat et le compte rendu d'une production de toutes les semaines
+	 */
 	@FXML
 	private void clicBoutonTesterAll(ActionEvent event) throws IOException{
 		this.chaines.removeAll(chaines);
@@ -692,6 +887,12 @@ public class ControleurChaines implements Initializable{
 		clicBoutonSemainePrec(event);
 	}
 	
+	/**
+	 * @param event
+	 * @throws IOException
+	 * Méthode déclenchée lors du clic sur le bouton "Tester la production de la semaine", 
+	 * permet de calculer le résultat et le compte rendu d'une production jusqu'à la semaine sélectionnée 
+	 */
 	@FXML
 	private void clicBoutonTesterSemaine(ActionEvent event) throws IOException{
 		this.chaines.removeAll(chaines);

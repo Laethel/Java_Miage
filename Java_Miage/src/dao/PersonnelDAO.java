@@ -17,7 +17,14 @@ import params.ControleurParams;
 
 public class PersonnelDAO extends Dao<Personnel>{
 	
+	/**
+	 * Variable qui stock le chemin du fichier du personnel
+	 */
 	private final String CSV_FILE_PATH_PERSONNEL = ControleurParams.pathPers;
+	
+	/**
+	 * ObersableList qui stock sous forme d'objet le personne
+	 */
 	private ObservableList<Personnel> personnel;
 	
 	/* (non-Javadoc)
@@ -74,6 +81,9 @@ public class PersonnelDAO extends Dao<Personnel>{
 		return null;
 	}
 	
+	/**
+	 * Méthode qui permet de calculer le total des heures disponibles du personnel qualifié
+	 */
 	public double heuresQualifDispo() {
 		this.personnel = FXCollections.observableArrayList(findAll());
 		double heuresQualif = 0;
@@ -85,6 +95,9 @@ public class PersonnelDAO extends Dao<Personnel>{
 		return heuresQualif;		
 	}
 	
+	/**
+	 * Méthode qui permet de calculer le total des heures disponibles du personnel non qualifié
+	 */
 	public double heuresNonQualifDispo() {
 		this.personnel = FXCollections.observableArrayList(findAll());
 		double heuresNonQualif = 0;

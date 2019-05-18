@@ -20,8 +20,14 @@ import params.ControleurParams;
 
 public class ChaineDAO extends Dao<Chaine> {
 	
+	/**
+	 * Variable qui stock le chemin du premier fichier des chaines
+	 */
 	private String CSV_FILE_PATH_CHAINE = ControleurParams.pathCh;
 
+	/**
+	 * Getter et setter des fichiers des chaines de chaque semaine
+	 */
 	public String getCSV_FILE_PATH_CHAINE() {
 		return CSV_FILE_PATH_CHAINE;
 	}
@@ -30,6 +36,9 @@ public class ChaineDAO extends Dao<Chaine> {
 		CSV_FILE_PATH_CHAINE = cSV_FILE_PATH_CHAINE;
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#create()
+	 */
 	public boolean create(Chaine obj) {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE_PATH_CHAINE, true));
@@ -48,6 +57,9 @@ public class ChaineDAO extends Dao<Chaine> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#delete()
+	 */
 	public boolean delete(Chaine obj) {
 		try {
 			File file = new File(CSV_FILE_PATH_CHAINE);
@@ -83,6 +95,9 @@ public class ChaineDAO extends Dao<Chaine> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#update()
+	 */
 	public boolean update(Chaine oldObj, Chaine newObj) {
 		try {
 			File file = new File(CSV_FILE_PATH_CHAINE);
@@ -122,10 +137,16 @@ public class ChaineDAO extends Dao<Chaine> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#find()
+	 */
 	public Chaine find(String id) {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see dao.Dao#findAll()
+	 */
 	public ArrayList<Chaine> findAll() {
 
 		ArrayList<Chaine> chaines = new ArrayList<Chaine>();

@@ -24,6 +24,9 @@ import params.ControleurParams;
  */
 public class ElementDAO extends Dao<Element> {
 	
+	/**
+	 * Variable qui stock le chemin du fichier des stocks
+	 */
 	private final String CSV_FILE_PATH_ELEMENT = ControleurParams.pathElem;
 	
 	@Override
