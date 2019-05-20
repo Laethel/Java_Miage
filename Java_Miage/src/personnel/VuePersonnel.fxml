@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="personnel.ControleurPersonnel">
+   <children>
+      <Label prefHeight="50.0" prefWidth="621.0" style="-fx-background-color: #587C73;" text="     PERSONNEL" textFill="WHITE" />
+      <Button fx:id="retour" layoutX="550.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonRetour" prefHeight="30.0" prefWidth="60.0" text="Retour" />
+      <TableView fx:id="tabPersonnel" layoutX="20.0" layoutY="70.0" prefHeight="340.0" prefWidth="582.0">
+        <columns>
+          <TableColumn fx:id="prenomTC" prefWidth="159.0" text="Prénom" />
+          <TableColumn fx:id="nomTC" prefWidth="206.0" text="Nom" />
+          <TableColumn fx:id="qualifTC" minWidth="0.0" prefWidth="85.0" text="Qualifié" />
+          <TableColumn fx:id="heuresSemaineTC" prefWidth="130.0" text="Heures/Semaine" />
+        </columns>
+      </TableView>
+      <Button fx:id="mainOeuvreDispo" layoutX="20.0" layoutY="422.0" mnemonicParsing="false" onAction="#clicBoutonMainOeuvre" text="Main d'oeuvre disponible" />
+      <Button fx:id="ficheTemps" layoutX="502.0" layoutY="422.0" mnemonicParsing="false" onAction="#clicBoutonFicheTemps" prefHeight="25.0" prefWidth="101.0" text="Fiche de temps" />
+   </children>
+</AnchorPane>

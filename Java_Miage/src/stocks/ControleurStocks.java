@@ -28,141 +28,141 @@ import utils.Path.Way;
 public class ControleurStocks implements Initializable{
 	
 	/**
-	 * Le bouton "Retour" permettant de revenir à l'acceuil de l'application
+	 * Le bouton "Retour" permettant de revenir ï¿½ l'acceuil de l'application
 	 */
 	@FXML
 	private Button retour;
 		
 	/**
-	 * Le tableau contenant les différentes colonnes d'information des éléments
+	 * Le tableau contenant les diffï¿½rentes colonnes d'information des ï¿½lï¿½ments
 	 */
 	@FXML
 	private TableView <Element> tabStocks;
 	
 	/**
-	 * La colonne indiquant le code de l'élément
+	 * La colonne indiquant le code de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TableColumn<Element, String> codeTC;
 	
 	/**
-	 * La colonne indiquant le nom de l'élément
+	 * La colonne indiquant le nom de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TableColumn<Element, String> nomTC;
 	
 	/**
-	 * La colonne indiquant la quantité de l'élément
+	 * La colonne indiquant la quantitï¿½ de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TableColumn<Element, Number> qteTC;
 	
 	/**
-	 * La colonne indiquant l'unité de l'élément
+	 * La colonne indiquant l'unitï¿½ de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TableColumn<Element, String> uniteTC;
 	
 	/**
-	 * La colonne indiquant le prix d'achat de l'élément
+	 * La colonne indiquant le prix d'achat de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TableColumn<Element, String> achatTC;
 	
 	/**
-	 * La colonne indiquant le prix de vente de l'élément
+	 * La colonne indiquant le prix de vente de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TableColumn<Element, String> venteTC;
 	
 	/**
-	 * La colonne indiquant la demande de l'élément
+	 * La colonne indiquant la demande de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TableColumn<Element, Number> demandeTC;
 	
 	/**
-	 * Le champ de texte indiquant le code de l'élément
+	 * Le champ de texte indiquant le code de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TextField codeTF;
 	
 	/**
-	 * Le champ de texte indiquant le nom de l'élément
+	 * Le champ de texte indiquant le nom de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TextField nomTF;
 	
 	/**
-	 * Le champ de texte indiquant l'unité de l'élément
+	 * Le champ de texte indiquant l'unitï¿½ de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TextField uniteTF;
 	
 	/**
-	 * Le champ de texte indiquant la quantité de l'élément
+	 * Le champ de texte indiquant la quantitï¿½ de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TextField qteTF;
 	
 	/**
-	 * Le champ de texte indiquant le prix d'achat de l'élément
+	 * Le champ de texte indiquant le prix d'achat de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TextField achatTF;
 	
 	/**
-	 * Le champ de texte indiquant le prix de vente de l'élément
+	 * Le champ de texte indiquant le prix de vente de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TextField venteTF;
 	
 	/**
-	 * Le champ de texte indiquant la demande de l'élément
+	 * Le champ de texte indiquant la demande de l'ï¿½lï¿½ment
 	 */
 	@FXML
 	private TextField demandeTF;
 	
 	/**
-	 * Le bouton permettant d'ajouter un nouvel élément
+	 * Le bouton permettant d'ajouter un nouvel ï¿½lï¿½ment
 	 */
 	@FXML
 	private Button ajouterElem;
 	
 	/**
-	 * Le bouton permettant de modifier un élément
+	 * Le bouton permettant de modifier un ï¿½lï¿½ment
 	 */
 	@FXML
 	private Button modifierElem;
 	
 	/**
-	 * Le bouton permettant d'annuler la modification d'un élément
+	 * Le bouton permettant d'annuler la modification d'un ï¿½lï¿½ment
 	 */
 	@FXML
 	private Button annulerModifElem;
 	
 	/**
-	 * Le bouton permettant de supprimer un élément
+	 * Le bouton permettant de supprimer un ï¿½lï¿½ment
 	 */
 	@FXML
 	private Button supprimerElem;
 	
 	/**
-	 * Le pattern DAO pour les éléments
+	 * Le pattern DAO pour les ï¿½lï¿½ments
 	 */
 	private ElementDAO dao = new ElementDAO();
 	/**
-	 * La liste des éléments
+	 * La liste des elements
 	 */
 	private ObservableList<Element> elements;
 	
 	/**
-	 * 
+	 * L'ancien element stocke avant modification
 	 */
 	private Element oldElement;
 	
 	/**
-	 * 
+	 * Variable permettant de definir l'accessibilite au formulaire
 	 */
 	private BooleanBinding bb;
 		
@@ -191,9 +191,9 @@ public class ControleurStocks implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
+	 * @param event une action utilisateur
+	 * @throws IOException une erreur de redirection
+	 * Methode declenchee lors du clic sur le bouton "Retour", ramenant l'utilisateur vers la page d'Acceuil
 	 */
 	@FXML 
 	private void clicBoutonRetour(ActionEvent event) throws IOException {
@@ -201,7 +201,7 @@ public class ControleurStocks implements Initializable{
 	}
 	
 	/**
-	 * @param click
+	 * @param click Le clic de la souris
 	 */
 	@FXML
 	private void handleClickTableView(MouseEvent click) {
@@ -221,9 +221,9 @@ public class ControleurStocks implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Ajouter un élément", qui permet d'ajouter un élément
+	 * @param event une action utilisateur
+	 * @throws IOException une erreur d'ajout d'element
+	 * Methode declenchee lors du clic sur le bouton "Ajouter un element", qui permet d'ajouter un ï¿½lï¿½ment
 	 */
 	@FXML 
 	private void clicBoutonAjoutElem(ActionEvent event) throws IOException {
@@ -238,9 +238,9 @@ public class ControleurStocks implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Modifier un élément", qui permet de modifier un élément existant
+	 * @param event une action utilisateur
+	 * @throws IOException une erreur de modification d'element
+	 * Methode declenchee lors du clic sur le bouton "Modifier un element", qui permet de modifier un element existant
 	 */
 	@FXML 
 	private void clicBoutonModifierElem(ActionEvent event) throws IOException {
@@ -256,9 +256,9 @@ public class ControleurStocks implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Annuler la modification", qui permet d'annuler la modification d'un élément
+	 * @param event une action utilisateur
+	 * @throws IOException une erreur d'annulation de modification d'element
+	 * Mï¿½thode dï¿½clenchï¿½e lors du clic sur le bouton "Annuler la modification", qui permet d'annuler la modification d'un ï¿½lï¿½ment
 	 */
 	@FXML 
 	private void clicBoutonAnnulerModificationElem(ActionEvent event) throws IOException {
@@ -267,9 +267,9 @@ public class ControleurStocks implements Initializable{
 	}
 	
 	/**
-	 * @param event
-	 * @throws IOException
-	 * Méthode déclenchée lors du clic sur le bouton "Supprimer un élément", qui permet de supprimer un élément
+	 * @param event une action utilisateur
+	 * @throws IOException une erreur de suppression d'element
+	 * Methode declenchee lors du clic sur le bouton "Supprimer un element", qui permet de supprimer un element
 	 */
 	@FXML 
 	private void clicBoutonSupprimerElem(ActionEvent event) throws IOException {
@@ -285,7 +285,7 @@ public class ControleurStocks implements Initializable{
 	}
 	
 	/**
-	 * Supprime le contenu des champs de texte de l'élément
+	 * Supprime le contenu des champs de texte de l'ï¿½lï¿½ment
 	 */
 	private void clearTextField() {
     	codeTF.clear();
@@ -297,8 +297,10 @@ public class ControleurStocks implements Initializable{
     	demandeTF.clear();
 	}
 	
+
 	/**
 	 * Rend les boutons Supprimer, Modifier et Annuler non cliquables
+	 * @param pDisable Boolean determinant l'activiation des boutons
 	 */
 	private void setDisableButtons(boolean pDisable) {
 		this.modifierElem.setDisable(pDisable);
