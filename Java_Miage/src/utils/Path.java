@@ -14,19 +14,21 @@ import javafx.stage.Stage;
  * 
  */
 public class Path {
+
+	
 	
 	/**
-	 * @author Quentin Beaussart et Damian Riquart
+	 * Enumeration listant les chemins vers les differentes pages de l'application
 	 *
 	 */
-	public enum Way {
-		
+	public enum Way {	
 		ACCUEIL("/accueil/VueAccueil.fxml"), 
 		AJOUT_ELEM("/ajoutElem/VueAjoutElem.fxml"),
 		CHAINES("/chaines/VueChaines.fxml"),
 		PARAMS("/params/VueParams.fxml"),
 		STOCKS("/stocks/VueStocks.fxml"),
-		TEST_PROD("/testProd/VueTestProd.fxml");
+		TEST_PROD("/testProd/VueTestProd.fxml"),
+		PERSONNEL("/personnel/VuePersonnel.fxml");
 	    
 	    private String chemin;
 	     
@@ -41,9 +43,9 @@ public class Path {
 	}
 
 	/**
-	 * @param actionEvent
-	 * @param way
-	 * Méthode prenant en paramètres un des éléments de l'enum "Way", permettant d'accèder à une des pages de l'application
+	 * @param actionEvent une action utilisateur
+	 * @param way Un chemin vers une autre page
+	 * Methode prenant en parametres un des elements de l'enum "Way", permettant d'acceder a une des pages de l'application
 	 */
 	public static void goTo(ActionEvent actionEvent, Way way) {
 		try {

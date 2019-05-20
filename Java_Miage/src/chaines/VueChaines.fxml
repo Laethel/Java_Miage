@@ -8,49 +8,58 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chaines.ControleurChaines">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1177.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chaines.ControleurChaines">
    <children>
-      <Label layoutY="-2.0" prefHeight="50.0" prefWidth="960.0" style="-fx-background-color: #587C73;" text="     CHAINES DE PRODUCTION" textFill="WHITE" />
-      <Button fx:id="retour" layoutX="880.0" layoutY="10.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
-      <TableView fx:id="tabChaines" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleClickTableView" prefHeight="266.0" prefWidth="500.0" AnchorPane.topAnchor="70.0">
+      <Label layoutY="-2.0" prefHeight="50.0" prefWidth="1177.0" style="-fx-background-color: #587C73;" text="     CHAINES DE PRODUCTION" textFill="WHITE" />
+      <Button fx:id="retour" layoutX="1098.0" layoutY="8.0" mnemonicParsing="false" onAction="#clicBoutonRetour" text="Retour" />
+      <TableView fx:id="tabChaines" layoutX="20.0" layoutY="70.0" onMouseClicked="#handleClickTableView" prefHeight="378.0" prefWidth="725.0" AnchorPane.topAnchor="70.0">
         <columns>
           <TableColumn fx:id="codeTC" minWidth="0.0" prefWidth="62.0" text="Code" />
           <TableColumn fx:id="nomTC" prefWidth="100.0" text="Nom" />
-          <TableColumn fx:id="entreeTC" minWidth="0.0" prefWidth="140.0" text="Entrée (Code, Qte)" />
-          <TableColumn fx:id="sortieTC" minWidth="0.0" prefWidth="140.0" text="Sortie (Code, Qte)" />
-            <TableColumn fx:id="nivActTC" prefWidth="58.0" text="Activité" />
+          <TableColumn fx:id="entreeTC" minWidth="0.0" prefWidth="146.00001525878906" text="Entrée (Code, Qte)" />
+          <TableColumn fx:id="sortieTC" minWidth="0.0" prefWidth="149.33331298828125" text="Sortie (Code, Qte)" />
+          <TableColumn fx:id="tempsProdTC" prefWidth="63.333343505859375" text="Tps Prod" />
+          <TableColumn fx:id="nbQualifTC" prefWidth="70.0" text="Qualifs" />
+          <TableColumn fx:id="nbNonQualifTC" prefWidth="76.6666259765625" text="Non qualifs" />
+          <TableColumn fx:id="nivActTC" prefWidth="53.0" text="Activité" />
         </columns>
       </TableView>
-      <Label layoutX="540.0" layoutY="74.0" text="Code :" />
-      <Label layoutX="540.0" layoutY="109.0" text="Nom :" />
-      <Label layoutX="540.0" layoutY="144.0" text="Eléments en entrée :" />
-      <Label layoutX="540.0" layoutY="274.0" text="Niveau d'activité :" />
-      <TextField fx:id="codeTF" layoutX="680.0" layoutY="70.0" prefHeight="25.0" prefWidth="100.0" />
-      <TextField fx:id="nomTF" layoutX="680.0" layoutY="105.0" prefWidth="150.0" />
-      <TextField fx:id="elemEntreeTF" editable="false" layoutX="680.0" layoutY="170.0" prefHeight="25.0" prefWidth="150.0" style="-fx-text-fill: grey;" />
-      <TextField fx:id="nivActiviteTF" layoutX="680.0" layoutY="270.0" prefWidth="75.0" />
-      <ChoiceBox fx:id="entreeCB" layoutX="680.0" layoutY="140.0" prefHeight="25.0" prefWidth="150.0" />
-      <Label layoutX="540.0" layoutY="209.0" text="Eléments en sortie :" />
-      <TextField fx:id="elemSortieTF" editable="false" layoutX="680.0" layoutY="235.0" prefHeight="25.0" prefWidth="150.0" style="-fx-text-fill: grey;" />
-      <ChoiceBox fx:id="sortieCB" layoutX="680.0" layoutY="205.0" prefHeight="25.0" prefWidth="150.0" />
-      <Button fx:id="reinitElemEntree" layoutX="835.0" layoutY="170.0" mnemonicParsing="false" onAction="#clicBoutonReinitElemEntree" text="Réinitialiser" />
-      <Button fx:id="reinitElemSortie" layoutX="835.0" layoutY="235.0" mnemonicParsing="false" onAction="#clicBoutonReinitElemSortie" text="Réinitialiser" />
-      <TextField fx:id="elemSortieQteTF" layoutX="836.0" layoutY="205.0" prefWidth="50.0" />
-      <TextField fx:id="elemEntreeQteTF" layoutX="836.0" layoutY="140.0" prefWidth="50.0" />
-      <Button fx:id="ajouterElemEntree" layoutX="891.0" layoutY="140.0" mnemonicParsing="false" onAction="#clicBoutonAjouterElemEntree" text="Ajouter" />
-      <Button fx:id="ajouterElemSortie" layoutX="890.0" layoutY="205.0" mnemonicParsing="false" onAction="#clicBoutonAjouterElemSortie" text="Ajouter" />
-      <Label layoutX="540.0" layoutY="161.0" text="(Elément, Quantité)" />
-      <Label layoutX="538.0" layoutY="226.0" text="(Elément, Quantité)" />
-      <Button fx:id="ajouterChaine" layoutX="540.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonAjoutChaine" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
-      <Button fx:id="modifierChaine" layoutX="610.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonModifierChaine" prefHeight="25.0" prefWidth="65.0" text="Modifier" />
-      <Button fx:id="annulerModifChaine" layoutX="685.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationChaine" prefHeight="25.0" prefWidth="110.0" text="Annuler modif." />
-      <Button fx:id="supprimerChaine" layoutX="805.0" layoutY="310.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerChaine" prefWidth="75.0" text="Supprimer" />
-      <Button fx:id="testerChaine" layoutX="540.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonTesterChaine" prefHeight="25.0" prefWidth="258.0" text="Tester la production de la semaine" />
-      <Button fx:id="resetTest" layoutX="810.0" layoutY="345.0" mnemonicParsing="false" onAction="#clicBoutonResetTest" prefHeight="25.0" prefWidth="135.0" text="Réinitialiser le test" />
-      <Label layoutX="237.0" layoutY="362.0" text="Semaine n°" />
-      <Button fx:id="semaineSuiv" layoutX="347.0" layoutY="358.0" mnemonicParsing="false" onAction="#clicBoutonSemaineSuiv" text="Semaine suivante" />
-      <Button fx:id="semainePrec" layoutX="65.0" layoutY="358.0" mnemonicParsing="false" onAction="#clicBoutonSemainePrec" text="Semaine précédente" />
-      <Label fx:id="semaineAct" layoutX="297.0" layoutY="362.0" text="1" />
-      <Button fx:id="testerSemainesAll" layoutX="541.0" layoutY="379.0" mnemonicParsing="false" onAction="#clicBoutonTesterAll" prefHeight="25.0" prefWidth="258.0" text="Tester la production de toutes les semaines" />
+      <Label layoutX="758.0" layoutY="72.0" text="Code :" />
+      <Label layoutX="758.0" layoutY="107.0" text="Nom :" />
+      <Label layoutX="758.0" layoutY="142.0" text="Eléments en entrée :" />
+      <Label layoutX="758.0" layoutY="385.0" text="Niveau d'activité :" />
+      <TextField fx:id="codeTF" layoutX="898.0" layoutY="68.0" prefHeight="25.0" prefWidth="100.0" />
+      <TextField fx:id="nomTF" layoutX="898.0" layoutY="103.0" prefWidth="150.0" />
+      <TextField fx:id="elemEntreeTF" editable="false" layoutX="898.0" layoutY="168.0" prefHeight="25.0" prefWidth="150.0" style="-fx-text-fill: grey;" />
+      <TextField fx:id="nivActiviteTF" layoutX="973.0" layoutY="381.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="entreeCB" layoutX="898.0" layoutY="138.0" prefHeight="25.0" prefWidth="150.0" />
+      <Label layoutX="758.0" layoutY="207.0" text="Eléments en sortie :" />
+      <TextField fx:id="elemSortieTF" editable="false" layoutX="898.0" layoutY="233.0" prefHeight="25.0" prefWidth="150.0" style="-fx-text-fill: grey;" />
+      <ChoiceBox fx:id="sortieCB" layoutX="898.0" layoutY="203.0" prefHeight="25.0" prefWidth="150.0" />
+      <Button fx:id="reinitElemEntree" layoutX="1053.0" layoutY="168.0" mnemonicParsing="false" onAction="#clicBoutonReinitElemEntree" text="Réinitialiser" />
+      <Button fx:id="reinitElemSortie" layoutX="1053.0" layoutY="233.0" mnemonicParsing="false" onAction="#clicBoutonReinitElemSortie" text="Réinitialiser" />
+      <TextField fx:id="elemSortieQteTF" layoutX="1054.0" layoutY="203.0" prefWidth="50.0" />
+      <TextField fx:id="elemEntreeQteTF" layoutX="1054.0" layoutY="138.0" prefWidth="50.0" />
+      <Button fx:id="ajouterElemEntree" layoutX="1109.0" layoutY="138.0" mnemonicParsing="false" onAction="#clicBoutonAjouterElemEntree" text="Ajouter" />
+      <Button fx:id="ajouterElemSortie" layoutX="1108.0" layoutY="203.0" mnemonicParsing="false" onAction="#clicBoutonAjouterElemSortie" text="Ajouter" />
+      <Label layoutX="758.0" layoutY="159.0" text="(Elément, Quantité)" />
+      <Label layoutX="756.0" layoutY="224.0" text="(Elément, Quantité)" />
+      <Button fx:id="ajouterChaine" layoutX="758.0" layoutY="421.0" mnemonicParsing="false" onAction="#clicBoutonAjoutChaine" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
+      <Button fx:id="modifierChaine" layoutX="828.0" layoutY="421.0" mnemonicParsing="false" onAction="#clicBoutonModifierChaine" prefHeight="25.0" prefWidth="65.0" text="Modifier" />
+      <Button fx:id="annulerModifChaine" layoutX="903.0" layoutY="421.0" mnemonicParsing="false" onAction="#clicBoutonAnnulerModificationChaine" prefHeight="25.0" prefWidth="110.0" text="Annuler modif." />
+      <Button fx:id="supprimerChaine" layoutX="1023.0" layoutY="421.0" mnemonicParsing="false" onAction="#clicBoutonSupprimerChaine" prefWidth="75.0" text="Supprimer" />
+      <Button fx:id="testerChaine" layoutX="758.0" layoutY="456.0" mnemonicParsing="false" onAction="#clicBoutonTesterSemaine" prefHeight="25.0" prefWidth="258.0" text="Tester la production de la semaine" />
+      <Button fx:id="resetTest" layoutX="1028.0" layoutY="456.0" mnemonicParsing="false" onAction="#clicBoutonResetTest" prefHeight="25.0" prefWidth="135.0" text="Réinitialiser le test" />
+      <Label layoutX="360.0" layoutY="472.0" text="Semaine n°" />
+      <Button fx:id="semaineSuiv" layoutX="534.0" layoutY="468.0" mnemonicParsing="false" onAction="#clicBoutonSemaineSuiv" text="Semaine suivante" />
+      <Button fx:id="semainePrec" layoutX="124.0" layoutY="468.0" mnemonicParsing="false" onAction="#clicBoutonSemainePrec" text="Semaine précédente" />
+      <Label fx:id="semaineAct" layoutX="420.0" layoutY="472.0" text="1" />
+      <Button fx:id="testerSemainesAll" layoutX="759.0" layoutY="490.0" mnemonicParsing="false" onAction="#clicBoutonTesterAll" prefHeight="25.0" prefWidth="258.0" text="Tester la production de toutes les semaines" />
+      <Label layoutX="759.0" layoutY="274.0" text="Temps de production (en heures) : " />
+      <TextField fx:id="tempsProdTF" layoutX="973.0" layoutY="270.0" prefHeight="25.0" prefWidth="75.0" />
+      <Label layoutX="758.0" layoutY="311.0" text="Ouvriers qualifiés requis :" />
+      <TextField fx:id="nbQualifTF" layoutX="973.0" layoutY="307.0" prefHeight="25.0" prefWidth="75.0" />
+      <Label layoutX="758.0" layoutY="349.0" text="Ouvriers non qualifiés requis : " />
+      <TextField fx:id="nbNonQualifTF" layoutX="973.0" layoutY="345.0" prefHeight="25.0" prefWidth="75.0" />
    </children>
 </AnchorPane>
