@@ -114,9 +114,11 @@ public class ChaineDAO extends Dao<Chaine> {
 					+ oldObj.getTempsProd() +";"+ oldObj.getNbQualif() +";"+ oldObj.getNbNonQualif() +";"+ oldObj.getNivAct()); 
 			String update = (newObj.getCode() +";" + newObj.getNom() +";" + newObj.getSEntree() + ";" + newObj.getSSortie() +";" 
 					+ newObj.getTempsProd() +";"+ newObj.getNbQualif() +";"+ newObj.getNbNonQualif() +";"+ newObj.getNivAct());
-			
+			System.out.println(old);
+			System.out.println(update);
 			try {
 				while((line = br.readLine()) != null) {
+					System.out.println(line);
 					if (line.equals(old)) {
 						bw.write(update + "\n");
 					} else {
